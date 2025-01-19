@@ -229,12 +229,17 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="fw-medium" href="index.html">Blossom Hill</a>, All Right Reserved.
+                    &copy; <a class="fw-medium" href="index.html">Blossom Hill</a>, All Right Reserved. <span id="currentYear"></span>
                 </div>
             </div>
         </div>
     </div>
     <!-- Copyright End -->
+
+    <script>
+        // Get the current year and insert it into the HTML
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
 
 
     <!-- Back to Top -->
