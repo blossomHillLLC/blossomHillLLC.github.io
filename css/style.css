@@ -83,6 +83,17 @@
     font-weight: normal;
 }
 
+.btn-spacing {
+    margin-right: 50px; /* Adjust the value as needed */
+}
+
+.brochure-image-container {
+    perspective: 1000px;
+}
+.brochure-fullpage-image {
+    transform: rotateY(-15deg) translateZ(50px);
+}
+
 
 /*** Navbar ***/
 .sticky-top {
