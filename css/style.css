@@ -94,26 +94,36 @@
     transform: rotateY(-15deg) translateZ(50px);
 } */
 
+/* Brochure Container */
+.brochure-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 20px;   /* give some spacing from page edges */
+    max-width: 1000px;    /* optional: limit container width */
+    margin: 0 auto;       /* center container */
+}
+
 /* Brochure Carousel */
 .brochure-image-container {
     perspective: 1000px;
-    display: flex;             /* use flex for horizontal layout of arrows + image */
-    justify-content: center;   /* center image horizontally */
-    align-items: center;       /* center vertically */
-    position: relative;        /* required for absolute arrows */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     width: 100%;
-    max-width: 900px;          /* max width same as image */
-    margin: 0 auto;            /* center in parent */
+    max-width: 900px;     /* image won’t exceed this */
+    margin: 0 auto;
 }
 
 .brochure-image {
-    width: 90vw;      
-    max-width: 900px; 
+    width: 100%;          /* take full width of container */
+    max-width: 900px;     /* cap max width */
     height: auto;
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
     transition: transform 0.1s ease-out, box-shadow 0.2s ease-out;
-    display: block;            /* prevent stretching in flex */
+    display: block;
 }
 
 /* Carousel Arrows */
@@ -122,8 +132,8 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #9b59b6; /* purple color */
-    color: white;               
+    background-color: #9b59b6;
+    color: white;
     font-size: 2rem;
     display: flex;
     align-items: center;
@@ -131,16 +141,15 @@
     opacity: 0.8;
     border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease, background-color 0.1s ease, transform 0.1s ease;
+    transition: opacity 0.2s ease, background-color 0.1s ease;
 }
 
 .carousel-arrow:hover {
     opacity: 1;
 }
 
-/* Arrow Positions */
 .left-arrow {
-    left: 10px;        /* close to image, no huge negative offset */
+    left: 10px;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -151,9 +160,8 @@
     transform: translateY(-50%);
 }
 
-/* Optional: reset color after click */
 .carousel-arrow:active {
-    background-color: #9b59b6;
+    background-color: #9b59b6;  /* reset color on click */
 }
 
 
