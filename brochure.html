@@ -123,43 +123,56 @@
 
     <!-- Brochure Section -->
     <div class="brochure-container d-flex flex-column align-items-center py-5">
-        <!-- Brochure Image -->
-        <div class="brochure-image-container">
-            <img src="files/Blossom-Hill-Assisted-Living-Brochure.png" 
-                alt="Brochure Preview" 
-                class="brochure-image img-fluid shadow rounded">
+        <!-- Brochure Carousel -->
+        <div class="brochure-carousel brochure-image-container">
+            <button class="carousel-arrow left-arrow btn btn-light">❮</button>
+            <img class="brochure-image" src="files/Blossom-Hill-Assisted-Living-Brochure.png" alt="Brochure">
+            <button class="carousel-arrow right-arrow btn btn-light">❯</button>
         </div>
-
         <!-- Download/Print Button -->
         <div class="mt-4">
-            <a href="files/Blossom-Hill-Assisted-Living-Brochure.pdf" 
-            class="btn btn-primary px-5 py-3 rounded-pill" 
-            download>
-                Download Brochure
+            <a href="#" class="btn btn-primary px-5 py-3 rounded-pill brochure-download" download target="_blank">
+                Download
             </a>
         </div>
     </div>
 
-    <style>
-        .brochure-container {
-            text-align: center;
-            width: 100%;
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const brochures = [
+            {
+                image: "files/Blossom-Hill-Assisted-Living-Brochure-front.png",
+                download: "files/Blossom-Hill-Assisted-Living-Brochure.pdf"
+            },
+            {
+                image: "files/Blossom-Hill-Assisted-Living-Brochure-back.png",
+                download: "files/Blossom-Hill-Assisted-Living-Brochure.pdf"
+            },
+        ];
+
+        let currentIndex = 0;
+        const imageEl = document.querySelector(".brochure-image");
+        const downloadBtn = document.querySelector(".brochure-download");
+
+        const updateBrochure = () => {
+            imageEl.src = brochures[currentIndex].image;
+            downloadBtn.href = brochures[currentIndex].download;
         }
 
-        .brochure-image-container {
-            perspective: 1000px; /* Creates a 3D depth effect */
-            display: inline-block;
-        }
+        document.querySelector(".left-arrow").addEventListener("click", () => {
+            currentIndex = (currentIndex - 1 + brochures.length) % brochures.length;
+            updateBrochure();
+        });
 
-        .brochure-image {
-            width: 90vw; /* Make it fill most of the page */
-            max-width: 900px; /* Limit max width for larger screens */
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6); /* Darker shadow */
-            transition: transform 0.1s ease-out, box-shadow 0.2s ease-out;
-        }
-    </style>
+        document.querySelector(".right-arrow").addEventListener("click", () => {
+            currentIndex = (currentIndex + 1) % brochures.length;
+            updateBrochure();
+        });
+
+        updateBrochure(); // Initial load
+    });
+    </script>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -177,7 +190,7 @@
                 // Create interactive shadow based on mouse position, with darker shadow
                 let shadowX = x * 20;  /* Adjust the shadow's X direction intensity */
                 let shadowY = y * 20;  /* Adjust the shadow's Y direction intensity */
-                image.style.boxShadow = `${shadowX}px ${shadowY}px 25px rgba(0, 0, 0, 0.8)`; /* Darker shadow */
+                image.style.boxShadow = `${shadowX}px ${shadowY}px 25px rgba(0, 0, 0, 0.1)`; /* Darker shadow */
             });
 
             document.addEventListener("mouseleave", () => {

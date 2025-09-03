@@ -87,11 +87,69 @@
     margin-right: 50px; /* Adjust the value as needed */
 }
 
-.brochure-image-container {
+/* .brochure-image-container {
     perspective: 1000px;
 }
 .brochure-fullpage-image {
     transform: rotateY(-15deg) translateZ(50px);
+} */
+
+.brochure-image-container {
+    perspective: 1000px;
+    display: block;      /* change from inline-block */
+    position: relative;  /* needed for arrows */
+    width: 100%;         /* ensure full width */
+    max-width: 900px;    /* same as image */
+    margin: 0 auto;      /* center carousel */
+}
+
+
+.brochure-image {
+    width: 90vw;      
+    max-width: 900px; 
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+    transition: transform 0.1s ease-out, box-shadow 0.2s ease-out;
+}
+
+.carousel-arrow {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #9b59b6; /* purple color */
+    color: white;               /* arrow color */
+    font-size: 2rem;
+    display: flex;              /* center content */
+    align-items: center;        /* vertical center */
+    justify-content: center;    /* horizontal center */
+    opacity: 0.8;
+    border: none;               /* optional: remove border */
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+
+.carousel-arrow:hover {
+    opacity: 1;
+}
+
+.carousel-arrow {
+    transition: opacity 0.2s ease, background-color 0.1s ease, transform 0.1s ease;
+}
+
+
+.left-arrow {
+    top: 50%;
+    left: -125px;   
+    transform: translateY(-50%);
+}
+
+.right-arrow {
+    top: 50%;
+    right: -125px;  
+    transform: translateY(-50%);
 }
 
 
