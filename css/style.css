@@ -94,15 +94,17 @@
     transform: rotateY(-15deg) translateZ(50px);
 } */
 
+/* Brochure Carousel */
 .brochure-image-container {
     perspective: 1000px;
-    display: block;      /* change from inline-block */
-    position: relative;  /* needed for arrows */
-    width: 100%;         /* ensure full width */
-    max-width: 900px;    /* same as image */
-    margin: 0 auto;      /* center carousel */
+    display: flex;             /* use flex for horizontal layout of arrows + image */
+    justify-content: center;   /* center image horizontally */
+    align-items: center;       /* center vertically */
+    position: relative;        /* required for absolute arrows */
+    width: 100%;
+    max-width: 900px;          /* max width same as image */
+    margin: 0 auto;            /* center in parent */
 }
-
 
 .brochure-image {
     width: 90vw;      
@@ -111,45 +113,47 @@
     border-radius: 10px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
     transition: transform 0.1s ease-out, box-shadow 0.2s ease-out;
+    display: block;            /* prevent stretching in flex */
 }
 
+/* Carousel Arrows */
 .carousel-arrow {
     position: absolute;
     width: 50px;
     height: 50px;
     border-radius: 50%;
     background-color: #9b59b6; /* purple color */
-    color: white;               /* arrow color */
+    color: white;               
     font-size: 2rem;
-    display: flex;              /* center content */
-    align-items: center;        /* vertical center */
-    justify-content: center;    /* horizontal center */
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0.8;
-    border: none;               /* optional: remove border */
+    border: none;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, background-color 0.1s ease, transform 0.1s ease;
 }
-
 
 .carousel-arrow:hover {
     opacity: 1;
 }
 
-.carousel-arrow {
-    transition: opacity 0.2s ease, background-color 0.1s ease, transform 0.1s ease;
-}
-
-
+/* Arrow Positions */
 .left-arrow {
+    left: 10px;        /* close to image, no huge negative offset */
     top: 50%;
-    left: -125px;   
     transform: translateY(-50%);
 }
 
 .right-arrow {
+    right: 10px;
     top: 50%;
-    right: -125px;  
     transform: translateY(-50%);
+}
+
+/* Optional: reset color after click */
+.carousel-arrow:active {
+    background-color: #9b59b6;
 }
 
 
