@@ -94,75 +94,77 @@
     transform: rotateY(-15deg) translateZ(50px);
 } */
 
-/* Brochure Container */
-.brochure-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px 20px;   /* give some spacing from page edges */
-    max-width: 1000px;    /* optional: limit container width */
-    margin: 0 auto;       /* center container */
-}
-
-/* Brochure Carousel */
 .brochure-image-container {
     perspective: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 100%;
-    max-width: 900px;     /* image won’t exceed this */
+    display: inline-block;
+    position: relative; /* Make arrows position absolute relative to this container */
+}
+
+/* Ensure the image never blows up */
+.brochure-image {
+    width: 100% !important;     /* override inline styles */
+    max-width: 900px;           /* cap the size */
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
     margin: 0 auto;
 }
 
-.brochure-image {
-    width: 100%;          /* take full width of container */
-    max-width: 900px;     /* cap max width */
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
-    transition: transform 0.1s ease-out, box-shadow 0.2s ease-out;
-    display: block;
+.brochure-container {
+    max-width: 1000px;
+    width: 95%;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Carousel Arrows */
+
+
 .carousel-arrow {
     position: absolute;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background-color: #9b59b6;
-    color: white;
+    background-color: #9b59b6; /* purple color */
+    color: white;               /* arrow color */
     font-size: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex;              /* center content */
+    align-items: center;        /* vertical center */
+    justify-content: center;    /* horizontal center */
     opacity: 0.8;
-    border: none;
+    border: none;               /* optional: remove border */
     cursor: pointer;
-    transition: opacity 0.2s ease, background-color 0.1s ease;
+    transition: opacity 0.2s ease;
 }
 
 .carousel-arrow:hover {
     opacity: 1;
 }
 
+
+.carousel-arrow:hover {
+    opacity: 1;
+}
+
 .left-arrow {
-    left: 10px;
     top: 50%;
+    left: -125px;   
     transform: translateY(-50%);
 }
 
 .right-arrow {
-    right: 10px;
     top: 50%;
+    right: -125px;  
     transform: translateY(-50%);
 }
 
-.carousel-arrow:active {
-    background-color: #9b59b6;  /* reset color on click */
-}
+
+
+
+
 
 
 /*** Navbar ***/
@@ -179,7 +181,6 @@
     top: 0;
     left: 0;
 }
-
 
 .navbar .navbar-nav .nav-link {
     margin-right: 35px;
