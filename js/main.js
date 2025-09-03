@@ -54,6 +54,7 @@
     })
 
 
+    
     // Product carousel
     $(".product-carousel").owlCarousel({
         autoplay: true,
