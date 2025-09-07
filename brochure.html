@@ -125,7 +125,7 @@
     <div class="brochure-container d-flex flex-column align-items-center py-5">
         <!-- Brochure Image -->
         <div class="brochure-image-container">
-            <img src="files/Blossom-Hill-Assisted-Living-Brochure.png" 
+            <img src="files/Blossom-Hill-Assisted-Living-Brochure-front.png" 
                 alt="Brochure Preview" 
                 class="brochure-image img-fluid shadow rounded">
         </div>
@@ -139,6 +139,16 @@
             </a>
         </div>
     </div>
+
+    <script>
+    function toggleBrochure(img) {
+        if (img.src.includes('Brochure-front.png')) {
+        img.src = "files/Blossom-Hill-Assisted-Living-Brochure-back.png";
+        } else {
+        img.src = "files/Blossom-Hill-Assisted-Living-Brochure-front.png";
+        }
+    }
+    </script>
 
     <style>
         .brochure-container {

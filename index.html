@@ -709,8 +709,6 @@
     </div>
     <!-- Testimonial End -->
 
-
-
     <!-- Contact Start -->
     <div class="container-xxl contact py-5">
         <div class="container">
@@ -806,6 +804,7 @@
                     <p>Come see our home-like environment</p>
                     <a href="contact.html" class="btn btn-primary btn-sm">Book a Tour</a>
                 </div>
+            </div>
         </div>
     </div>
     <!-- Footer End -->
@@ -815,17 +814,16 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="fw-medium" href="index.html">Blossom Hill LLC</a>, All Right Reserved. <span id="currentYear"></span>
+                    &copy; <span id="currentYear"></span> <a class="fw-medium" href="index.html">Blossom Hill LLC</a>. All Rights Reserved.
                 </div>
             </div>
         </div>
     </div>
-    <!-- Copyright End -->
-
     <script>
-        // Get the current year and insert it into the HTML
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
+        // Dynamically set the current year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
+    <!-- Copyright End -->
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>

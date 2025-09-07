@@ -614,12 +614,6 @@
     box-shadow: none;
 }
 
-.footer .btn-link {
-    text-align: center;   /* centers the text inside */
-    width: 100%;          /* makes links align evenly */
-    max-width: 200px;     /* keeps them from stretching too wide */
-}
-
 
 .copyright {
     color: #000;
@@ -632,3 +626,4 @@
 .copyright a:hover {
     color: #FFFFFF !important;
 }
+
