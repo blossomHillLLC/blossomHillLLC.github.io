@@ -30,5 +30,8 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add sitemap.xml
           git commit -m "Auto-update sitemap"
-          git push
+          git push https://$GH_PAT@github.com/blossomHillLLC/blossomHillLLC.github.io.git HEAD:main
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
         continue-on-error: true
+
