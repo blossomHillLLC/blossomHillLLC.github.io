@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Node.js
@@ -18,13 +18,13 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install sitemap-generator-cli
-        run: npm install -g sitemap-generator-cli
+      - name: Install sitemap generator
+        run: npm install sitemap-generator-cli
 
       - name: Generate sitemap
-        run: sitemap-generator-cli https://blossomhill.life --output ./sitemap.xml
+        run: npx sitemap-generator-cli https://blossomhill.life --output ./sitemap.xml
 
-      - name: Commit and Push sitemap
+      - name: Commit and push sitemap
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
