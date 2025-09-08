@@ -1,2 +1,4 @@
 User-agent: *
-Disallow: /maps/embed/
+Disallow:
+
+Sitemap: https://blossomhill.life/sitemap.xml
