@@ -30,28 +30,59 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- Structured Data for About Us & Local SEO -->
+    <!-- Optimized Structured Data for Local SEO & Services -->
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Blossom Hill Assisted Living",
-        "url": "https://blossomhill.life/",
-        "logo": "https://blossomhill.life/img/logo.png",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+1-651-321-22165",
-            "contactType": "Customer Service"
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Blossom Hill Assisted Living",
+    "url": "https://blossomhill.life/",
+    "logo": "https://blossomhill.life/img/logo.png",
+    "sameAs": [
+        "https://www.facebook.com/BlossomHillAssistedLiving",
+        "https://www.linkedin.com/company/blossom-hill-assistive-care"
+    ],
+    "contactPoint": [
+        {
+        "@type": "ContactPoint",
+        "telephone": "+1-651-321-2216",
+        "contactType": "Customer Service",
+        "areaServed": "US",
+        "availableLanguage": ["English"]
+        }
+    ],
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6765 Buckingham Rd",
+        "addressLocality": "Woodbury",
+        "addressRegion": "MN",
+        "postalCode": "55125",
+        "addressCountry": "US"
+    },
+    "description": "Blossom Hill Assisted Living provides compassionate and personalized senior care in Woodbury, MN. We specialize in assisted living and skilled nursing services, ensuring quality, safety, and comfort for our residents.",
+    "foundingDate": "2025",
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Services",
+        "itemListElement": [
+        {
+            "@type": "Offer",
+            "itemOffered": {
+            "@type": "Service",
+            "name": "Assisted Living",
+            "description": "Full assisted living services for seniors including personal care, meals, and social activities."
+            }
         },
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "6765 Buckingham Rd",
-            "addressLocality": "Woodbury",
-            "addressRegion": "MN",
-            "postalCode": "55125",
-            "addressCountry": "US"
-        },
-        "description": "Blossom Hill Assisted Living provides compassionate and personalized senior care in Woodbury, MN. We focus on quality, safety, and building strong relationships with families and residents."
+        {
+            "@type": "Offer",
+            "itemOffered": {
+            "@type": "Service",
+            "name": "Skilled Nursing",
+            "description": "Professional skilled nursing care for seniors with medical needs."
+            }
+        }
+        ]
+    }
     }
     </script>
 

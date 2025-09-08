@@ -32,34 +32,43 @@
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 
-    <!-- Structured Data for Local SEO & Contact Information -->
+    <!-- Structured Data for Contact Page with Phone, Email, and Address -->
     <script type="application/ld+json">
     {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Blossom Hill Assisted Living",
-        "url": "https://blossomhill.life/contact",
-        "logo": "https://blossomhill.life/img/BlossomHill/favicon.ico",
-        "sameAs": [
-            "https://www.facebook.com/BlossomHillAssistedLiving",
-            "https://www.linkedin.com/company/blossomhillassistedliving"
-        ],
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+1 651-321-2216",
-            "contactType": "Customer Service",
-            "areaServed": "Woodbury, MN",
-            "availableLanguage": "English"
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Blossom Hill Assisted Living",
+    "url": "https://blossomhill.life/",
+    "logo": "https://blossomhill.life/img/logo.png",
+    "sameAs": [
+        "https://www.facebook.com/BlossomHillAssistedLiving",
+        "https://www.linkedin.com/company/blossom-hill-assistive-care"
+    ],
+    "contactPoint": [
+        {
+        "@type": "ContactPoint",
+        "telephone": "+1-651-321-2216",
+        "contactType": "Accessibility Inquiries",
+        "areaServed": "US",
+        "availableLanguage": ["English"]
         },
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "6765 Buckingham Road",
-            "addressLocality": "Woodbury",
-            "addressRegion": "MN",
-            "postalCode": "55125",
-            "addressCountry": "US"
-        },
-        "description": "Contact Blossom Hill Assisted Living for inquiries, support, or to learn more about our compassionate assisted living services in Woodbury, MN."
+        {
+        "@type": "ContactPoint",
+        "email": "info.blossomhill@gmail.com",
+        "contactType": "Customer Service",
+        "areaServed": "US",
+        "availableLanguage": ["English"]
+        }
+    ],
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6765 Buckingham Rd",
+        "addressLocality": "Woodbury",
+        "addressRegion": "MN",
+        "postalCode": "55125",
+        "addressCountry": "US"
+    },
+    "description": "Contact Blossom Hill Assisted Living in Woodbury, MN for inquiries about assisted living, skilled nursing, accessibility services, or general information. Our team is available to help families and residents with care options and questions."
     }
     </script>
 
