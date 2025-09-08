@@ -24,13 +24,12 @@ jobs:
       - name: Generate sitemap
         run: npx sitemap-generator-cli https://blossomhill.life --output ./sitemap.xml
 
-      - name: Commit and push sitemap
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
-          git commit -m "Auto-update sitemap"
-          git push https://$GH_PAT@github.com/blossomHillLLC/blossomHillLLC.github.io.git HEAD:main
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}
-        continue-on-error: true
+        - name: Create Pull Request for sitemap
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GH_PAT }}
+          commit-message: "Auto-update sitemap"
+          branch: sitemap-update
+          title: "Update sitemap"
+          body: "This PR updates the sitemap automatically."
+          base: main
