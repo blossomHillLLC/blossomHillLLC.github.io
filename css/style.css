@@ -121,7 +121,7 @@
     align-items: center;
 }
 
-/* .carousel-caption {
+.carousel-caption {
     top: 0;
     left: 0;
     right: 0;
@@ -130,14 +130,7 @@
     align-items: center;
     justify-content: center; /* optional: center content horizontally */
     background: rgba(220, 43, 255, 0.153); /* semi-transparent color */
-    
-    /* Add blur effect */
-    backdrop-filter: blur(10px); /* adjust px for more/less blur */
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
-    
-    z-index: 1;
-    padding: 20px; /* optional padding */
-} */
+}
 
 
 .carousel-arrow {
