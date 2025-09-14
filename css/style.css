@@ -420,6 +420,11 @@
     background-size: cover;
 }
 
+.videoAccessibility {
+    background: linear-gradient(#ecd0ff, #ddabff9f), url(../img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02.png) center center no-repeat;
+    background-size: cover;
+}
+
 .video3 {
     background: linear-gradient(#ddabffd9, #ddabffd9), url(../img/BlossomHill/home-like.jpg) center center no-repeat;
     background-size: cover;
