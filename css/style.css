@@ -41,6 +41,21 @@
     opacity: 1;
 }
 
+/* Make Accessibility Carousel bigger */
+#accessibilityCarousel,
+#accessibilityCarousel .carousel-inner,
+#accessibilityCarousel .carousel-item {
+    height: 800px; /* adjust this value */
+    width: 800px;
+}
+
+#accessibilityCarousel .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* keeps aspect ratio but fills space */
+}
+
+
 
 /*** Button ***/
 .btn {

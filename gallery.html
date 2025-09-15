@@ -102,7 +102,7 @@
 
     
     <!-- Navbar Start -->
-    <div class="container-fluid bg-white sticky-top">
+    <div class="container-fluid bg-white sticky-top" id="navbar">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
                 <a href="index.html" class="navbar-brand">
@@ -112,25 +112,21 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <div class="navbar-nav ms-auto">
-                            <a href="index.html" class="nav-item nav-link">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About Us</a>
-                            <a href="services.html" class="nav-item nav-link">Services</a>
-                            <a href="accessibility.html" class="nav-item nav-link">Accessibility</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Resources</a>
-                                <div class="dropdown-menu bg-light rounded-0 m-0">
-                                    <!-- <a href="testimonial.html" class="dropdown-item">Testimonials</a> -->
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About Us</a>
+                        <a href="services.html" class="nav-item nav-link">Services</a>
+                        <a href="accessibility.html" class="nav-item nav-link">Accessibility</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Resources</a>
+                            <div class="dropdown-menu bg-light rounded-0 m-0">
                                 <a href="brochure.html" class="dropdown-item" aria-label="Brochure">BROCHURE</a>
                                 <a href="gallery.html" class="dropdown-item" aria-label="Gallery">GALLERY</a>
                                 <a href="career.html" class="dropdown-item" aria-label="Careers">CAREERS</a>
                                 <a href="faq.html" class="dropdown-item" aria-label="FAQ">FAQ</a>
-                                    <!-- <a href="blog.html" class="dropdown-item">Blog</a> -->
-                                </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Get In Touch</a>
                         </div>
+                        <a href="contact.html" class="nav-item nav-link">Get In Touch</a>
                     </div>
                 </div>
             </nav>
@@ -155,7 +151,6 @@
     </div>
     <!-- Page Header End -->
 
-
     <!-- Gallery Start -->
     <div class="container-fluid py-5">
         <div class="container">
@@ -164,93 +159,119 @@
                 <p class="text-muted">Explore the welcoming and comfortable living spaces at Blossom Hill Assisted Living in Woodbury, MN. See our beautiful bedrooms, living areas, and more.</p>
             </div>
             <div class="row g-4">
-                <!-- Image 1 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image1.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-front-yard.jpg" alt="Front view of Blossom Hill Assisted Living in Woodbury, MN, featuring a welcoming entrance and landscaped garden">
-                    </div>
+                <!-- Gallery Images -->
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(0)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-front-yard.jpg" alt="Front view of Blossom Hill Assisted Living in Woodbury, MN" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 2 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image2.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-backyard.jpg" alt="Backyard view of Blossom Hill Assisted Living in Woodbury, MN, showing the house with a patio and green lawn">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(1)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-backyard.jpg" alt="Backyard view of Blossom Hill Assisted Living in Woodbury, MN" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 3 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image3.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-backyard-backview.jpg" alt="Spacious backyard at Blossom Hill Assisted Living in Woodbury, MN, featuring a well-maintained lawn and scenic surroundings">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(2)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-backyard-backview.jpg" alt="Spacious backyard at Blossom Hill Assisted Living in Woodbury, MN" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 4 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image4.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-livingroom-view-01.jpg" alt="Modern kitchen at Blossom Hill Assisted Living in Woodbury, MN, with stainless steel appliances and ample counter space">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(3)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-livingroom-view-01.jpg" alt="Modern kitchen at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 5 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image5.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02.jpg" alt="Bright kitchen at Blossom Hill Assisted Living featuring a dining nook and open shelving for residents' convenience">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(4)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02.jpg" alt="Bright kitchen at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 6 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image4.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01.jpg" alt="Modern kitchen at Blossom Hill Assisted Living in Woodbury, MN, with stainless steel appliances and ample counter space">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(5)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01.jpg" alt="Modern bathroom at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 7 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image5.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02.jpg" alt="Bright kitchen at Blossom Hill Assisted Living featuring a dining nook and open shelving for residents' convenience">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(6)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02.jpg" alt="Bright bathroom at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 8 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image4.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-kitchen-view-01.jpg" alt="Modern kitchen at Blossom Hill Assisted Living in Woodbury, MN, with stainless steel appliances and ample counter space">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(7)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-kitchen-view-01.jpg" alt="Modern kitchen at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 9 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image5.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-kitchen-view-02.jpg" alt="Bright kitchen at Blossom Hill Assisted Living featuring a dining nook and open shelving for residents' convenience">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(8)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-kitchen-view-02.jpg" alt="Bright kitchen at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 8 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image8.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-bedroom-one.jpg" alt="Cozy smaller bedroom at Blossom Hill Assisted Living in Woodbury, MN, featuring a comfortable bed and soft lighting">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(9)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-bedroom-one.jpg" alt="Cozy bedroom at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 9 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image9.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-bedroom-two.jpg" alt="Inviting bedroom at Blossom Hill Assisted Living featuring a cozy bed, large window, and warm décor">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(10)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-bedroom-two.jpg" alt="Inviting bedroom at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 10 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image10.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-bedroom-three.jpg" alt="Spacious bedroom at Blossom Hill Assisted Living in Woodbury, MN, with a large bed, nightstand, and plenty of natural light">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(11)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-bedroom-three.jpg" alt="Spacious bedroom at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 11 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image11.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-bedroom-four.jpg" alt="Quiet and serene bedroom at Blossom Hill Assisted Living, Woodbury, MN, with neutral tones and a restful atmosphere">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(12)">
+                    <img src="img/6765_Buckingham/woodbury-assisted-living-bedroom-four.jpg" alt="Quiet bedroom at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
-                <!-- Image 11 -->
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="gallery-img" onclick="openModal('image11.jpg')">
-                        <img src="img/6765_Buckingham/woodbury-assisted-living-garage.jpg" alt="Garage at Blossom Hill Assisted Living in Woodbury, MN, with accessible ramp for easy entry">
-                    </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(13)">
+                    <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-01.png" alt="Garage at Blossom Hill Assisted Living" class="img-fluid gallery-img">
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-12" onclick="openModal(13)">
+                    <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02.png" alt="Garage at Blossom Hill Assisted Living" class="img-fluid gallery-img">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Slideshow Modal -->
+    <div id="slideshowModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:1000;align-items:center;justify-content:center;">
+        <span style="position:absolute;top:20px;right:40px;font-size:3rem;color:white;cursor:pointer;" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" style="max-width:90%;max-height:90%;margin:auto;display:block;">
+        <a style="position:absolute;top:50%;left:30px;font-size:3rem;color:white;cursor:pointer;" onclick="changeImage(-1)">&#10094;</a>
+        <a style="position:absolute;top:50%;right:30px;font-size:3rem;color:white;cursor:pointer;" onclick="changeImage(1)">&#10095;</a>
+    </div>
+
+    <script>
+    const images = [
+        "img/6765_Buckingham/woodbury-assisted-living-front-yard.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-backyard.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-backyard-backview.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-livingroom-view-01.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-kitchen-view-01.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-kitchen-view-02.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-bedroom-one.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-bedroom-two.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-bedroom-three.jpg",
+        "img/6765_Buckingham/woodbury-assisted-living-bedroom-four.jpg",
+        "img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-01.png",
+        "img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02.png"
+    ];
+
+    let currentIndex = 0;
+
+    function openModal(index) {
+        currentIndex = index;
+        document.getElementById("modalImage").src = images[currentIndex];
+        document.getElementById("slideshowModal").style.display = "flex";
+
+        // Hide navbar
+        const navbar = document.getElementById("navbar");
+        if(navbar) navbar.style.display = "none";
+    }
+
+    function closeModal() {
+        document.getElementById("slideshowModal").style.display = "none";
+
+        // Show navbar
+        const navbar = document.getElementById("navbar");
+        if(navbar) navbar.style.display = "flex"; 
+    }
+
+    function changeImage(direction) {
+        currentIndex += direction;
+        if (currentIndex < 0) currentIndex = images.length - 1;
+        if (currentIndex >= images.length) currentIndex = 0;
+        document.getElementById("modalImage").src = images[currentIndex];
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+        if(document.getElementById("slideshowModal").style.display === "flex") {
+            if(event.key === "ArrowLeft") changeImage(-1);
+            if(event.key === "ArrowRight") changeImage(1);
+            if(event.key === "Escape") closeModal();
+        }
+    });
+    </script>
     <!-- Gallery End -->
 
     <!-- Modal for Zoomed Images -->
@@ -341,9 +362,9 @@
                     <h6 class="text-light">Closed</h6>
                 </div>
                 <div class="col-lg-3 col-md-6 text-center">
-                    <h4 class="text-primary mb-4">Schedule a Visit</h4>
-                    <p>Come see our home-like environment</p>
-                    <a href="contact.html" class="btn btn-primary btn-sm">Book a Tour</a>
+                    <h4 class="text-primary mb-4">Plan Your Visit</h4>
+                    <p>Discover the comfort and care that make Blossom Hill feel like home.</p>
+                    <a href="contact.html" class="btn btn-primary btn-lg">Book a Tour</a>
                 </div>
         </div>
     </div>
