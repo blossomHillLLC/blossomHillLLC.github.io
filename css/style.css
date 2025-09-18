@@ -327,9 +327,11 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(180, 78, 170, 0.0), rgba(180, 78, 170, 0.0)), url(../img/BlossomHill/blossomHill_Logo_slogan_trans.png) center center no-repeat;
-    background-size: 15% auto;
-    background-position: 90% center;
+    background: linear-gradient(rgba(180, 78, 170, 0.0), rgba(180, 78, 170, 0.0)),
+                url(../img/BlossomHill/blossomHill_Logo_slogan_trans.png) no-repeat;
+    background-size: clamp(100px, 15vw, 250px) auto; /* min 100px, max 250px */
+    background-position: right 5% center; /* keeps it inside the screen */
+    background-repeat: no-repeat;
 }
 
 .page-header .breadcrumb-item+.breadcrumb-item::before {
@@ -341,6 +343,18 @@
     font-size: 18px;
     color: var(--light);
 }
+
+.logo-img {
+  max-width: 200px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    max-width: 80px; /* extra small on mobile */
+  }
+}
+
 
 
 /*** Section Title ***/
