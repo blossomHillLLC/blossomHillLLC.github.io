@@ -153,9 +153,8 @@
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <h3 class="mb-4">Looking to Reach Us?</h3>
                     <p class="mb-4">We’re here to assist you! Please fill out the form below, and we’ll get back to you as soon as possible. We look forward to connecting with you!</p>
-                    <form action="https://formspree.io/f/mannblne" method="POST">
+                    <form id="contactForm" action="https://formspree.io/f/mannblne" method="POST">
                         <input type="hidden" name="_subject" value="New Message">
-                        <input type="hidden" name="_next" value="https://blossomhill.service/thank-you">
 
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -187,6 +186,40 @@
                             </div>
                         </div>
                     </form>
+
+                    <!-- Hidden Thank You Message -->
+                    <div id="thankYouMessage" class="text-center mt-4" style="display:none;">
+                        <h4 class="text-success">✅ Thank you! Your message has been submitted.</h4>
+                        <p>We’ll contact you shortly. Please keep an eye on your email and check your junk/spam folder just in case</p>
+                    </div>
+
+                    <script>
+                    document.getElementById("contactForm").addEventListener("submit", async function(event) {
+                        event.preventDefault(); // Stop normal form submit
+
+                        const form = event.target;
+                        const data = new FormData(form);
+
+                        try {
+                            const response = await fetch(form.action, {
+                                method: form.method,
+                                body: data,
+                                headers: { 'Accept': 'application/json' }
+                            });
+
+                            if (response.ok) {
+                                form.style.display = "none"; // Hide the form
+                                document.getElementById("thankYouMessage").style.display = "block"; // Show thank you
+                            } else {
+                                alert("Oops! Something went wrong. Please try again.");
+                            }
+                        } catch (error) {
+                            alert("There was a problem submitting your form.");
+                        }
+                    });
+                    </script>
+
+
                 </div>
 
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
@@ -203,21 +236,36 @@
                         <div class="btn-square mx-auto mb-3">
                             <i class="fa fa-envelope fa-2x text-white"></i>
                         </div>
-                        <p class="mb-2">info.BlossomHill@gmail.com</p>
-                        <p class="mb-0">info@BlossomHill.life</p>
+                        <p class="mb-2">
+                            <i class="fa fa-envelope text-primary me-2"></i>
+                            <a href="mailto:info.BlossomHill@gmail.com" class="text-decoration-none text-dark">info.BlossomHill@gmail.com</a>
+                        </p>
                     </div>
                     <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.4s">
                         <div class="btn-square mx-auto mb-3">
                             <i class="fa fa-phone fa-2x text-white"></i>
                         </div>
-                        <p class="mb-2">+1 763 285 9666</p>
+                            <p class="mb-2">
+                                <i class="fa fa-phone-alt text-primary me-2"></i>
+                                <a href="tel:+17632859666" class="text-decoration-none text-dark"><strong>Phone: </strong>+1 763 285 9666</a>
+                            </p>
+                            <p class="mb-2">
+                                <i class="fa fa-fax text-primary me-2"></i>
+                                <a href="tel:+17632859666" class="text-decoration-none text-dark"><strong>Fax: </strong>+1 877 912 0759</a>
+                            </p>
                     </div>
                     <div class="col-md-4 text-center wow fadeInUp" data-wow-delay="0.5s">
                         <div class="btn-square mx-auto mb-3">
                             <i class="fa fa-map-marker-alt fa-2x text-white"></i>
                         </div>
-                        <p class="mb-2">6765 Buckingham Road</p>
-                        <p class="mb-0">Woodbury, MN 55125</p>
+                        <p class="mb-2">
+                            <i class="fa fa-map-marker-alt text-primary me-2"></i>
+                            <a href="https://www.google.com/maps/search/?api=1&query=6765+Buckingham+Road,+Woodbury,+MN+55125" 
+                            target="_blank" 
+                            class="text-decoration-none text-dark">
+                            6765 Buckingham Road, Woodbury, MN 55125
+                            </a>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -244,16 +292,16 @@
                     <!-- Clickable Phone -->
                     <p class="mb-2">
                         <i class="fa fa-phone-alt text-primary me-2"></i>
-                        <a href="tel:+17632859666" class="text-decoration-none text-dark">+1 763 285 9666</a>
+                        <a href="tel:+17632859666" class="text-decoration-none text-dark"><strong>Phone: </strong>+1 763 285 9666</a>
+                    </p>
+                    <p class="mb-2">
+                        <i class="fa fa-fax text-primary me-2"></i>
+                        <a href="tel:+17632859666" class="text-decoration-none text-dark"><strong>Fax: </strong>+1 877 912 0759</a>
                     </p>
                     <!-- Clickable Emails -->
                     <p class="mb-2">
                         <i class="fa fa-envelope text-primary me-2"></i>
-                        <a href="mailto:info.BlossomHill@gmail.com" class="text-decoration-none text-dark">info.BlossomHill@gmail.com</a>
-                    </p>
-                    <p class="mb-2">
-                        <i class="fa fa-envelope text-primary me-2"></i>
-                        <a href="mailto:info@BlossomHill.life" class="text-decoration-none text-dark">info@BlossomHill.life</a>
+                        <a href="mailto:info.BlossomHill@gmail.com" class="text-decoration-none text-dark"><strong>Email:</strong>info.BlossomHill@gmail.com</a>
                     </p>
                     <div class="d-flex pt-3">
                         <a class="btn btn-square btn-primary rounded-circle me-2" href="https://www.instagram.com/blossomhillllc"><i class="fab fa-instagram"></i></a>
