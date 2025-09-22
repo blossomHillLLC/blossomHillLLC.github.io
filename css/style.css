@@ -349,6 +349,13 @@
   height: auto;
 }
 
+.dropdown-item.special-link {
+  color: #fff !important;        /* text color */
+  background-color: #17aef7;     /* background color (example: Bootstrap green) */
+  font-weight: bold;             /* optional styling */
+}
+
+
 @media (max-width: 768px) {
   .logo-img {
     max-width: 80px; /* extra small on mobile */
