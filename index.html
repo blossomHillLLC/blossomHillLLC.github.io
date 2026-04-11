@@ -116,7 +116,7 @@
 
     
     <!-- Navbar Start -->
-    <div class="container-fluid bg-white sticky-top">
+    <div class="container-fluid bg-white sticky-top" id="navbar">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
                 <a href="index.html" class="navbar-brand">
@@ -126,27 +126,27 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <div class="navbar-nav ms-auto">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="about.html" class="nav-item nav-link">About Us</a>
-                            <a href="availability.html" class="nav-item nav-link">Availability</a>
-                            <a href="services.html" class="nav-item nav-link">Services</a>
-                            <a href="accessibility.html" class="nav-item nav-link">Accessibility</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Resources</a>
-                                <div class="dropdown-menu bg-light rounded-0 m-0">
-                                    <!-- <a href="testimonial.html" class="dropdown-item">Testimonials</a> -->
-                                <a href="gallery.html" class="dropdown-item" aria-label="Gallery">GALLERY</a>
+                    <div class="navbar-nav ms-auto">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About Us</a>
+                        <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+                        <a href="availability.html" class="nav-item nav-link">AVALIABILITY</a>
+                        <a href="services.html" class="nav-item nav-link">Services</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Resources</a>
+                            <div class="dropdown-menu bg-light rounded-0 m-0">
+                                <a href="accessibility.html" class="dropdown-item" aria-label="Gallery">ACCESSIBILITY</a>
                                 <a href="location.html" class="dropdown-item" aria-label="Location">LOCATION</a>
                                 <a href="career1.html" class="dropdown-item" aria-label="Careers">CAREERS</a>
                                 <a href="faq.html" class="dropdown-item" aria-label="FAQ">FAQ</a>
                                 <a href="https://carex.services/" class="dropdown-item special-link" aria-label="Location">SKILLED NURSING</a>
-                                    <!-- <a href="blog.html" class="dropdown-item">Blog</a> -->
-                                </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Get In Touch</a>
                         </div>
+
+                        <a href="contact.html" class=" nav-cta-getintouch ms-3">Get In Touch</a>
+                        <a href="https://carex.services/" class="btn nav-cta-carex ms-3" target="_blank" rel="noopener noreferrer">
+                            SKILLED NURSING
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -182,7 +182,7 @@
                                         Welcome to <strong class="text-blossom">Blossom Hill</strong>
                                     </p>
                                     <h1 class="display-1 text-dark mb-4 animated zoomIn">
-                                        Supportive Living for Every Stage of Life
+                                        Assisted Living in Woodbury, MN
                                     </h1>
                                     <div class="d-flex flex-column flex-md-row justify-content-center align-items-center gap-2">
                                         <a href="services.html" class="btn btn-light rounded-pill w-auto animated zoomIn px-4 py-2 text-center" style="min-width: 160px;">Our Services</a>
@@ -252,7 +252,7 @@
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                 <div class="section-title">
                     <p class="fs-5 fw-medium fst-italic text-primary">About Blossom Hill</p>
-                    <h1 class="display-6">Blossom Hill Assisted Living with Skilled Nursing – A Place to Flourish, Where Life Blooms</h1>
+                    <h1 class="display-6">Residential & Assisted Living Care for Adults Who Need Daily Support in Minnesota</h1>
                 </div>
                 
                 <div class="row g-3 mb-4">
@@ -263,13 +263,28 @@
                     </div>
                     <div class="col-sm-8">
                         <h5>Comprehensive Skilled Nursing & Accessible Care</h5>
-                        <p class="mb-0">
-                            At Blossom Hill, we specialize in <a href="services.html" class="text-decoration-none text-primary"><strong>skilled nursing</strong></a> and personalized support tailored to each individual. 
-                            Our wheelchair-accessible facility includes wide hallways, barrier-free spaces, and renovated bathrooms featuring zero-entry roll-in showers, floating vanities, and spacious layouts for ease of use and comfort. 
-                            From rehabilitation services to daily assistance, our skilled nursing team provides the highest level of care in an inclusive, welcoming environment. 
-                            Learn more about our <a href="accessibility.html" class="text-decoration-none text-primary"><strong>accessibility features</strong></a>.
+
+                        <p class="mb-3">
+                            At Blossom Hill, we provide <a href="services.html" class="text-decoration-none text-primary"><strong>skilled nursing</strong></a> and personalized care in a safe, supportive home environment.
                         </p>
-                    </div>                        
+
+                        <p class="mb-3">
+                            We are a <strong>Medicaid waiver (waivered) provider</strong> and support residents who require long-term care, rehabilitation, or daily living assistance.
+                        </p>
+
+                        <ul class="mb-3">
+                            <li><b>Wheelchair-accessible</b> home with barrier-free design</li>
+                            <li>Support for <b>adults 55+</b> and individuals eligible for CADI / Medicaid waiver programs</li>
+                            <li><b>24/7 trained</b> caregiving and skilled nursing support</li>
+                            <li>Assistance with daily living and mobility needs</li>
+                            <li>Safe, structured environment focused on dignity and independence</li>
+                        </ul>
+
+                        <p class="mb-0">
+                            Learn more about our 
+                            <a href="accessibility.html" class="text-decoration-none text-primary"><strong>accessibility features</strong></a> and tour availability.
+                        </p>
+                    </div>       
                 </div>
                 
                 <div class="border-top mb-4"></div>
@@ -277,13 +292,20 @@
                 <div class="row g-3">
                     <div class="col-sm-8">
                         <h5>Personalized Comfort & Holistic Well-Being</h5>
-                        <p class="mb-4">
-                            Beyond exceptional <a href="services.html" class="text-decoration-none text-primary"><strong>skilled nursing</strong></a>, Blossom Hill is dedicated to creating a warm, 
-                            home-like atmosphere where every resident feels valued and supported. 
-                            Our residents enjoy thoughtfully designed private and shared living spaces, 
-                            nutritious meals tailored to individual needs, and engaging activities that promote mental, 
-                            emotional, and physical well-being. With a focus on dignity, respect, and individualized care,
-                             our team is committed to enhancing quality of life for every person who calls Blossom Hill home.
+
+                        <p class="mb-3">
+                            Beyond exceptional <a href="services.html" class="text-decoration-none text-primary"><strong>skilled nursing</strong></a>, care is focused on comfort, dignity, and individualized support in a home-like environment.
+                        </p>
+
+                        <ul class="mb-3">
+                            <li>Private and shared living spaces designed for comfort and safety</li>
+                            <li>Nutritious meals tailored to individual dietary needs</li>
+                            <li>Engaging activities that support mental, emotional, and physical well-being</li>
+                            <li>24/7 caregiver support in a structured, supportive environment</li>
+                        </ul>
+
+                        <p class="mb-0">
+                            Every aspect of care is designed to enhance quality of life while supporting independence and dignity.
                         </p>
                     </div>
                 <div class="col-sm-4">
