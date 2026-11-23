@@ -1,0 +1,69 @@
+BLOSSOM HILL DAILY FOOD PAGE - HOW TO USE
+=========================================
+
+WHAT IT IS
+  A page for the kitchen. At the top is one sheet (same flower and food
+  design as the weekly menu) with today's day (for example "MONDAY"),
+  the breakfast, lunch and dinner, and the ingredients with measurements
+  under each item. Below the sheet is "How to make it": the steps for
+  every item and safe cooking temperatures.
+
+  On the website it is at:  blossomhill.life/dailyfood
+  On this computer: double-click "index.html" in this folder.
+  Like the menu maker, no page links to it and Google is told not to list
+  it. It is hidden, not locked: anyone with the address can open it.
+
+GETTING THE MENU ONTO THIS PAGE (automatic)
+  The menu comes from the menu maker (the "foodshuffle" folder).
+  Every time the menu is shuffled or one meal is swapped, this page
+  changes to match by itself. Nothing to send. This works on the same
+  computer and browser you use for the menu maker.
+  A menu shuffled Saturday or Sunday is for next week; Monday to Friday
+  it is for this week.
+
+  On a different computer, tablet or the AbleSign TV:
+  1. In the menu maker, click "Download file for other devices".
+  2. Put the downloaded "daily_menu.json" in this "dailyfood" folder
+     (replace the old one).
+  3. Publish the website.
+  Do this once a week, after next week's menu is made and before Monday.
+
+ABLESIGN TV (sign view)
+  Address for the sign:   https://blossomhill.life/dailyfood/?sign=1
+  This shows only the menu sheet (for the week's servings set in the
+  menu maker), filling the whole screen, with no buttons. To show a different number of servings, add it to the end,
+  for example:  https://blossomhill.life/dailyfood/?sign=1&servings=6
+  - At midnight it changes to the new day by itself.
+  - Every 30 minutes it checks the website for a newly published menu.
+  - If no menu has been published for the week, the screen says
+    "Today's menu is coming soon."
+  To set it up in AbleSign: click WEBSITES, then ADD WEBSITE, paste the
+  address above, give it a name (for example "Daily Menu"), click SAVE,
+  and add it to the screen's playlist. Website content needs the sign
+  to stay connected to the internet.
+
+USING THE PAGE
+  - Day buttons (Mon to Sun) show another day of the same week.
+    "Today" goes back to today.
+  - Servings: set for the whole week in the menu maker ("Servings this
+    week", 4 unless changed). The - and + buttons here change it for this
+    screen only, until the page is closed. The steps say "per person"
+    (for example "1 patty per person"), so they work for any number.
+  - "Download PNG" or "Download PDF" saves the day's sheet to post or
+    send. "Print" prints the sheet on one page.
+
+CHANGING OR ADDING RECIPES (recipes.csv, opens in Excel)
+  One row per menu item:
+  - Dish: must be spelled exactly like the item on the menu.
+  - Serves: how many servings the amounts make (6 for all included
+    recipes; the page works out the amounts for 4 or any other number).
+  - Ingredients: separate each ingredient with a | (vertical bar).
+    Start each one with the amount, for example: 1 1/2 lb chicken breast
+  - Steps: separate each step with a |
+  - Food safety and notes: shown in a red box under the recipe.
+  Save as CSV. If you add a new item to menu_items.csv in the menu maker,
+  add its recipe here too, or the page will say "No recipe yet".
+  The website reads recipes.csv from this folder, so publish after editing.
+  When you double-click index.html on this computer, the page uses the
+  recipes built into it; tell Claude when you change recipes.csv so the
+  built-in copy can be updated too.

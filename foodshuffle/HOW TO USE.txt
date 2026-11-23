@@ -1,0 +1,171 @@
+BLOSSOM HILL MENU MAKER - HOW TO USE
+====================================
+
+Keep these files together in one folder (for example, a folder on your Desktop):
+  - Blossom Hill Menu Maker.html   (the app)
+  - menu_items.csv                 (your food list - the one you edit)
+  - menu_items_original.csv        (your old food list, kept as a backup)
+
+No internet and nothing to install. The app runs in your web browser
+(Chrome, Edge, Safari or Firefox).
+
+OPEN THE APP
+  1. Double-click "Blossom Hill Menu Maker.html". It opens in your browser.
+  2. A full weekly menu appears.
+
+SHUFFLE
+  - Click "Shuffle" for a whole new week.
+  - Click any single meal on the menu to swap just that one.
+  Breakfast spots only get breakfasts, lunch spots only lunches, and
+  dinner spots only dinners. A meal is not used twice in the same week.
+  The same kind of main dish is never served twice in one week either:
+  for example only one oatmeal, one omelet, one bagel, one pancake, one
+  sandwich, one soup and one taco per week. If a swap would repeat a main,
+  the app picks a different one (or tells you there is none left).
+
+DOWNLOAD
+  - "Download PNG" = a 1920 x 1080 picture, made for a monitor or TV.
+  - "Download PDF" = the same menu on one landscape Letter page.
+  - "View Grocery List" = shows the shopping list on this page.
+  - "Download Grocery List" = a printable shopping checklist for the
+    menu that is on the screen right now.
+  Files go to your Downloads folder. Each name ends with the date and
+  the time to the second (for example "Blossom Hill Menu 2026-11-15
+  12-50-22 AM"), so a new download never gets a "(1)" added.
+
+GROCERY LIST
+  See it on the screen:
+  - Click "View Grocery List". The list opens under the menu.
+  - Under each item it shows the day and the meal that uses it,
+    for example "Thu: Hamburger". Items marked "Keep on hand" (milk,
+    butter, spices and so on) are on every list.
+  - Tick items as you shop or check the pantry. The ticks are kept
+    if you close the page, and are cleared when you click Shuffle
+    (a new menu) or "Clear ticks".
+  - The list changes by itself when you shuffle or swap a meal.
+  - "Print list" prints the grocery list on one page (the same page as
+    "Download Grocery List"). "Hide" closes it.
+  Download it as a PDF:
+  - Click "Download Grocery List" for a one-page checklist. Download it
+    again after the menu changes, so it matches.
+  Amounts are not listed: buy enough for the number of residents you
+  serve.
+
+SHOWING IT ON A MONITOR
+  The menu is 1920 x 1080, the same size and shape as your original.
+  Download the PNG and open it full screen on the monitor (or put it
+  on a USB stick for a TV).
+
+READABILITY
+  - All 7 days are on one screen, and every food line is the same
+    size (29 pixels tall on a 1920 x 1080 screen).
+  - Keep food names to about 20 letters ("Fresh Seasonal Fruit" is
+    about the limit). A longer name breaks onto a second line, and if
+    a day runs out of room all the text gets a little smaller
+    together, so shorter names keep the text big.
+
+EDIT THE FOOD LIST (in Excel)
+  1. Open "menu_items.csv" in Excel. Each row is one meal:
+        Category  = Breakfast, Lunch or Dinner
+        Item 1    = the main dish
+        Item 2, Item 3 = sides (leave blank if not needed)
+        Main Protein   = Chicken, Beef, Fish, Turkey or Beans
+                         (optional - the app uses it to avoid serving
+                         the same protein twice in one day)
+        Ingredients    = everything needed to make that meal, with a
+                         semicolon between items, for example:
+                         Eggs; Whole wheat bread; Oranges
+                         When you add a meal, fill this in, or its
+                         ingredients cannot appear on the grocery list.
+                         (The list warns you about any meal left blank.)
+     There is one row with the category "Note". Whatever you type in its
+     Item 1 box is printed in small letters at the bottom of the menu
+     (milk, snacks, substitutions). Change the wording there any time.
+     Keep it short: only one Note row is used, and it has room for
+     about two short sentences.
+     The rows with the category "Grocery" are the ingredient list:
+        Item 1 = the ingredient, spelled the same way as in the
+                 Ingredients column
+        Item 2 = the store section it prints under (Produce, Frozen...)
+        Item 3 = type Always if it should be on every grocery list
+     A new ingredient with no Grocery row still prints, under "Other".
+  2. To add a meal: type a new row at the bottom.
+     To change a meal: type over it.
+     To remove a meal: right-click the row number and choose Delete.
+     Keep the top heading row as it is.
+  3. Save. If Excel asks about the format, choose to keep it as CSV.
+  4. In the app, click "Load food list (CSV)" and pick your saved
+     menu_items.csv. The app tells you how many meals it loaded.
+  The app remembers your list the next time you open it. You only need
+  to click "Load food list (CSV)" again after you change the file.
+  "Use starting list" goes back to the list that came with the app.
+
+KEEPING THE MENU IN LINE WITH MYPLATE (144G.41)
+  The starting list is built so each day covers all five MyPlate food
+  groups: fruit, vegetables, grains (mostly whole grain), protein and
+  dairy. When you add your own meals, keep the same pattern:
+    Breakfast = a grain + eggs, yogurt or cottage cheese + a fruit
+    Lunch     = a protein + a grain + a vegetable + a fruit
+    Dinner    = a protein + a grain or potato + a vegetable
+  Also: post the menu at least one week ahead, tell residents about
+  changes, ask residents for menu ideas, offer a similar substitute if
+  someone refuses a food, and keep snacks available every day.
+
+GOOD TO KNOW
+  - Keep at least 7 meals in each category so a week has no repeats.
+  - If you type a new category (for example Snack), the app adds a
+    Snack section to every day and makes the text smaller to fit.
+  - A few meals get a small picture automatically on the one-page
+    menu (burger, waffle, sandwich and so on).
+
+ON THE WEBSITE (blossomhill.life/foodshuffle)
+  The website copy reads the "menu_items.csv" file that sits in this
+  same "foodshuffle" folder. To change the menu items online:
+  1. Open "menu_items.csv" in this folder in Excel, make your changes,
+     and save (keep it as CSV).
+  2. Publish the website folder the same way you publish any other
+     website change. The online menu maker uses the new list the next
+     time the page is opened.
+  If you double-click the app on your computer instead, it uses the
+  list built into the app, or one you load with "Load food list (CSV)".
+  Reminder: this page is hidden, not locked. Anyone with the address
+  can open these files.
+
+NO PORK
+  This menu has no pork, ham or bacon. Turkey ham is used in place of ham.
+  When shopping, check labels on refried beans, baked beans, cornbread mix, gravy, hot dogs and
+  sausage: some brands contain lard or pork. Buy the ones that do not.
+
+PROTEIN ROTATION (LUNCH AND DINNER)
+  Lunch and dinner each take turns between chicken, beef and fish, checked
+  separately. The same protein is never served two days in a row, and over
+  7 days one protein is used 3 times and the other two 2 times each (as even
+  as 7 days allow). Lunch and dinner on the same day always have different
+  proteins. Clicking one meal to swap it keeps the same protein.
+  The "Main Protein" column decides this:
+  - Chicken or Turkey   = chicken
+  - Beef                = beef
+  - Fish, Salmon, Tuna, Cod, Tilapia or Shrimp = fish
+  A lunch or dinner with any other entry (Beans, or blank) is not used.
+  Breakfast is not part of the rotation.
+
+DAILY FOOD PAGE (dailyfood)
+  The Daily Food page shows today's breakfast, lunch and dinner with the
+  ingredients for each item on one page, and how to make it below.
+  It updates BY ITSELF: every time you click Shuffle or swap one meal
+  here, the Daily Food page changes to match. There is no button to press.
+  SERVINGS THIS WEEK: use the - and + buttons (or type a number) to set
+  how many servings the Daily Food page and the TV show ingredients for,
+  every day of this menu's week. It starts at 4 and stays the same for
+  the next menus until you change it. Each week keeps its own number.
+  WHICH WEEK (automatic):
+  - A menu shuffled Monday to Friday is for this week.
+  - A menu shuffled Saturday or Sunday is for next week.
+  - A menu from a week that is over is never copied into a new week.
+    The page then asks you to click Shuffle for this week's menu.
+  Click "Open Daily Food page" to see it.
+  For the AbleSign TV or another computer or tablet:
+  click "Download file for other devices", put the downloaded
+  daily_menu.json in the "dailyfood" folder (replace the old one), and
+  publish the website. Do this once a week, after next week's menu is
+  made and before Monday. The file holds this week and next week.
