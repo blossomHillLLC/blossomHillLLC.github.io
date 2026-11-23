@@ -45,8 +45,10 @@
 #accessibilityCarousel,
 #accessibilityCarousel .carousel-inner,
 #accessibilityCarousel .carousel-item {
-    height: 800px; /* adjust this value */
-    width: 800px;
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    aspect-ratio: 1 / 1;
 }
 
 #accessibilityCarousel .carousel-item img {
@@ -742,3 +744,92 @@
     color: #FFFFFF !important;
 }
 
+
+/*** Readable type scale (added Nov 2026) ***
+ Body text was 16px everywhere, which looked small next to the large
+ headings and wide page sections. Reading text is now 18px on computers
+ and 17px on phones. Menus, buttons, forms and the footer keep their size
+ so nothing wraps or shifts. To make all reading text bigger or smaller,
+ change the two font-size numbers under "body" below. */
+body {
+    font-size: 1.0625rem;      /* phones: 17px */
+    line-height: 1.65;
+}
+@media (min-width: 768px) {
+    body { font-size: 1.125rem; }   /* tablets and computers: 18px */
+}
+
+/* keep these at their original size */
+.navbar .navbar-nav .nav-link,
+.navbar .dropdown-item,
+.footer,
+.copyright,
+.form-control,
+.form-floating > label {
+    font-size: 1rem;
+}
+.footer { line-height: 1.5; }
+
+/* sub-headings stay clearly larger than the text under them */
+h5, .h5 { font-size: 1.375rem; }
+h4, .h4 { font-size: 1.6rem; }
+.footer h4 { font-size: 1.5rem; }
+
+/* larger intro text */
+.lead { font-size: 1.375rem; font-weight: 400; }
+.fs-5 { font-size: 1.3rem !important; }
+
+/* text inside the home page value cards */
+.product-item .text-body { font-size: 1.0625rem; }
+
+/* FAQ questions and answers */
+.accordion-button { font-size: 1.3rem !important; line-height: 1.35; }
+.accordion-body { font-size: 1.125rem !important; line-height: 1.65; }
+
+/* menu keeps its original height */
+.navbar { line-height: 1.5; }
+
+/* the flower logos beside the text were wider than their column and covered the first letters of the text */
+.logo-img { max-width: min(110px, 100%); }   /* size of the flower logos beside the text; raise or lower 110px to resize */
+@media (max-width: 768px) {
+    .logo-img { max-width: 80px; }
+}
+
+/* Nutritious Meals photo: it is a tall photo, so it is trimmed to the same wide shape as the other section photos */
+.section-photo {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    object-position: center 48%;
+}
+
+/* Our Core Values background: the flower photo now always fills the whole section
+   (it left an empty strip on wide screens) and is softened so the heading is easy to read */
+.product {
+    background: linear-gradient(rgba(250, 238, 255, 0.88), rgba(233, 204, 255, 0.82)), url(../img/BlossomHill/flower5.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+/*** Very wide screens (1440p and 4K monitors) ***
+ The page was built for screens up to about 1920 wide, so on a bigger monitor it sat in a
+ narrow column with empty space on both sides. On wider screens the whole page is now
+ scaled up in proportion, so it fills the screen the same way it does at 1920 wide. */
+@media (min-width: 2100px) { html { zoom: 1.1; } }
+@media (min-width: 2300px) { html { zoom: 1.2; } }
+@media (min-width: 2500px) { html { zoom: 1.33; } }
+@media (min-width: 2800px) { html { zoom: 1.5; } }
+@media (min-width: 3100px) { html { zoom: 1.65; } }
+@media (min-width: 3400px) { html { zoom: 1.8; } }
+@media (min-width: 3800px) { html { zoom: 2; } }
+
+/* Laptop-size screens: the menu was too wide for the bar, so the logo covered "Home" and part of "About Us".
+   The menu items sit a little closer together here so they all fit beside the logo. */
+@media (min-width: 992px) and (max-width: 1599.98px) {
+    .navbar .navbar-collapse { margin-left: 185px; }
+    .navbar .navbar-nav .nav-link { margin-right: 20px; font-size: 0.95rem; }
+    .navbar .nav-cta-getintouch, .navbar .nav-cta-carex { font-size: 15px; padding: 10px 13px; margin-left: 0.5rem !important; white-space: nowrap; }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .navbar .navbar-nav .nav-link { margin-right: 12px; font-size: 0.85rem; }
+    .navbar .nav-cta-getintouch, .navbar .nav-cta-carex { font-size: 13px; padding: 9px 10px; margin-left: 0.25rem !important; }
+}
