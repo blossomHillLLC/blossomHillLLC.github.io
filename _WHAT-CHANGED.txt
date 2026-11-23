@@ -1,0 +1,59 @@
+BLOSSOM HILL WEBSITE - UPDATED COPY
+Made November 15, 2026. Your original folder (Github_Website\blossomHillLLC.github.io) was not changed.
+
+HOW TO LOOK AT IT
+1. Open this folder.
+2. Double-click index.html. It opens in your web browser.
+3. Click around the menu like a normal visitor.
+(The Google map and the thank-you page only work fully once the site is online.)
+
+WHAT WAS FIXED
+- Menu typo "AVALIABILITY" is now "Availability".
+- Location and Availability pages were labeled "Careers" for Google. Each now has its own title and description.
+- Three careers pages became one: careers.html. The old addresses forward to it.
+- The job application form sent people to a wrong web address after they applied (blossomhill.service). It now goes to a thank-you page on your site.
+- The fax number no longer dials your phone line.
+- Hidden leftover template code was removed: tea store, sample testimonials, sample article, empty video pop-up, old "Home / Pages" trails.
+- The accessibility page and About page scrolled sideways on phones. Fixed.
+- The Lifeway Mobility paragraph appeared twice. Now once.
+- The last gallery photo opened the wrong picture. Fixed.
+- Every page now has the same footer (four pages had an older one).
+
+WHAT WAS IMPROVED FOR GOOGLE AND AI SEARCH
+- One main headline per page (the home page had 14).
+- Shorter, specific page titles and descriptions on every page.
+- Business details for Google on every page: name, address, phone, fax, hours, map location, your real Facebook/Instagram/YouTube/LinkedIn links.
+- Link previews: a photo and description now show when the site is shared on Facebook or by text.
+- New "Quick Facts" section on the home page.
+- New "Paying for Care" section on the Services page (CADI, BI, private pay).
+- FAQ grew from 6 to 15 questions.
+- Location page now names M Health Fairview Woodwinds Hospital, lists nearby cities, and shows a map.
+- Phone visitors now get a headline, a Call button and a Book a Tour button at the top of the home page.
+- Every photo has a description that matches the photo.
+- New sitemap listing every page, plus an llms.txt summary file for AI tools.
+
+SPEED
+- Photos were resized (some were 7,000 pixels wide). Same file names, much smaller files.
+- The three videos went from about 46 MB to about 12 MB.
+- Banner videos no longer download on phones, where they were never shown.
+- This folder only holds files the site uses (about 20 MB). Unused files such as the .git folder, the 85 MB virtual tour video and the raw camera photos were left out.
+
+PLEASE CHECK THESE - YOUR DECISION
+1. "Skilled nursing" wording was NOT changed. The site says you provide 24/7 skilled nursing with a licensed nursing team. Your UDALSA says skilled nursing "can be arranged". Please make sure the wording matches your license.
+2. Payment: the site now says CADI waiver, Brain Injury waiver, and private pay (long-term care insurance was removed at your request). If you also take Elderly Waiver (EW), tell Claude and it will be added.
+3. Availability now says "2 openings" (changed November 15, 2026). Update when that changes.
+4. Careers page shows the Home Health Aide / CNA opening as active ($22/hour stays in the hidden Google job data, as before). If you are not hiring, tell Claude.
+5. Accessibility page still says "Ramps and lifts throughout the facility". Confirm that is accurate.
+6. Several photos are stock photos (people who are not your residents or staff). Real photos build more trust.
+7. Old pages left out of this copy: blog.html, feature.html, testimonial.html, store.html (unused template pages).
+
+NOT DONE HERE (outside the website files)
+- Google Business Profile: claim it, complete it, and ask families for reviews.
+- Make sure Care.com, Olera, mn.gov and other listings show the same name, phone and services.
+
+ADDED LATER (November 15, 2026)
+- Menu maker: the Blossom Hill Menu Maker is now in the "foodshuffle" folder. Once the site is online, open it at
+  blossomhill.life/foodshuffle
+  No page links to it, it is not in the sitemap, and it tells Google not to list it.
+  It is NOT password protected: anyone who has the address can open it, and the file can be seen in your GitHub repository if that repository is public.
+- llms.txt was expanded with fuller facts and the kinds of searches Blossom Hill fits.
