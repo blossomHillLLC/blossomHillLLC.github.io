@@ -2,7 +2,7 @@
  "weeks": {
   "2026-11-23": {
    "id": "1795793541152",
-   "sent": "2026-11-27T16:10:23.173Z",
+   "sent": "2026-11-27T16:11:38.364Z",
    "cats": [
     "Breakfast",
     "Lunch",
@@ -34,9 +34,9 @@
       "Grapes"
      ],
      [
-      "Vegetable Beef Soup",
-      "Whole Grain Roll",
-      "Pears"
+      "Beef Tacos",
+      "Seasoned Corn",
+      "Melon"
      ],
      [
       "Fish & Chips",
@@ -56,8 +56,8 @@
       "Melon"
      ],
      [
-      "Shepherd's Pie",
-      "Garden Salad",
+      "Beef Rice Bowl",
+      "Steamed Broccoli",
       "Fresh Seasonal Fruit"
      ]
     ],
@@ -68,9 +68,9 @@
       "Banana"
      ],
      [
-      "Fish Sticks",
-      "Green Peas",
-      "Orange Slices"
+      "Tuna Pasta Salad",
+      "Wheat Crackers",
+      "Fresh Seasonal Fruit"
      ],
      [
       "Chicken Parmesan",
@@ -80,14 +80,14 @@
     ],
     [
      [
-      "French Toast",
-      "Turkey Sausage",
-      "Strawberries"
+      "Cheese Omelet",
+      "Whole Wheat Toast",
+      "Peaches"
      ],
      [
-      "Beef Tacos",
-      "Seasoned Corn",
-      "Melon"
+      "Vegetable Beef Soup",
+      "Whole Grain Roll",
+      "Pears"
      ],
      [
       "Baked Salmon",
@@ -97,9 +97,9 @@
     ],
     [
      [
-      "Cream of Wheat",
+      "Whole Grain Waffle",
       "Yogurt",
-      "Banana"
+      "Blueberries"
      ],
      [
       "Chicken Quesadilla",
@@ -107,26 +107,26 @@
       "Fresh Seasonal Fruit"
      ],
      [
-      "Beef Rice Bowl",
-      "Steamed Broccoli",
+      "Shepherd's Pie",
+      "Garden Salad",
       "Fresh Seasonal Fruit"
      ]
     ],
     [
      [
-      "Scrambled Eggs",
-      "Whole Wheat Toast",
+      "Cereal w/ Milk",
+      "Hard-Boiled Egg",
+      "Banana"
+     ],
+     [
+      "Fish Sticks",
+      "Green Peas",
       "Orange Slices"
      ],
      [
-      "Tuna Pasta Salad",
-      "Wheat Crackers",
-      "Fresh Seasonal Fruit"
-     ],
-     [
-      "Chicken Alfredo",
-      "Steamed Broccoli",
-      "Fresh Seasonal Fruit"
+      "Chicken Fajitas",
+      "Black Beans",
+      "Pineapple"
      ]
     ]
    ]
