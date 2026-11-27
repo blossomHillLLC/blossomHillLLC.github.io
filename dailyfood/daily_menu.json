@@ -1,0 +1,135 @@
+{
+ "weeks": {
+  "2026-11-23": {
+   "id": "1795407632038",
+   "sent": "2026-11-27T15:26:18.753Z",
+   "cats": [
+    "Breakfast",
+    "Lunch",
+    "Dinner"
+   ],
+   "servings": 4,
+   "days": [
+    [
+     [
+      "Apple Oatmeal",
+      "Yogurt",
+      "Blueberries"
+     ],
+     [
+      "Tuna Pasta Salad",
+      "Wheat Crackers",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "Chicken Alfredo",
+      "Steamed Broccoli",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "Blueberry Pancakes",
+      "Cottage Cheese",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "Beef Tacos",
+      "Seasoned Corn",
+      "Melon"
+     ],
+     [
+      "Tuna Mac & Cheese",
+      "Green Peas",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "Egg & Cheese Bagel",
+      "Yogurt",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "BBQ Pulled Chicken",
+      "Coleslaw",
+      "Melon"
+     ],
+     [
+      "Beef Rice Bowl",
+      "Steamed Broccoli",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "French Toast",
+      "Turkey Sausage",
+      "Strawberries"
+     ],
+     [
+      "Tuna Salad Sandwich",
+      "Tomato Soup",
+      "Orange Slices"
+     ],
+     [
+      "Baked Chicken",
+      "Brown Rice",
+      "Steamed Broccoli"
+     ]
+    ],
+    [
+     [
+      "Cheese Omelet",
+      "Whole Wheat Toast",
+      "Peaches"
+     ],
+     [
+      "Vegetable Beef Soup",
+      "Whole Grain Roll",
+      "Pears"
+     ],
+     [
+      "Baked Salmon",
+      "Brown Rice",
+      "Roasted Carrots"
+     ]
+    ],
+    [
+     [
+      "Whole Grain Waffle",
+      "Yogurt",
+      "Blueberries"
+     ],
+     [
+      "Chicken Quesadilla",
+      "Black Beans",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "Shepherd's Pie",
+      "Garden Salad",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "Cereal w/ Milk",
+      "Hard-Boiled Egg",
+      "Banana"
+     ],
+     [
+      "Fish Sticks",
+      "Green Peas",
+      "Orange Slices"
+     ],
+     [
+      "Chicken Fajitas",
+      "Black Beans",
+      "Pineapple"
+     ]
+    ]
+   ]
+  }
+ }
+}
