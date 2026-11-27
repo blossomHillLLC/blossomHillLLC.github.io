@@ -169,3 +169,27 @@ DAILY FOOD PAGE (dailyfood)
   daily_menu.json in the "dailyfood" folder (replace the old one), and
   publish the website. Do this once a week, after next week's menu is
   made and before Monday. The file holds this week and next week.
+
+SEND TO TV (the green bar)
+  The menu maker can put the menu on the AbleSign TV by itself. Nothing to
+  download, move or publish.
+  ONE-TIME SETUP (about 5 minutes):
+  1. On github.com, click your picture (top right) > Settings >
+     Developer settings (bottom left) > Personal access tokens >
+     Fine-grained tokens > Generate new token.
+  2. Token name: Menu to TV. Expiration: pick the longest (1 year).
+  3. Repository access: Only select repositories > blossomHillLLC.github.io
+  4. Permissions > Repository permissions > Contents: Read and write.
+  5. Click Generate token and copy it (it starts with github_pat_).
+  6. In the menu maker, click "Connect TV" and paste it. Done.
+  The key is saved only in this browser on this computer. It is never
+  put on the website. Do this on each computer you shuffle menus on.
+  EVERY WEEK: just shuffle. About 20 seconds after you shuffle, swap a meal
+  or change the servings, the menu is sent. The bar says "This menu is on
+  the TV" when it is done, and the TV shows it within a few minutes.
+  "Send to TV now" sends it right away.
+  If the bar turns red: read what it says. When the key expires (after a
+  year), make a new one the same way and click "Change key".
+  Before publishing other website changes with GitHub Desktop, click
+  "Fetch origin" / "Pull origin" first, so the newest menu file comes
+  down to your computer and is not replaced.

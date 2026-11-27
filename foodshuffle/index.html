@@ -23,6 +23,12 @@
   #dailybar b{color:#2c3a7a}
   #dailybar select{font:inherit;font-size:17px;padding:8px 10px;border:2px solid #7b4fc4;border-radius:10px;background:#fff;color:#2b2140}
   #dailybar button{font-size:17px;padding:8px 16px}
+  #tvbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px;background:#f3fbf5;border-bottom:2px solid #a9dcb8;font-size:17px}
+  #tvbar button{font-size:17px;padding:8px 16px}
+  #tvbar .gap{flex:1}
+  #tvStatus.ok{color:#17663a;font-weight:600}
+  #tvStatus.err{color:#a11d1d;font-weight:600}
+  @media print{#tvbar{display:none !important}}
   #daily{background:#2c3a7a;border-color:#2c3a7a;color:#fff}
   #daily:hover{background:#24306a}
   #dailybar a{color:#4b2a8f;font-weight:600}
@@ -81,6 +87,12 @@
   <a href="../dailyfood/index.html" target="_blank" rel="noopener">Open Daily Food page</a>
   <span class="gap"></span>
   <button id="dailyFile" title="For using the Daily Food page on a different computer or tablet">Download file for other devices</button>
+</div>
+<div id="tvbar">
+  <span id="tvStatus">📺 TV: checking…</span>
+  <span class="gap"></span>
+  <button id="tvSend" title="Send this menu to the AbleSign TV now">Send to TV now</button>
+  <button id="tvSetup" title="Paste the GitHub key that lets this page update the TV">Connect TV</button>
 </div>
 <div id="status"></div>
 <div id="wrap"><canvas id="c" width="3840" height="2160"></canvas></div>
@@ -695,7 +707,62 @@ function syncDaily(){
   all[wk]={id:id, sent:new Date().toISOString(), cats:catNames.slice(), servings:weekServ(),
     days:menu.map(function(day){ return day.map(function(idx,ci){ return meals[catNames[ci].toLowerCase()][idx].slice(); }); })};
   store("bh_dailyprev",JSON.stringify(prev)); store("bh_daily",JSON.stringify(all)); fillWeekBox();
+  tvSoon();
 }
+
+/* ---------- Send to TV: saves the menu straight to the website through GitHub ----------
+   The GitHub key is kept only in this browser on this computer (never in the website files).
+   After a shuffle, swap or servings change, the menu is sent by itself about 20 seconds later. */
+var TV_REPO="blossomHillLLC/blossomHillLLC.github.io", TV_BRANCH="main", TV_PATH="dailyfood/daily_menu.json", tvTimer=null, tvBusy=false;
+function tvKey(){ return (recall("bh_tvkey")||"").trim(); }
+function tvSay(msg,cls){ var el=document.getElementById("tvStatus"); if(!el) return; el.textContent=msg; el.className=cls||""; }
+function tvText(){ return JSON.stringify({weeks:dailyAll()},null,1); }
+function tvSame(){ return JSON.stringify({weeks:dailyAll()},function(k,v){ return k==="sent"?undefined:v; }); }   // ignores the time stamp
+function tvShowState(){
+  if (!tvKey()){ tvSay("📺 TV: not connected yet. Click “Connect TV” once, then menus go to the TV by themselves."); document.getElementById("tvSetup").textContent="Connect TV"; return; }
+  document.getElementById("tvSetup").textContent="Change key";
+  var last=recall("bh_tvwhen");
+  if (recall("bh_tvlast")===tvSame()) tvSay("📺 This menu is on the TV"+(last?" (sent "+last+")":"")+" ✓","ok");
+  else tvSay("📺 TV connected. This menu will be sent in a moment…");
+}
+function tvSoon(){ if (!tvKey() || menuIsOld()) return; clearTimeout(tvTimer); if (recall("bh_tvlast")===tvSame()){ tvShowState(); return; }
+  tvSay("📺 Sending this menu to the TV in a few seconds…"); tvTimer=setTimeout(function(){ tvSend(false); },20000); }
+function tvSend(manual){
+  clearTimeout(tvTimer);
+  var key=tvKey(); if (!key){ tvSay("📺 Click “Connect TV” first.","err"); return; }
+  if (!Object.keys(dailyAll()).length){ tvSay("📺 Shuffle a menu first.","err"); return; }
+  if (tvBusy) return; tvBusy=true; tvSay("📺 Sending to the TV…");
+  var url="https://api.github.com/repos/"+TV_REPO+"/contents/"+TV_PATH, h={"Authorization":"Bearer "+key,"Accept":"application/vnd.github+json"};
+  var same=tvSame(), text=tvText();
+  fetch(url+"?ref="+TV_BRANCH+"&t="+Date.now(),{headers:h,cache:"no-store"}).then(function(r){
+    if (r.status===401) throw new Error("key");
+    return r.status===404 ? null : r.json();
+  }).then(function(cur){
+    var body={message:"Update menu for the TV", branch:TV_BRANCH, content:btoa(unescape(encodeURIComponent(text)))};
+    if (cur && cur.sha) body.sha=cur.sha;
+    return fetch(url,{method:"PUT",headers:h,body:JSON.stringify(body)});
+  }).then(function(r){
+    if (r.status===401) throw new Error("key");
+    if (r.status===403||r.status===404) throw new Error("perm");
+    if (!r.ok) throw new Error("other "+r.status);
+    var when=new Date().toLocaleString("en-US",{weekday:"short",hour:"numeric",minute:"2-digit"});
+    store("bh_tvlast",same); store("bh_tvwhen",when);
+    tvSay("📺 Sent to the TV "+when+" ✓  It shows on the TV within a few minutes.","ok");
+  }).catch(function(e){
+    var m=String(e&&e.message||e);
+    if (m==="key") tvSay("📺 The GitHub key did not work (it may have expired). Click “Change key” and paste a new one.","err");
+    else if (m==="perm") tvSay("📺 The key is not allowed to change the website. Make a new key with Contents: Read and write for blossomHillLLC.github.io.","err");
+    else tvSay("📺 Could not reach GitHub (check the internet). Click “Send to TV now” to try again.","err");
+  }).then(function(){ tvBusy=false; });
+}
+document.getElementById("tvSend").onclick=function(){ tvSend(true); };
+document.getElementById("tvSetup").onclick=function(){
+  var k=window.prompt("Paste your GitHub key for the TV (it starts with github_pat_).\nIt is saved only in this browser on this computer.\nLeave it empty and click OK to disconnect.", "");
+  if (k===null) return;
+  k=k.trim(); store("bh_tvkey",k||null); store("bh_tvlast",null);
+  if (!k){ tvShowState(); return; }
+  tvSend(true);
+};
 // Servings for the week of the menu on screen (4 unless changed). Saved with that week's menu.
 function weekServ(){ var n=parseInt(recall("bh_weekserv"),10); return (n>0&&n<=60)?n:4; }
 function setWeekServ(n){
@@ -737,6 +804,7 @@ bg.onload=function(){
   var usingSaved=!!r;
   if (!r) r=loadList(DEFAULT_CSV);
   if (!restoreMenu()) shuffleAll(); else { draw(); syncDaily(); }
+  tvShowState(); tvSoon();
   say((usingSaved?"Using the food list you loaded last time. ":"Using the starting food list. ")+r.msg);
   // On the website: read menu_items.csv from this same folder, so editing that file updates the menu everywhere.
   if (!usingSaved && /^https?:$/.test(location.protocol) && window.fetch){
