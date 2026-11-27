@@ -66,6 +66,19 @@
     box-shadow: inset 0 0 0 calc(.5 * var(--u)) color-mix(in srgb, var(--c) 40%, #fff); }
   .meal.now .sticker { animation: wiggle 2.4s ease-in-out infinite; }
   @keyframes wiggle { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg) scale(1.06); } }
+  .meal .top .badge.soft { animation: none; background: rgba(255, 255, 255, .85); }
+  .cookbar { position: relative; margin: calc(1 * var(--u)) calc(2 * var(--u)) 0; height: calc(3.4 * var(--u)); border-radius: 99px;
+    background: color-mix(in srgb, var(--c) 14%, #fff); overflow: hidden; box-shadow: inset 0 0 0 calc(.3 * var(--u)) color-mix(in srgb, var(--c) 35%, #fff); }
+  .cookbar .fill { position: absolute; inset: 0 auto 0 0; min-width: calc(3.4 * var(--u)); border-radius: 99px; background-color: var(--c);
+    background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, .28) 0 calc(1 * var(--u)), transparent calc(1 * var(--u)) calc(2 * var(--u)));
+    background-size: calc(2.83 * var(--u)) calc(2.83 * var(--u)); animation: stripes 1.2s linear infinite; transition: width 1s ease; }
+  @keyframes stripes { to { background-position: calc(2.83 * var(--u)) 0; } }
+  .cookbar span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--fun); font-weight: 700;
+    font-size: calc(2 * var(--u)); color: color-mix(in srgb, var(--c) 60%, #000); text-shadow: 0 0 4px #fff, 0 0 4px #fff; }
+  .servebar { margin: calc(1 * var(--u)) calc(2 * var(--u)) 0; text-align: center; font-family: var(--fun); font-weight: 700; font-size: calc(2.1 * var(--u));
+    color: #fff; background: var(--c); border-radius: 99px; padding: calc(.4 * var(--u)) 0; }
+  .meal.cooking .sticker { animation: sizzle 1.1s ease-in-out infinite; }
+  @keyframes sizzle { 0%, 100% { transform: rotate(-4deg) translateY(0); } 50% { transform: rotate(4deg) translateY(calc(-.4 * var(--u))); } }
   .txt { min-width: 0; }
   .main-dish { font-family: var(--fun); font-weight: 700; font-size: calc(3.8 * var(--u)); line-height: 1.1; color: var(--ink); }
   .sides { display: flex; flex-wrap: wrap; gap: calc(.7 * var(--u)); margin-top: calc(.9 * var(--u)); }
@@ -176,8 +189,15 @@
     'snack':     { c: '#c2185b', ic: '🍎' }
   };
   // When each meal ends (24-hour clock). The meal being served gets a "NOW" badge.
-  var MEAL_ENDS = { 'breakfast': '10:30', 'lunch': '14:30', 'dinner': '19:30' };
-  var SHOW_TOMORROW_AFTER = '19:30'; // after dinner, show tomorrow's menu
+  // Meal times (24-hour clock): when cooking starts, when serving starts, when serving ends.
+  // While cooking: "Now cooking" with a progress bar. While serving: "Now serving!".
+  var MEAL_TIMES = {
+    'breakfast': { cook: '6:45',  serve: '7:30',  end: '8:30' },
+    'lunch':     { cook: '11:00', serve: '12:00', end: '13:00' },
+    'dinner':    { cook: '16:00', serve: '17:00', end: '18:00' },
+    'supper':    { cook: '16:00', serve: '17:00', end: '18:00' }
+  };
+  var SHOW_TOMORROW_AFTER = '19:30'; // after supper, show tomorrow's menu
   var SECONDS = 15;                  // how long each menu screen shows
   var RECIPE_SECONDS = 25;           // how long each recipe screen shows
   // Recipes shown after the menu:  'meal' = the dishes of the meal being served now (after dinner,
@@ -413,26 +433,40 @@
     document.getElementById('greet').textContent = greeting();
   }
 
+  function clock12(hm) { var p = hm.split(':'), h = +p[0], ap = h < 12 ? 'AM' : 'PM'; h = h % 12 || 12; return h + ':' + p[1] + ' ' + ap; }
+  // What each meal is doing right now: 'cooking', 'serving', 'done', 'next' (the next meal) or ''.
+  function mealStates(cats, nowM) {
+    var out = cats.map(function () { return { state: '' }; }), nextSet = false;
+    cats.forEach(function (cat, i) {
+      var t = MEAL_TIMES[cat.toLowerCase()]; if (!t) return;
+      var c = mins(t.cook), sv = mins(t.serve), e = mins(t.end);
+      if (nowM >= e) out[i] = { state: 'done' };
+      else if (nowM >= sv) out[i] = { state: 'serving', until: t.end };
+      else if (nowM >= c) out[i] = { state: 'cooking', pct: Math.round(100 * (nowM - c) / Math.max(1, sv - c)), ready: t.serve };
+      else if (!nextSet) out[i] = { state: 'next', at: t.serve };
+      if (out[i].state && out[i].state !== 'done') nextSet = true;
+    });
+    return out;
+  }
+
   function todayHtml(now) {
     var nowM = now.getHours() * 60 + now.getMinutes(), showDay = now, label = "Today's Menu";
     if (nowM >= mins(SHOW_TOMORROW_AFTER)) { showDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); label = "Tomorrow's Menu"; }
     var m = menuFor(showDay);
     var head = '<h2 class="sec">' + label + ' <small>' + showDay.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) + '</small></h2>';
     if (!m) return head + '<div class="soon">Today\'s menu is coming soon.</div>';
-    var current = null;
-    if (showDay === now) {
-      for (var i = 0; i < m.cats.length; i++) {
-        var end = MEAL_ENDS[m.cats[i].toLowerCase()];
-        if (end && nowM < mins(end)) { current = i; break; }
-      }
-    }
+    var isToday = showDay === now, states = isToday ? mealStates(m.cats, nowM) : m.cats.map(function () { return { state: '' }; });
     var html = head + '<div class="today" style="--meals:' + m.cats.length + '">';
     m.cats.forEach(function (cat, i) {
-      var st = style(cat), items = m.meals[i] || [];
-      var cls = showDay === now ? (i === current ? ' now' : (current === null || i < current ? ' done' : '')) : '';
-      if (showDay === now && current === null) cls = ' done';
-      html += '<div class="meal' + cls + '" style="--c:' + st.c + '"><div class="top"><span class="ic">' + st.ic + '</span>' + esc(cat) +
-        (cls === ' now' ? '<span class="badge">🔔 Serving now!</span>' : '') + '</div><div class="body"><div class="sticker">' + pic(items[0]) + '</div>' +
+      var st = style(cat), items = m.meals[i] || [], ms = states[i];
+      var cls = ms.state === 'serving' ? ' now' : ms.state === 'cooking' ? ' now cooking' : ms.state === 'done' ? ' done' : '';
+      var badge = ms.state === 'serving' ? '<span class="badge">🔔 Now serving!</span>' :
+        ms.state === 'cooking' ? '<span class="badge">👩‍🍳 Now cooking</span>' :
+        ms.state === 'next' ? '<span class="badge soft">Up next · ' + clock12(ms.at) + '</span>' : '';
+      var bar = ms.state === 'cooking' ? '<div class="cookbar"><div class="fill" style="width:' + ms.pct + '%"></div><span>Ready at ' + clock12(ms.ready) + ' 🍽️</span></div>' :
+        ms.state === 'serving' ? '<div class="servebar">Serving until ' + clock12(ms.until) + '</div>' : '';
+      html += '<div class="meal' + cls + '" style="--c:' + st.c + '"><div class="top"><span class="ic">' + st.ic + '</span>' + esc(cat) + badge + '</div>' + bar +
+        '<div class="body"><div class="sticker">' + pic(items[0]) + '</div>' +
         '<div class="txt"><div class="main-dish">' + esc(items[0] || '') + '</div><div class="sides">' +
         items.slice(1).map(function (x) { return '<span class="chip">' + pic(x) + ' ' + esc(x) + '</span>'; }).join('') + '</div></div></div></div>';
     });
@@ -469,11 +503,11 @@
 
   // Which day and meal the kitchen is working on: the meal being served now; after dinner, tomorrow's breakfast.
   function focus(now) {
-    var nowM = now.getHours() * 60 + now.getMinutes();
-    if (nowM >= mins(SHOW_TOMORROW_AFTER)) return { day: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1), ci: 0, when: 'Tomorrow' };
-    var m = menuFor(now), ci = 0;
-    if (m) for (var i = 0; i < m.cats.length; i++) { var end = MEAL_ENDS[m.cats[i].toLowerCase()]; if (end && nowM < mins(end)) { ci = i; break; } }
-    return { day: now, ci: ci, when: 'Today' };
+    var nowM = now.getHours() * 60 + now.getMinutes(), m = menuFor(now);
+    if (nowM < mins(SHOW_TOMORROW_AFTER) && m) {
+      for (var i = 0; i < m.cats.length; i++) { var t = MEAL_TIMES[m.cats[i].toLowerCase()]; if (t && nowM < mins(t.end)) return { day: now, ci: i, when: 'Today' }; }
+    }
+    return { day: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1), ci: 0, when: 'Tomorrow' };
   }
 
   function servingsFor(d) {
@@ -511,6 +545,7 @@
   // Builds the list of screens: the menu (today and week together if they fit), then the recipes.
   function buildScreens() {
     var main = document.getElementById('main'), now = nowMN(), list = [];
+    setKey();   // fill the color key first, so the space is measured correctly
     if (!KITCHEN) {
       var narrow = innerWidth / innerHeight < 1.4, tries = narrow ? [[false, 7], [false, 6], [false, 5], [false, 4], [false, 3]] : [[false, 7], [true, 7]], fit = null;
       for (var t = 0; t < tries.length && !fit; t++) { main.innerHTML = todayHtml(now) + weekHtml(now, tries[t][0], tries[t][1]); if (fits(main)) fit = tries[t]; }
