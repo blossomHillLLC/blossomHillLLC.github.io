@@ -1,6 +1,6 @@
 # Blossom Hill Assisted Living
 
-> Blossom Hill (Blossom Hill LLC) is a licensed, wheelchair-accessible assisted living home at 6765 Buckingham Road, Woodbury, Minnesota 55125. It serves adults 55 and older who need daily support and is a Medicaid waiver provider for the CADI and Brain Injury (BI) waivers. Phone: 763-285-9666. Website: https://blossomhill.life/
+> Blossom Hill (Blossom Hill LLC) is a licensed, wheelchair-accessible assisted living home at 6765 Buckingham Road, Woodbury, Minnesota 55125. It serves adults 55 and older who need daily support and is a Medicaid waiver provider. It accepts waiver services such as CADI and BI (Brain Injury). Phone: 763-285-9666. Website: https://blossomhill.life/
 
 This file is a plain-language summary of the website for AI assistants and AI search tools. Everything here also appears on the public pages linked below.
 
@@ -24,12 +24,13 @@ Blossom Hill is a good match when someone is looking for:
 - Fax: 877-912-0759
 - Office and tour hours: Monday to Friday, 9:00 am to 5:00 pm. Caregivers are on site 24 hours a day.
 - Who it serves: adults 55 and older who need daily support, including wheelchair users and residents who need bariatric accommodations
-- Payment accepted: Medicaid waivers (CADI and Brain Injury), private pay. Private-pay rates depend on care needs; call 763-285-9666 for current rates.
+- Payment accepted: waiver services such as CADI and BI (Brain Injury), and private pay. Private-pay rates depend on care needs; call 763-285-9666 for current rates.
 - Rooms: private and shared
 - Member of Care Providers of Minnesota
 
 ## Care and services
 
+- Caregivers on site 24 hours a day; a registered nurse (RN) oversees care plans and medication administration
 - Help with daily living: dressing, bathing, grooming, toileting, meals and mobility
 - Medication management, coordinated with each resident's healthcare providers
 - Three home-cooked meals a day plus snacks, adapted to dietary needs
