@@ -7,7 +7,10 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="img/BlossomHill/Top3-260.webp">
 <style>
-  :root { --purple: #9529d1; --deep: #5b1782; --cream: #fffaf3; --ink: #1f1a24; --muted: #5e5866; }
+  /* --u is the size unit. It is tuned below for full screen, left/right half, and top/bottom half. */
+  :root { --purple: #9529d1; --deep: #5b1782; --cream: #fffaf3; --ink: #1f1a24; --muted: #5e5866; --u: 1vh; }
+  @media (max-aspect-ratio: 7/5) { :root { --u: min(1vh, 1.25vw); } }     /* left or right half */
+  @media (min-aspect-ratio: 5/2) { :root { --u: 1.6vh; } }               /* top or bottom half */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
@@ -15,45 +18,74 @@
     display: flex; flex-direction: column; overflow: hidden; cursor: none;
   }
   header {
-    display: flex; align-items: center; gap: 2vw; padding: 1.6vh 3vw;
+    display: flex; align-items: center; gap: calc(2.5 * var(--u)); padding: calc(1.6 * var(--u)) calc(4 * var(--u));
     background: linear-gradient(90deg, var(--deep), var(--purple)); color: #fff;
   }
-  header img { height: 9vh; width: auto; background: #fff; border-radius: 1vh; padding: .6vh .8vh; }
-  header h1 { font-family: Georgia, "Playfair Display", serif; font-size: 4.6vh; font-weight: 700; line-height: 1.1; }
-  header p { font-size: 2.3vh; opacity: .9; }
-  .clock { margin-left: auto; text-align: right; }
-  .clock b { display: block; font-size: 6vh; line-height: 1; font-weight: 700; }
-  .clock span { font-size: 2.6vh; }
-  main { flex: 1; padding: 2.5vh 3vw 1vh; display: flex; flex-direction: column; min-height: 0; }
+  header img { height: calc(9 * var(--u)); width: auto; background: #fff; border-radius: var(--u); padding: calc(.6 * var(--u)) calc(.8 * var(--u)); }
+  header h1 { font-family: Georgia, "Playfair Display", serif; font-size: calc(4.6 * var(--u)); font-weight: 700; line-height: 1.1; }
+  header p { font-size: calc(2.3 * var(--u)); opacity: .9; }
+  .clock { margin-left: auto; text-align: right; flex: none; }
+  .clock b { display: block; font-size: calc(6 * var(--u)); line-height: 1; font-weight: 700; }
+  .clock span { font-size: calc(2.6 * var(--u)); }
+  main { flex: 1; padding: calc(2.5 * var(--u)) calc(4 * var(--u)) var(--u); display: flex; flex-direction: column; min-height: 0; }
   .day {
-    font-family: Georgia, "Playfair Display", serif; font-size: 5vh; color: var(--deep);
-    display: flex; align-items: baseline; gap: 1.5vw; margin-bottom: 1.8vh;
+    font-family: Georgia, "Playfair Display", serif; font-size: calc(5 * var(--u)); color: var(--deep);
+    display: flex; align-items: center; gap: calc(2 * var(--u)); margin-bottom: calc(1.8 * var(--u));
   }
-  .day small { font-family: "Open Sans", Arial, sans-serif; font-size: 2.6vh; color: var(--muted); }
-  .tag { font-size: 2.2vh; background: var(--purple); color: #fff; border-radius: 99px; padding: .3vh 1.4vw; font-family: Arial, sans-serif; }
-  .list { flex: 1; display: grid; grid-template-rows: repeat(5, 1fr); gap: 1.4vh; min-height: 0; }
+  .tag { font-size: calc(2.2 * var(--u)); background: var(--purple); color: #fff; border-radius: 99px; padding: calc(.3 * var(--u)) calc(1.6 * var(--u)); font-family: Arial, sans-serif; white-space: nowrap; }
+  .list { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: calc(1.4 * var(--u)); min-height: 0; overflow: hidden; }
   .ev {
-    display: grid; grid-template-columns: 17vw 1fr; align-items: center; gap: 2vw;
-    background: #fff; border-radius: 1.6vh; padding: .8vh 2vw; border-left: 1.2vh solid var(--c, var(--purple));
-    box-shadow: 0 .4vh 1.4vh rgba(60, 20, 90, .08); min-height: 0; overflow: hidden;
+    display: grid; grid-template-columns: calc(30 * var(--u)) 1fr; align-items: center; gap: calc(3 * var(--u));
+    background: #fff; border-radius: calc(1.6 * var(--u)); padding: calc(.8 * var(--u)) calc(3 * var(--u));
+    border-left: calc(1.2 * var(--u)) solid var(--c, var(--purple));
+    box-shadow: 0 calc(.4 * var(--u)) calc(1.4 * var(--u)) rgba(60, 20, 90, .08); flex: none; overflow: hidden;
   }
-  .time { font-size: 4.2vh; font-weight: 700; color: var(--deep); line-height: 1.1; }
-  .time small { display: block; font-size: 2.2vh; font-weight: 600; color: var(--muted); }
-  .when { display: block; font-size: 2.5vh; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .3vh; }
-  .when.now { color: #fff; background: var(--purple); border-radius: 99px; padding: .1vh 1vw; display: inline-block; }
+  .time { font-size: calc(4.2 * var(--u)); font-weight: 700; color: var(--deep); line-height: 1.1; }
+  .time small { display: block; font-size: calc(2.2 * var(--u)); font-weight: 600; color: var(--muted); }
+  .when { display: block; font-size: calc(2.5 * var(--u)); font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: .05em; margin-bottom: calc(.3 * var(--u)); }
+  .when.now { color: #fff; background: var(--purple); border-radius: 99px; padding: calc(.1 * var(--u)) calc(1.4 * var(--u)); display: inline-block; }
+  .list.fill .ev { flex: 1 1 0; }
   .what { min-width: 0; }
-  .what h2 { font-size: 3.5vh; line-height: 1.15; font-weight: 700; }
-  .where { font-size: 2.6vh; color: var(--deep); font-weight: 600; margin-top: .3vh; }
-  .desc { font-size: 2.2vh; color: var(--muted); margin-top: .3vh; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .empty { margin: auto; text-align: center; font-size: 4vh; color: var(--muted); max-width: 70vw; line-height: 1.4; }
-  footer { display: flex; align-items: center; gap: 2vw; padding: 1.4vh 3vw 2vh; font-size: 2.1vh; color: var(--muted); }
-  .dots { display: flex; gap: .6vw; }
-  .dots i { width: 1.4vh; height: 1.4vh; border-radius: 50%; background: #d9cce3; }
+  .what h2 { font-size: calc(3.5 * var(--u)); line-height: 1.15; font-weight: 700; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .where { font-size: calc(2.6 * var(--u)); color: var(--deep); font-weight: 600; margin-top: calc(.3 * var(--u)); }
+  .desc { font-size: calc(2.2 * var(--u)); color: var(--muted); margin-top: calc(.3 * var(--u)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .empty { margin: auto; text-align: center; font-size: calc(4 * var(--u)); color: var(--muted); max-width: 90%; line-height: 1.4; }
+  footer { display: flex; align-items: center; gap: calc(2 * var(--u)); padding: calc(1.4 * var(--u)) calc(4 * var(--u)) calc(2 * var(--u)); font-size: calc(2.1 * var(--u)); color: var(--muted); }
+  .dots { display: flex; gap: var(--u); }
+  .dots i { width: calc(1.4 * var(--u)); height: calc(1.4 * var(--u)); border-radius: 50%; background: #d9cce3; }
   .dots i.on { background: var(--purple); }
-  .bar { height: .6vh; background: #eadff2; margin: 0 3vw; border-radius: 99px; overflow: hidden; }
+  .bar { height: calc(.6 * var(--u)); background: #eadff2; margin: 0 calc(4 * var(--u)); border-radius: 99px; overflow: hidden; }
   .bar div { height: 100%; width: 0; background: var(--purple); }
   .fade { animation: fade .8s ease; }
-  @keyframes fade { from { opacity: 0; transform: translateY(1vh); } to { opacity: 1; transform: none; } }
+  @keyframes fade { from { opacity: 0; transform: translateY(var(--u)); } to { opacity: 1; transform: none; } }
+
+  /* Left or right half: stack the time above the title, shorter header */
+  @media (max-aspect-ratio: 7/5) {
+    header { padding: calc(1.4 * var(--u)) calc(3 * var(--u)); gap: calc(2 * var(--u)); }
+    header img { height: calc(7 * var(--u)); }
+    header h1 { font-size: calc(3.6 * var(--u)); }
+    header p, #note, .clock span { display: none; }
+    .clock b { font-size: calc(4.4 * var(--u)); }
+    main { padding-left: calc(3 * var(--u)); padding-right: calc(3 * var(--u)); }
+    .day { font-size: calc(4.2 * var(--u)); }
+    .ev { grid-template-columns: 1fr; gap: calc(.4 * var(--u)); padding: var(--u) calc(2.5 * var(--u)); align-content: center; }
+    .time { display: flex; align-items: baseline; gap: calc(1.4 * var(--u)); flex-wrap: wrap; font-size: calc(3.4 * var(--u)); }
+    .time small { display: inline; }
+    .when { display: inline-block; margin: 0; }
+    .what h2 { font-size: calc(3.6 * var(--u)); }
+  }
+  /* Top or bottom half: three activities per screen, no descriptions */
+  @media (min-aspect-ratio: 5/2) {
+    header { padding: var(--u) calc(4 * var(--u)); }
+    header img { height: calc(7 * var(--u)); }
+    header h1 { font-size: calc(4 * var(--u)); }
+    header p { display: none; }
+    .clock b { font-size: calc(5 * var(--u)); }
+    main { padding-top: calc(1.5 * var(--u)); }
+    .day { font-size: calc(4 * var(--u)); margin-bottom: var(--u); }
+    .desc { display: none; }
+    footer { padding-top: var(--u); padding-bottom: var(--u); }
+  }
 </style>
 </head>
 <body>
@@ -76,8 +108,18 @@
 (function () {
   var params = new URLSearchParams(location.search);
   var SECONDS = Math.max(5, +params.get('seconds') || 15); // time on each screen
-  var PER_PAGE = 5;
+  // Sign mode (for AbleSign and other sign players): add ?sign=1 to the address.
+  // The page then has no timer of its own and shows the next screen each time the player opens it.
+  // ?screen=2 always shows screen 2 (use this if you prefer one playlist item per screen).
+  var SIGN = params.has('sign') || params.has('screen');
+  var FIXED = Math.max(0, (+params.get('screen') || 0) - 1);
+  var firstLoad = true;
   var DAYS_SHOWN = 7;
+  var resizeWait;
+  addEventListener('resize', function () {   // the screen area changed: re-measure and start over
+    clearTimeout(resizeWait);
+    resizeWait = setTimeout(function () { buildSlides(); idx = 0; render(); }, 300);
+  });
   var COLORS = {
     'Games and Gaming': '#f2a541', 'Crafts and Hobbies': '#2e9e5b', 'Book Clubs': '#2b7bb9',
     'Books, Authors, and Writing': '#2b7bb9', 'Health and Wellness': '#e4572e', 'Lifelong Learning': '#8e44ad',
@@ -99,6 +141,17 @@
     document.getElementById('today').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
   }
 
+  function card(r) {
+    var e = r.e;
+    var time = '<span class="when' + (r.today ? ' now' : '') + '">' + esc(r.label) + '</span>' +
+      (e.allDay ? 'All day' : esc(e.start) + (e.end ? '<small>until ' + esc(e.end) + '</small>' : ''));
+    return '<div class="ev" style="--c:' + (COLORS[e.category] || '#9529d1') + '"><div class="time">' + time + '</div>' +
+      '<div class="what"><h2>' + esc(e.title) + '</h2><div class="where">' + esc(e.place) +
+      (e.town && e.place.indexOf(e.town) < 0 ? ' · ' + esc(e.town) : '') + '</div>' +
+      (e.desc ? '<div class="desc">' + esc(e.desc) + '</div>' : '') + '</div></div>';
+  }
+
+  // Works out how many activities fit on one screen at the current size, then splits them into screens.
   function buildSlides() {
     slides = [];
     if (!data) return;
@@ -112,7 +165,19 @@
         rows.push({ e: e, label: label, today: i === 0 });
       });
     }
-    for (var p = 0; p < rows.length; p += PER_PAGE) slides.push(rows.slice(p, p + PER_PAGE));
+    if (!rows.length) return;
+    var main = document.getElementById('main');
+    main.innerHTML = '<div class="day">Coming Up This Week <span class="tag">1 of 9</span></div><div class="list"></div>';
+    var list = main.querySelector('.list'), page = [];
+    rows.forEach(function (r) {
+      list.insertAdjacentHTML('beforeend', card(r));
+      if (page.length && list.scrollHeight > list.clientHeight + 1) {
+        slides.push(page); page = [];
+        list.innerHTML = card(r);
+      }
+      page.push(r);
+    });
+    if (page.length) slides.push(page);
   }
 
   function render() {
@@ -125,21 +190,14 @@
     }
     if (idx >= slides.length) { idx = 0; buildSlides(); }
     var s = slides[idx], html = '<div class="day fade">Coming Up This Week' +
-      (slides.length > 1 ? ' <span class="tag">' + (idx + 1) + ' of ' + slides.length + '</span>' : '') + '</div><div class="list fade">';
-    s.forEach(function (r) {
-      var e = r.e;
-      var time = '<span class="when' + (r.today ? ' now' : '') + '">' + esc(r.label) + '</span>' +
-        (e.allDay ? 'All day' : esc(e.start) + (e.end ? '<small>until ' + esc(e.end) + '</small>' : ''));
-      html += '<div class="ev" style="--c:' + (COLORS[e.category] || '#9529d1') + '"><div class="time">' + time + '</div>' +
-        '<div class="what"><h2>' + esc(e.title) + '</h2><div class="where">' + esc(e.place) +
-        (e.town && e.place.indexOf(e.town) < 0 ? ' · ' + esc(e.town) : '') + '</div>' +
-        (e.desc ? '<div class="desc">' + esc(e.desc) + '</div>' : '') + '</div></div>';
-    });
+      (slides.length > 1 ? ' <span class="tag">' + (idx + 1) + ' of ' + slides.length + '</span>' : '') + '</div><div class="list fade' + (s.length === slides[0].length && slides.length > 1 ? ' fill' : '') + '">';
+    s.forEach(function (r) { html += card(r); });
     main.innerHTML = html + '</div>';
     var dots = '';
     for (var i = 0; i < slides.length && i < 40; i++) dots += '<i class="' + (i === idx ? 'on' : '') + '"></i>';
     document.getElementById('dots').innerHTML = dots;
     var bar = document.getElementById('bar');
+    if (!timer) { bar.style.width = '0'; return; }
     bar.style.transition = 'none'; bar.style.width = '0';
     requestAnimationFrame(function () { requestAnimationFrame(function () {
       bar.style.transition = 'width ' + SECONDS + 's linear'; bar.style.width = '100%';
@@ -151,13 +209,35 @@
   function load() {
     fetch('data/activities.json?t=' + Date.now(), { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function (j) { data = j; buildSlides(); if (idx >= slides.length) idx = 0; render(); })
+      .then(function (j) {
+        data = j; buildSlides();
+        if (SIGN && firstLoad && slides.length) {
+          if (params.has('screen')) idx = FIXED % slides.length;
+          else {
+            var last = -1;
+            try { last = parseInt(localStorage.getItem('bhTvScreen'), 10); } catch (e) {}
+            idx = isNaN(last) ? 0 : (last + 1) % slides.length;
+            try { localStorage.setItem('bhTvScreen', idx); } catch (e) {}
+          }
+        }
+        firstLoad = false;
+        if (idx >= slides.length) idx = 0;
+        render();
+      })
       .catch(function () { if (!data) render(); });
   }
 
   tick(); setInterval(tick, 10000);
   load(); setInterval(load, 30 * 60 * 1000);           // check for new activities every 30 minutes
-  timer = setInterval(next, SECONDS * 1000);
+  if (!SIGN) timer = setInterval(next, SECONDS * 1000);
+  else {
+    document.querySelector('.bar').style.visibility = 'hidden';
+    // If the player leaves the page up for a long time (it is the only item), start flipping screens anyway.
+    if (!params.has('screen')) setTimeout(function () {
+      document.querySelector('.bar').style.visibility = '';
+      timer = setInterval(next, SECONDS * 1000); next();
+    }, 5 * 60 * 1000);
+  }
   setInterval(function () {                              // fresh start each night around 3 AM
     var n = new Date(); if (n.getHours() === 3 && n.getMinutes() < 10) location.reload();
   }, 10 * 60 * 1000);
