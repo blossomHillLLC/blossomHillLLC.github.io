@@ -98,4 +98,45 @@
             });
         }
     }
+    /* Phone and email safeguards for every form on the site.
+       A phone box only accepts a real-looking 10-digit US number (for example 763-285-9666).
+       An email box only accepts a real-looking address (for example name@example.com). */
+    function phoneProblem(v) {
+        var d = v.replace(/\D/g, "");
+        if (d.length === 11 && d.charAt(0) === "1") d = d.slice(1);
+        if (/[^0-9\s().+\-]/.test(v)) return "Please use only numbers in the phone box, for example 763-285-9666.";
+        if (d.length !== 10) return "Please enter a 10-digit phone number, for example 763-285-9666.";
+        if (/^[01]/.test(d) || /^\d{3}[01]/.test(d)) return "That does not look like a real phone number. Please check it.";
+        if (/^(\d)\1{9}$/.test(d) || d === "1234567890" || d.slice(3, 6) === "555" && d.slice(6, 8) === "01") return "That does not look like a real phone number. Please check it.";
+        return "";
+    }
+    function emailProblem(v) {
+        if (!/^[A-Za-z0-9.!#$%&'*+\/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)*\.[A-Za-z]{2,}$/.test(v) || /\.\./.test(v) || /^\.|\.@/.test(v))
+            return "Please enter a real email address, for example name@example.com.";
+        return "";
+    }
+    function guard(input, check) {
+        function run() {
+            var v = input.value.trim();
+            input.setCustomValidity(v === "" ? (input.required ? (input.type === "email" ? "Please enter your email address." : "Please enter your phone number.") : "") : check(v));
+        }
+        input.addEventListener("input", run);
+        input.addEventListener("blur", function () { input.value = input.value.trim(); run(); });
+        run();
+    }
+    document.querySelectorAll('form input[type="tel"], form input[name="phone"]').forEach(function (i) { guard(i, phoneProblem); });
+    document.querySelectorAll('form input[type="email"], form input[name="email"]').forEach(function (i) { guard(i, emailProblem); });
+
+    /* Previewing the page from a file on your computer (not the real website)? YouTube refuses to
+       play there (Error 153), so show a picture that opens the video on YouTube instead. */
+    if (location.protocol === "file:") {
+        document.querySelectorAll('iframe[src*="youtube"]').forEach(function (f) {
+            var m = f.src.match(/embed\/([\w-]+)/); if (!m) return;
+            var a = document.createElement("a");
+            a.href = "https://www.youtube.com/watch?v=" + m[1]; a.target = "_blank"; a.rel = "noopener";
+            a.className = "yt-play"; a.setAttribute("aria-label", "Watch the video tour on YouTube");
+            a.innerHTML = '<img src="https://i.ytimg.com/vi/' + m[1] + '/hqdefault.jpg" alt=""><span></span>';
+            f.replaceWith(a);
+        });
+    }
 })();
