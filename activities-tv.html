@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Things To Do Nearby | Blossom Hill</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/BlossomHill/Top3-260.webp">
+<style>
+  :root { --purple: #9529d1; --deep: #5b1782; --cream: #fffaf3; --ink: #1f1a24; --muted: #5e5866; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Open Sans", "Segoe UI", Arial, sans-serif; background: var(--cream); color: var(--ink);
+    display: flex; flex-direction: column; overflow: hidden; cursor: none;
+  }
+  header {
+    display: flex; align-items: center; gap: 2vw; padding: 1.6vh 3vw;
+    background: linear-gradient(90deg, var(--deep), var(--purple)); color: #fff;
+  }
+  header img { height: 9vh; width: auto; background: #fff; border-radius: 1vh; padding: .6vh .8vh; }
+  header h1 { font-family: Georgia, "Playfair Display", serif; font-size: 4.6vh; font-weight: 700; line-height: 1.1; }
+  header p { font-size: 2.3vh; opacity: .9; }
+  .clock { margin-left: auto; text-align: right; }
+  .clock b { display: block; font-size: 6vh; line-height: 1; font-weight: 700; }
+  .clock span { font-size: 2.6vh; }
+  main { flex: 1; padding: 2.5vh 3vw 1vh; display: flex; flex-direction: column; min-height: 0; }
+  .day {
+    font-family: Georgia, "Playfair Display", serif; font-size: 5vh; color: var(--deep);
+    display: flex; align-items: baseline; gap: 1.5vw; margin-bottom: 1.8vh;
+  }
+  .day small { font-family: "Open Sans", Arial, sans-serif; font-size: 2.6vh; color: var(--muted); }
+  .tag { font-size: 2.2vh; background: var(--purple); color: #fff; border-radius: 99px; padding: .3vh 1.4vw; font-family: Arial, sans-serif; }
+  .list { flex: 1; display: grid; grid-template-rows: repeat(5, 1fr); gap: 1.4vh; min-height: 0; }
+  .ev {
+    display: grid; grid-template-columns: 17vw 1fr; align-items: center; gap: 2vw;
+    background: #fff; border-radius: 1.6vh; padding: .8vh 2vw; border-left: 1.2vh solid var(--c, var(--purple));
+    box-shadow: 0 .4vh 1.4vh rgba(60, 20, 90, .08); min-height: 0; overflow: hidden;
+  }
+  .time { font-size: 4.2vh; font-weight: 700; color: var(--deep); line-height: 1.1; }
+  .time small { display: block; font-size: 2.2vh; font-weight: 600; color: var(--muted); }
+  .when { display: block; font-size: 2.5vh; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: .05em; margin-bottom: .3vh; }
+  .when.now { color: #fff; background: var(--purple); border-radius: 99px; padding: .1vh 1vw; display: inline-block; }
+  .what { min-width: 0; }
+  .what h2 { font-size: 3.5vh; line-height: 1.15; font-weight: 700; }
+  .where { font-size: 2.6vh; color: var(--deep); font-weight: 600; margin-top: .3vh; }
+  .desc { font-size: 2.2vh; color: var(--muted); margin-top: .3vh; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .empty { margin: auto; text-align: center; font-size: 4vh; color: var(--muted); max-width: 70vw; line-height: 1.4; }
+  footer { display: flex; align-items: center; gap: 2vw; padding: 1.4vh 3vw 2vh; font-size: 2.1vh; color: var(--muted); }
+  .dots { display: flex; gap: .6vw; }
+  .dots i { width: 1.4vh; height: 1.4vh; border-radius: 50%; background: #d9cce3; }
+  .dots i.on { background: var(--purple); }
+  .bar { height: .6vh; background: #eadff2; margin: 0 3vw; border-radius: 99px; overflow: hidden; }
+  .bar div { height: 100%; width: 0; background: var(--purple); }
+  .fade { animation: fade .8s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(1vh); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<header>
+  <img src="img/BlossomHill/Top3-260.webp" alt="Blossom Hill">
+  <div>
+    <h1>Things To Do Around Washington County</h1>
+    <p>Free library programs and community events near Blossom Hill</p>
+  </div>
+  <div class="clock"><b id="time">&nbsp;</b><span id="today">&nbsp;</span></div>
+</header>
+<main id="main"><div class="empty">Loading activities…</div></main>
+<div class="bar"><div id="bar"></div></div>
+<footer>
+  <div class="dots" id="dots"></div>
+  <div id="note" style="margin-left:auto">Updated every morning from the Washington County Library and Washington County calendars</div>
+</footer>
+
+<script>
+(function () {
+  var params = new URLSearchParams(location.search);
+  var SECONDS = Math.max(5, +params.get('seconds') || 15); // time on each screen
+  var PER_PAGE = 5;
+  var DAYS_SHOWN = 7;
+  var COLORS = {
+    'Games and Gaming': '#f2a541', 'Crafts and Hobbies': '#2e9e5b', 'Book Clubs': '#2b7bb9',
+    'Books, Authors, and Writing': '#2b7bb9', 'Health and Wellness': '#e4572e', 'Lifelong Learning': '#8e44ad',
+    'Entertainment': '#d1495b', 'Community': '#0e9ddf'
+  };
+  var data = null, slides = [], idx = 0, timer = null;
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+  function toMinutes(t) {
+    var m = /(\d+):(\d+)\s*(AM|PM)/i.exec(t || ''); if (!m) return null;
+    var h = +m[1] % 12 + (m[3].toUpperCase() === 'PM' ? 12 : 0); return h * 60 + +m[2];
+  }
+
+  function tick() {
+    var now = new Date();
+    document.getElementById('time').textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    document.getElementById('today').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  }
+
+  function buildSlides() {
+    slides = [];
+    if (!data) return;
+    var now = new Date(), nowMin = now.getHours() * 60 + now.getMinutes(), rows = [];
+    for (var i = 0; i < DAYS_SHOWN; i++) {
+      var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i), key = ymd(d);
+      var label = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      data.events.forEach(function (e) {
+        if (e.date !== key) return;
+        if (i === 0 && !e.allDay) { var end = toMinutes(e.end) || toMinutes(e.start); if (end !== null && end <= nowMin) return; }
+        rows.push({ e: e, label: label, today: i === 0 });
+      });
+    }
+    for (var p = 0; p < rows.length; p += PER_PAGE) slides.push(rows.slice(p, p + PER_PAGE));
+  }
+
+  function render() {
+    var main = document.getElementById('main');
+    if (!slides.length) {
+      main.innerHTML = '<div class="empty">' + (data ? 'No activities found for the coming week.<br>Check back tomorrow!' :
+        'Activities could not be loaded right now.<br>The screen will try again shortly.') + '</div>';
+      document.getElementById('dots').innerHTML = '';
+      return;
+    }
+    if (idx >= slides.length) { idx = 0; buildSlides(); }
+    var s = slides[idx], html = '<div class="day fade">Coming Up This Week' +
+      (slides.length > 1 ? ' <span class="tag">' + (idx + 1) + ' of ' + slides.length + '</span>' : '') + '</div><div class="list fade">';
+    s.forEach(function (r) {
+      var e = r.e;
+      var time = '<span class="when' + (r.today ? ' now' : '') + '">' + esc(r.label) + '</span>' +
+        (e.allDay ? 'All day' : esc(e.start) + (e.end ? '<small>until ' + esc(e.end) + '</small>' : ''));
+      html += '<div class="ev" style="--c:' + (COLORS[e.category] || '#9529d1') + '"><div class="time">' + time + '</div>' +
+        '<div class="what"><h2>' + esc(e.title) + '</h2><div class="where">' + esc(e.place) +
+        (e.town && e.place.indexOf(e.town) < 0 ? ' · ' + esc(e.town) : '') + '</div>' +
+        (e.desc ? '<div class="desc">' + esc(e.desc) + '</div>' : '') + '</div></div>';
+    });
+    main.innerHTML = html + '</div>';
+    var dots = '';
+    for (var i = 0; i < slides.length && i < 40; i++) dots += '<i class="' + (i === idx ? 'on' : '') + '"></i>';
+    document.getElementById('dots').innerHTML = dots;
+    var bar = document.getElementById('bar');
+    bar.style.transition = 'none'; bar.style.width = '0';
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      bar.style.transition = 'width ' + SECONDS + 's linear'; bar.style.width = '100%';
+    }); });
+  }
+
+  function next() { idx++; render(); }
+
+  function load() {
+    fetch('data/activities.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) { data = j; buildSlides(); if (idx >= slides.length) idx = 0; render(); })
+      .catch(function () { if (!data) render(); });
+  }
+
+  tick(); setInterval(tick, 10000);
+  load(); setInterval(load, 30 * 60 * 1000);           // check for new activities every 30 minutes
+  timer = setInterval(next, SECONDS * 1000);
+  setInterval(function () {                              // fresh start each night around 3 AM
+    var n = new Date(); if (n.getHours() === 3 && n.getMinutes() < 10) location.reload();
+  }, 10 * 60 * 1000);
+  document.addEventListener('keydown', function (e) {    // arrow keys to flip screens by hand
+    if (e.key === 'ArrowRight') { idx++; render(); }
+    if (e.key === 'ArrowLeft') { idx = (idx - 1 + slides.length) % slides.length; render(); }
+  });
+})();
+</script>
+</body>
+</html>
