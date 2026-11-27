@@ -166,6 +166,26 @@
   body.enter .day.today { animation: pop .7s cubic-bezier(.2, 1.4, .4, 1) both, glow 3s ease-in-out .7s infinite; }
   @keyframes pop { from { opacity: 0; transform: translateY(calc(2 * var(--u))) scale(.92); } }
   .open { font-family: var(--fun); }
+
+  /* ---------- Thin strip (a very wide, short screen area): no header, everything in one row ---------- */
+  body.strip header, body.strip footer, body.strip .confetti { display: none; }
+  body.strip main { flex-direction: row; align-items: stretch; padding: calc(.8 * var(--u)); gap: calc(.8 * var(--u)); }
+  body.strip .now { flex: none; flex-direction: column; justify-content: center; align-items: center; gap: calc(.6 * var(--u)); padding: calc(.8 * var(--u)) calc(1.2 * var(--u)); }
+  body.strip .now h2 { font-size: calc(2 * var(--u)); white-space: nowrap; }
+  body.strip .now .pill { font-size: calc(2.8 * var(--u)); }
+  body.strip .week { flex: 1; min-width: 0; grid-template-columns: repeat(var(--days, 7), minmax(0, 1fr)); grid-template-rows: 1fr; gap: calc(.7 * var(--u)); }
+  body.strip .day { padding: calc(.6 * var(--u)); gap: calc(.5 * var(--u)); border-top-width: calc(.6 * var(--u)); }
+  body.strip .dname { display: flex; justify-content: center; align-items: baseline; gap: calc(.6 * var(--u)); }
+  body.strip .dname b { display: inline; font-size: calc(2.2 * var(--u)); }
+  body.strip .dname span { font-size: calc(1.8 * var(--u)); }
+  body.strip .slot .lbl { display: none; }
+  body.strip .day .slot { flex: 1 1 0; min-height: 0; }
+  body.strip .day .slot .pill { flex-direction: row; justify-content: flex-start; text-align: left; border-radius: calc(1.2 * var(--u));
+    padding: calc(.3 * var(--u)) calc(.8 * var(--u)); gap: calc(.8 * var(--u)); font-size: calc(2.6 * var(--u)); width: 100%; }
+  body.strip .day .slot .pill .av { width: 1.6em; height: 1.6em; }
+  body.strip .day .slot .pill .nm { font-size: 1.15em; line-height: 1.05; }
+  body.strip .day .slot .pill small { font-size: .6em; white-space: nowrap; }
+  body.strip .day .slot .open { font-size: calc(2 * var(--u)); }
   @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
 </style>
 </head>
@@ -292,7 +312,10 @@
     // Show as many days as fit (up to 7), with the biggest text that fits the screen.
     document.body.classList.remove('fx');   // no tilts while measuring
     var root = document.documentElement, base = baseU(), narrow = innerWidth / innerHeight < 1.4;
-    var hiK = narrow ? 2.4 : 1.35;
+    var strip = innerWidth / innerHeight >= 4;   // a thin strip across the screen
+    document.body.classList.toggle('strip', strip);
+    if (strip) base = baseU();
+    var hiK = strip ? 10 : narrow ? 2.4 : 1.35;
     // Finds the biggest size that fits with the most days; on narrow screens it also tries stacked shifts.
     function best(stack) {
       document.body.classList.toggle('stack', stack);
