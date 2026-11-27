@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<title>Things To Do Nearby | Blossom Hill</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/BlossomHill/Top3-260.webp">
+<style>
+  /* --u is the size unit. It is tuned below for full screen, left/right half, and top/bottom half. */
+  :root { --purple: #9529d1; --deep: #5b1782; --cream: #fffaf3; --ink: #1f1a24; --muted: #5e5866; --u: 1vh; }
+  @media (max-aspect-ratio: 7/5) { :root { --u: min(1vh, 1.25vw); } }     /* left or right half */
+  @media (min-aspect-ratio: 5/2) { :root { --u: 1.6vh; } }               /* top or bottom half */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Open Sans", "Segoe UI", Arial, sans-serif; background: var(--cream); color: var(--ink);
+    display: flex; flex-direction: column; overflow: hidden; cursor: none;
+  }
+  header {
+    display: flex; align-items: center; gap: calc(2.5 * var(--u)); padding: calc(1.6 * var(--u)) calc(4 * var(--u));
+    background: linear-gradient(90deg, var(--deep), var(--purple)); color: #fff;
+  }
+  header img { height: calc(9 * var(--u)); width: auto; background: #fff; border-radius: var(--u); padding: calc(.6 * var(--u)) calc(.8 * var(--u)); }
+  header h1 { font-family: Georgia, "Playfair Display", serif; font-size: calc(4.6 * var(--u)); font-weight: 700; line-height: 1.1; }
+  header p { font-size: calc(2.3 * var(--u)); opacity: .9; }
+  .clock { margin-left: auto; text-align: right; flex: none; }
+  .clock b { display: block; font-size: calc(6 * var(--u)); line-height: 1; font-weight: 700; }
+  .clock span { font-size: calc(2.6 * var(--u)); }
+  main { flex: 1; padding: calc(2.5 * var(--u)) calc(4 * var(--u)) var(--u); display: flex; flex-direction: column; min-height: 0; }
+  .day {
+    font-family: Georgia, "Playfair Display", serif; font-size: calc(5 * var(--u)); color: var(--deep);
+    display: flex; align-items: center; gap: calc(2 * var(--u)); margin-bottom: calc(1.8 * var(--u));
+  }
+  .tag { font-size: calc(2.2 * var(--u)); background: var(--purple); color: #fff; border-radius: 99px; padding: calc(.3 * var(--u)) calc(1.6 * var(--u)); font-family: Arial, sans-serif; white-space: nowrap; }
+  .list { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; gap: calc(1.4 * var(--u)); min-height: 0; overflow: hidden; }
+  .ev {
+    display: grid; grid-template-columns: calc(30 * var(--u)) 1fr; align-items: center; gap: calc(3 * var(--u));
+    background: #fff; border-radius: calc(1.6 * var(--u)); padding: calc(.8 * var(--u)) calc(3 * var(--u));
+    border-left: calc(1.2 * var(--u)) solid var(--c, var(--purple));
+    box-shadow: 0 calc(.4 * var(--u)) calc(1.4 * var(--u)) rgba(60, 20, 90, .08); flex: none; overflow: hidden;
+  }
+  .time { font-size: calc(4.2 * var(--u)); font-weight: 700; color: var(--deep); line-height: 1.1; }
+  .time small { display: block; font-size: calc(2.2 * var(--u)); font-weight: 600; color: var(--muted); }
+  .when { display: block; font-size: calc(2.5 * var(--u)); font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: .05em; margin-bottom: calc(.3 * var(--u)); }
+  .when.now { color: #fff; background: var(--purple); border-radius: 99px; padding: calc(.1 * var(--u)) calc(1.4 * var(--u)); display: inline-block; }
+  .list.fill .ev { flex: 1 1 0; }
+  .what { min-width: 0; }
+  .what h2 { font-size: calc(3.5 * var(--u)); line-height: 1.15; font-weight: 700; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .where { font-size: calc(2.6 * var(--u)); color: var(--deep); font-weight: 600; margin-top: calc(.3 * var(--u)); }
+  .desc { font-size: calc(2.2 * var(--u)); color: var(--muted); margin-top: calc(.3 * var(--u)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .empty { margin: auto; text-align: center; font-size: calc(4 * var(--u)); color: var(--muted); max-width: 90%; line-height: 1.4; }
+  footer { display: flex; align-items: center; gap: calc(2 * var(--u)); padding: calc(1.4 * var(--u)) calc(4 * var(--u)) calc(2 * var(--u)); font-size: calc(2.1 * var(--u)); color: var(--muted); }
+  .dots { display: flex; gap: var(--u); }
+  .dots i { width: calc(1.4 * var(--u)); height: calc(1.4 * var(--u)); border-radius: 50%; background: #d9cce3; }
+  .dots i.on { background: var(--purple); }
+  .bar { height: calc(.6 * var(--u)); background: #eadff2; margin: 0 calc(4 * var(--u)); border-radius: 99px; overflow: hidden; }
+  .bar div { height: 100%; width: 0; background: var(--purple); }
+  .fade { animation: fade .8s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(var(--u)); } to { opacity: 1; transform: none; } }
+
+  /* Left or right half: stack the time above the title, shorter header */
+  @media (max-aspect-ratio: 7/5) {
+    header { padding: calc(1.4 * var(--u)) calc(3 * var(--u)); gap: calc(2 * var(--u)); }
+    header img { height: calc(7 * var(--u)); }
+    header h1 { font-size: calc(3.6 * var(--u)); }
+    header p, #note, .clock span { display: none; }
+    .clock b { font-size: calc(4.4 * var(--u)); }
+    main { padding-left: calc(3 * var(--u)); padding-right: calc(3 * var(--u)); }
+    .day { font-size: calc(4.2 * var(--u)); }
+    .ev { grid-template-columns: 1fr; gap: calc(.4 * var(--u)); padding: var(--u) calc(2.5 * var(--u)); align-content: center; }
+    .time { display: flex; align-items: baseline; gap: calc(1.4 * var(--u)); flex-wrap: wrap; font-size: calc(3.4 * var(--u)); }
+    .time small { display: inline; }
+    .when { display: inline-block; margin: 0; }
+    .what h2 { font-size: calc(3.6 * var(--u)); }
+  }
+  /* Top or bottom half: three activities per screen, no descriptions */
+  @media (min-aspect-ratio: 5/2) {
+    header { padding: var(--u) calc(4 * var(--u)); }
+    header img { height: calc(7 * var(--u)); }
+    header h1 { font-size: calc(4 * var(--u)); }
+    header p { display: none; }
+    .clock b { font-size: calc(5 * var(--u)); }
+    main { padding-top: calc(1.5 * var(--u)); }
+    .day { font-size: calc(4 * var(--u)); margin-bottom: var(--u); }
+    .desc { display: none; }
+    footer { padding-top: var(--u); padding-bottom: var(--u); }
+  }
+</style>
+</head>
+<body>
+<header>
+  <img src="img/BlossomHill/Top3-260.webp" alt="Blossom Hill">
+  <div>
+    <h1>Things To Do Around Washington County</h1>
+    <p>Free library programs and community events near Blossom Hill</p>
+  </div>
+  <div class="clock"><b id="time">&nbsp;</b><span id="today">&nbsp;</span></div>
+</header>
+<main id="main"><div class="empty">Loading activities…</div></main>
+<div class="bar"><div id="bar"></div></div>
+<footer>
+  <div class="dots" id="dots"></div>
+  <div id="note" style="margin-left:auto">Updated every morning from the Washington County Library and Washington County calendars</div>
+</footer>
+
+<script>
+(function () {
+  // Always use Minnesota time, even if the sign player's clock is set to another time zone.
+  function nowMN() {
+    try { return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })); } catch (e) { return new Date(); }
+  }
+  var params = new URLSearchParams(location.search);
+  var SECONDS = Math.max(5, +params.get('seconds') || 15); // time on each screen
+  // Sign mode (for AbleSign and other sign players): add ?sign=1 to the address.
+  // The page then has no timer of its own and shows the next screen each time the player opens it.
+  // ?screen=2 always shows screen 2 (use this if you prefer one playlist item per screen).
+  var SIGN = params.has('sign') || params.has('screen');
+  var FIXED = Math.max(0, (+params.get('screen') || 0) - 1);
+  var firstLoad = true;
+  var DAYS_SHOWN = 7;
+  var resizeWait;
+  addEventListener('resize', function () {   // the screen area changed: re-measure and start over
+    clearTimeout(resizeWait);
+    resizeWait = setTimeout(function () { buildSlides(); idx = 0; render(); }, 300);
+  });
+  var COLORS = {
+    'Games and Gaming': '#f2a541', 'Crafts and Hobbies': '#2e9e5b', 'Book Clubs': '#2b7bb9',
+    'Books, Authors, and Writing': '#2b7bb9', 'Health and Wellness': '#e4572e', 'Lifelong Learning': '#8e44ad',
+    'Entertainment': '#d1495b', 'Community': '#0e9ddf'
+  };
+  var data = null, slides = [], idx = 0, timer = null;
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function ymd(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+  function toMinutes(t) {
+    var m = /(\d+):(\d+)\s*(AM|PM)/i.exec(t || ''); if (!m) return null;
+    var h = +m[1] % 12 + (m[3].toUpperCase() === 'PM' ? 12 : 0); return h * 60 + +m[2];
+  }
+
+  function tick() {
+    var now = nowMN();
+    document.getElementById('time').textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    document.getElementById('today').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  }
+
+  function card(r) {
+    var e = r.e;
+    var time = '<span class="when' + (r.today ? ' now' : '') + '">' + esc(r.label) + '</span>' +
+      (e.allDay ? 'All day' : esc(e.start) + (e.end ? '<small>until ' + esc(e.end) + '</small>' : ''));
+    return '<div class="ev" style="--c:' + (COLORS[e.category] || '#9529d1') + '"><div class="time">' + time + '</div>' +
+      '<div class="what"><h2>' + esc(e.title) + '</h2><div class="where">' + esc(e.place) +
+      (e.town && e.place.indexOf(e.town) < 0 ? ' · ' + esc(e.town) : '') + '</div>' +
+      (e.desc ? '<div class="desc">' + esc(e.desc) + '</div>' : '') + '</div></div>';
+  }
+
+  // Works out how many activities fit on one screen at the current size, then splits them into screens.
+  function buildSlides() {
+    slides = [];
+    if (!data) return;
+    var now = nowMN(), nowMin = now.getHours() * 60 + now.getMinutes(), rows = [];
+    for (var i = 0; i < DAYS_SHOWN; i++) {
+      var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i), key = ymd(d);
+      var label = i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+      data.events.forEach(function (e) {
+        if (e.date !== key) return;
+        if (i === 0 && !e.allDay) { var end = toMinutes(e.end) || toMinutes(e.start); if (end !== null && end <= nowMin) return; }
+        rows.push({ e: e, label: label, today: i === 0 });
+      });
+    }
+    if (!rows.length) return;
+    var main = document.getElementById('main');
+    main.innerHTML = '<div class="day">Coming Up This Week <span class="tag">1 of 9</span></div><div class="list"></div>';
+    var list = main.querySelector('.list'), page = [];
+    rows.forEach(function (r) {
+      list.insertAdjacentHTML('beforeend', card(r));
+      if (page.length && list.scrollHeight > list.clientHeight + 1) {
+        slides.push(page); page = [];
+        list.innerHTML = card(r);
+      }
+      page.push(r);
+    });
+    if (page.length) slides.push(page);
+  }
+
+  function render() {
+    var main = document.getElementById('main');
+    if (!slides.length) {
+      main.innerHTML = '<div class="empty">' + (data ? 'No activities found for the coming week.<br>Check back tomorrow!' :
+        'Activities could not be loaded right now.<br>The screen will try again shortly.') + '</div>';
+      document.getElementById('dots').innerHTML = '';
+      return;
+    }
+    if (idx >= slides.length) { idx = 0; buildSlides(); }
+    var s = slides[idx], html = '<div class="day fade">Coming Up This Week' +
+      (slides.length > 1 ? ' <span class="tag">' + (idx + 1) + ' of ' + slides.length + '</span>' : '') + '</div><div class="list fade' + (s.length === slides[0].length && slides.length > 1 ? ' fill' : '') + '">';
+    s.forEach(function (r) { html += card(r); });
+    main.innerHTML = html + '</div>';
+    var dots = '';
+    for (var i = 0; i < slides.length && i < 40; i++) dots += '<i class="' + (i === idx ? 'on' : '') + '"></i>';
+    document.getElementById('dots').innerHTML = dots;
+    var bar = document.getElementById('bar');
+    if (!timer) { bar.style.width = '0'; return; }
+    bar.style.transition = 'none'; bar.style.width = '0';
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      bar.style.transition = 'width ' + SECONDS + 's linear'; bar.style.width = '100%';
+    }); });
+  }
+
+  function next() { idx++; render(); }
+
+  function load() {
+    fetch('data/activities.json?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) {
+        data = j; buildSlides();
+        if (SIGN && firstLoad && slides.length) {
+          if (params.has('screen')) idx = FIXED % slides.length;
+          else {
+            var last = -1;
+            try { last = parseInt(localStorage.getItem('bhTvScreen'), 10); } catch (e) {}
+            idx = isNaN(last) ? 0 : (last + 1) % slides.length;
+            try { localStorage.setItem('bhTvScreen', idx); } catch (e) {}
+          }
+        }
+        firstLoad = false;
+        if (idx >= slides.length) idx = 0;
+        render();
+      })
+      .catch(function () { if (!data) render(); });
+  }
+
+  tick(); setInterval(tick, 10000);
+  load(); setInterval(load, 30 * 60 * 1000);           // check for new activities every 30 minutes
+  if (!SIGN) timer = setInterval(next, SECONDS * 1000);
+  else {
+    document.querySelector('.bar').style.visibility = 'hidden';
+    // If the player leaves the page up for a long time (it is the only item), start flipping screens anyway.
+    if (!params.has('screen')) setTimeout(function () {
+      document.querySelector('.bar').style.visibility = '';
+      timer = setInterval(next, SECONDS * 1000); next();
+    }, 5 * 60 * 1000);
+  }
+  setInterval(function () {                              // fresh start each night around 3 AM
+    var n = nowMN(); if (n.getHours() === 3 && n.getMinutes() < 10) location.reload();
+  }, 10 * 60 * 1000);
+  document.addEventListener('keydown', function (e) {    // arrow keys to flip screens by hand
+    if (e.key === 'ArrowRight') { idx++; render(); }
+    if (e.key === 'ArrowLeft') { idx = (idx - 1 + slides.length) % slides.length; render(); }
+  });
+})();
+</script>
+</body>
+</html>

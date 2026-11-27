@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<base href="/">
+<title>Today's Menu | Blossom Hill</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="img/BlossomHill/Top3-260.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* --u is the size unit, tuned for full screen, left/right half, and top/bottom half. */
+  :root { --purple: #9529d1; --deep: #5b1782; --cream: #fffaf3; --ink: #1f1a24; --muted: #5e5866; --u: 1vh; }
+  @media (max-aspect-ratio: 7/5) { :root { --u: min(1vh, 1.25vw); } }
+  @media (min-aspect-ratio: 5/2) { :root { --u: 1.6vh; } }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body { font-family: "Open Sans", "Segoe UI", Arial, sans-serif; background: var(--cream); color: var(--ink);
+    display: flex; flex-direction: column; overflow: hidden; cursor: none; }
+  header { display: flex; align-items: center; gap: calc(2.5 * var(--u)); padding: calc(1.6 * var(--u)) calc(4 * var(--u));
+    background: linear-gradient(90deg, var(--deep), var(--purple)); color: #fff; }
+  header img { height: calc(9 * var(--u)); width: auto; background: #fff; border-radius: var(--u); padding: calc(.6 * var(--u)) calc(.8 * var(--u)); }
+  header h1 { font-family: Georgia, "Playfair Display", serif; font-size: calc(4.8 * var(--u)); line-height: 1.1; }
+  header p { font-size: calc(2.3 * var(--u)); opacity: .9; }
+  .clock { margin-left: auto; text-align: right; flex: none; }
+  .clock b { display: block; font-size: calc(6 * var(--u)); line-height: 1; }
+  .clock span { font-size: calc(2.6 * var(--u)); }
+  main { flex: 1; min-height: 0; padding: calc(2 * var(--u)) calc(4 * var(--u)) calc(1.5 * var(--u)); display: flex; flex-direction: column; gap: calc(2 * var(--u)); }
+  h2.sec { font-family: Georgia, "Playfair Display", serif; font-size: calc(4.2 * var(--u)); color: var(--deep); line-height: 1.1;
+    display: flex; align-items: center; gap: calc(1.6 * var(--u)); }
+  h2.sec small { font-family: "Open Sans", Arial, sans-serif; font-size: calc(2.4 * var(--u)); color: var(--muted); font-weight: 600; }
+  .fade { animation: fade .8s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(var(--u)); } to { opacity: 1; transform: none; } }
+
+  /* Playful extras */
+  :root { --fun: "Fredoka", "Segoe UI Rounded", "Arial Rounded MT Bold", "Open Sans", Arial, sans-serif; }
+  body { background: radial-gradient(circle at 12% 18%, #fff1d6 0, transparent 35%), radial-gradient(circle at 88% 30%, #e6f6ec 0, transparent 35%),
+    radial-gradient(circle at 70% 90%, #e5eeff 0, transparent 40%), var(--cream); }
+  .confetti { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .confetti span { position: absolute; opacity: .13; animation: drift 9s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: translateY(calc(-2 * var(--u))) rotate(12deg); } }
+  header, main, footer { position: relative; z-index: 1; }
+  header h1 { font-family: var(--fun); font-weight: 700; }
+  header p { font-family: var(--fun); font-weight: 600; font-size: calc(2.6 * var(--u)); }
+  h2.sec { font-family: var(--fun); font-weight: 700; }
+  h2.sec::after { content: "✨"; font-size: .8em; }
+
+  /* Today's meals */
+  .today { display: grid; grid-template-columns: repeat(var(--meals, 3), 1fr); gap: calc(2.2 * var(--u)); padding: calc(.6 * var(--u)) calc(.4 * var(--u)); }
+  .meal { background: #fff; border-radius: calc(3 * var(--u)); overflow: hidden; display: flex; flex-direction: column;
+    box-shadow: 0 calc(.6 * var(--u)) 0 color-mix(in srgb, var(--c) 35%, #fff), 0 calc(1 * var(--u)) calc(2.4 * var(--u)) rgba(60, 20, 90, .12);
+    border: calc(.45 * var(--u)) solid color-mix(in srgb, var(--c) 45%, #fff); transform: rotate(-.7deg); }
+  .meal:nth-child(even) { transform: rotate(.7deg); }
+  .meal .top { background: var(--c); color: #fff; padding: calc(.9 * var(--u)) calc(2.2 * var(--u)); display: flex; align-items: center; gap: var(--u);
+    font-family: var(--fun); font-size: calc(3.4 * var(--u)); font-weight: 700; letter-spacing: .02em;
+    background-image: radial-gradient(rgba(255, 255, 255, .18) 18%, transparent 20%); background-size: calc(2.4 * var(--u)) calc(2.4 * var(--u)); }
+  .meal .top .ic { font-size: 1.1em; }
+  .meal .top .badge { margin-left: auto; font-size: .62em; background: #fff; color: var(--c); border-radius: 99px; padding: calc(.3 * var(--u)) calc(1.4 * var(--u));
+    animation: bounce 1.4s ease-in-out infinite; white-space: nowrap; }
+  @keyframes bounce { 50% { transform: translateY(calc(-.6 * var(--u))) scale(1.05); } }
+  .meal .body { display: flex; align-items: center; gap: calc(2 * var(--u)); padding: calc(1.4 * var(--u)) calc(2 * var(--u)); flex: 1; }
+  .sticker { flex: none; width: calc(12 * var(--u)); height: calc(12 * var(--u)); border-radius: 50%; display: grid; place-items: center;
+    font-size: calc(7.4 * var(--u)); line-height: 1; background: color-mix(in srgb, var(--c) 16%, #fff);
+    box-shadow: inset 0 0 0 calc(.5 * var(--u)) color-mix(in srgb, var(--c) 40%, #fff); }
+  .meal.now .sticker { animation: wiggle 2.4s ease-in-out infinite; }
+  @keyframes wiggle { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg) scale(1.06); } }
+  .txt { min-width: 0; }
+  .main-dish { font-family: var(--fun); font-weight: 700; font-size: calc(3.8 * var(--u)); line-height: 1.1; color: var(--ink); }
+  .sides { display: flex; flex-wrap: wrap; gap: calc(.7 * var(--u)); margin-top: calc(.9 * var(--u)); }
+  .chip { font-size: calc(2.4 * var(--u)); font-weight: 600; background: color-mix(in srgb, var(--c) 12%, #fff); color: color-mix(in srgb, var(--c) 55%, #000);
+    border-radius: 99px; padding: calc(.3 * var(--u)) calc(1.2 * var(--u)) calc(.3 * var(--u)) calc(.8 * var(--u)); white-space: nowrap; }
+  .meal.now { transform: rotate(0) scale(1.03); border-color: var(--c); }
+  .meal.done { opacity: .5; filter: grayscale(.4); }
+
+  /* The week */
+  .week { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: calc(1.2 * var(--u)); }
+  .wd { background: #fff; border-radius: calc(1.6 * var(--u)); padding: calc(1 * var(--u)) calc(1.2 * var(--u)); display: flex; flex-direction: column;
+    gap: calc(.8 * var(--u)); min-width: 0; overflow: hidden; border-top: calc(.9 * var(--u)) solid #e6dcef; box-shadow: 0 calc(.3 * var(--u)) calc(1.2 * var(--u)) rgba(60, 20, 90, .07); }
+  .wd.is-today { border-top-color: var(--purple); background: #fbf6ff; outline: calc(.4 * var(--u)) solid var(--purple); }
+  .wd.past { opacity: .45; }
+  .wd .dn { font-family: var(--fun); text-align: center; font-weight: 700; font-size: calc(2.4 * var(--u)); color: var(--deep); text-transform: uppercase; letter-spacing: .06em; line-height: 1.1; }
+  .wd .dn span { display: block; font-size: .8em; color: var(--muted); font-weight: 600; text-transform: none; letter-spacing: 0; }
+  .wm { border-left: calc(.7 * var(--u)) solid var(--c); padding-left: var(--u); }
+  .wm b { display: block; font-size: calc(2.1 * var(--u)); line-height: 1.2; font-family: var(--fun); font-weight: 600; }
+  .wm b::before { content: attr(data-ic) ' '; }
+  .wm i { display: block; font-style: normal; font-size: calc(1.7 * var(--u)); color: var(--muted); line-height: 1.25; }
+  .mains .wm i { display: none; }
+  .soon { margin: auto; text-align: center; font-size: calc(4 * var(--u)); color: var(--muted); line-height: 1.4; }
+
+  /* Recipe screens */
+  .rc { flex: 1; min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: calc(1.4 * var(--u) * var(--k, 1)); font-size: calc(var(--u) * var(--k, 1)); }
+  .rc-head { display: flex; align-items: center; gap: calc(1.6em); flex-wrap: wrap; }
+  .rc-tag { background: var(--c); color: #fff; font-weight: 800; border-radius: 99px; padding: .3em 1.4em; font-size: 2.6em; letter-spacing: .04em; white-space: nowrap; }
+  .rc-head h2 { font-family: var(--fun); font-weight: 700; font-size: 5.4em; color: var(--ink); line-height: 1.05; }
+  .rc-serv { margin-left: auto; font-size: 2.6em; font-weight: 700; color: var(--deep); background: #f1e6fa; border-radius: 99px; padding: .3em 1.2em; white-space: nowrap; }
+  .rc-body { flex: 1; min-height: 0; overflow: hidden; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 2em; }
+  .rc-box { background: #fff; border-radius: 1.8em; padding: 1.6em 2.2em; box-shadow: 0 .4em 1.4em rgba(60, 20, 90, .08); border-top: .9em solid var(--c); min-height: 0; }
+  .rc-box h3 { font-size: 2.6em; text-transform: uppercase; letter-spacing: .06em; color: var(--c); margin-bottom: .5em; }
+  .rc-ing { list-style: none; display: flex; flex-direction: column; gap: .5em; }
+  .rc-ing li { font-size: 2.9em; line-height: 1.25; }
+  .rc-ing b { color: var(--deep); }
+  .rc-steps { padding-left: 1.4em; display: flex; flex-direction: column; gap: .6em; }
+  .rc-steps li { font-size: 2.7em; line-height: 1.3; padding-left: .3em; }
+  .rc-steps li::marker { font-weight: 800; color: var(--c); }
+  .rc-note { background: #fdecec; color: #8a1c1c; border-left: .8em solid #d63a3a; border-radius: 1em; padding: .8em 1.4em; font-size: 2.6em; font-weight: 600; }
+  .rc-none { font-size: 3em; color: var(--muted); }
+  @media (max-aspect-ratio: 7/5) { .rc-body { grid-template-columns: 1fr; grid-auto-rows: min-content; } .rc-serv { margin-left: 0; } }
+  footer { padding: 0 calc(4 * var(--u)) calc(1.4 * var(--u)); font-size: calc(1.9 * var(--u)); color: var(--muted); display: flex; gap: calc(2.4 * var(--u)); flex-wrap: wrap; }
+  footer i { font-style: normal; display: inline-flex; align-items: center; gap: calc(.6 * var(--u)); }
+  footer i::before { content: ""; width: calc(1.6 * var(--u)); height: calc(1.6 * var(--u)); border-radius: 50%; background: var(--c); }
+
+  /* Left or right half: meals stacked, the week as rows */
+  @media (max-aspect-ratio: 7/5) {
+    header { padding: calc(1.4 * var(--u)) calc(3 * var(--u)); gap: calc(2 * var(--u)); }
+    header img { height: calc(7 * var(--u)); }
+    header h1 { font-size: calc(4.2 * var(--u)); }
+    header p, .clock span { display: none; }
+    .clock b { font-size: calc(4.6 * var(--u)); }
+    main { padding-left: calc(3 * var(--u)); padding-right: calc(3 * var(--u)); }
+    /* same playful cards as full screen, stacked */
+    .today { grid-template-columns: 1fr; gap: calc(2 * var(--u)); }
+    .meal .top { font-size: calc(3.2 * var(--u)); }
+    .sticker { width: calc(11 * var(--u)); height: calc(11 * var(--u)); font-size: calc(6.8 * var(--u)); }
+    .main-dish { font-size: calc(3.8 * var(--u)); }
+    /* the week: one row per day, each meal a colored chip */
+    .week { grid-template-columns: 1fr; grid-template-rows: repeat(var(--rows, 7), auto); align-content: start; gap: calc(1 * var(--u)); }
+    .wd { flex-direction: row; align-items: stretch; gap: var(--u); padding: var(--u); border-top: 0; border-left: calc(1 * var(--u)) solid #e6dcef; }
+    .wd.is-today { border-left-color: var(--purple); }
+    .wd .dn { width: calc(9.5 * var(--u)); flex: none; text-align: left; align-self: center; padding-left: calc(.4 * var(--u)); }
+    .wm { flex: 1 1 0; min-width: 0; border-left: 0; padding: calc(.7 * var(--u)) var(--u); border-radius: calc(1.2 * var(--u));
+      background: color-mix(in srgb, var(--c) 14%, #fff); display: flex; align-items: center; gap: calc(.6 * var(--u)); }
+    .wm::before { content: attr(data-ic); font-size: calc(2.6 * var(--u)); flex: none; }
+    .wm b::before { content: none; }
+    .wm b { font-family: var(--fun); font-weight: 600; font-size: calc(2.3 * var(--u)); color: color-mix(in srgb, var(--c) 70%, #000); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .wm i { display: none; }
+  }
+  /* Top or bottom half */
+  @media (min-aspect-ratio: 5/2) {
+    header { padding: var(--u) calc(4 * var(--u)); }
+    header img { height: calc(7 * var(--u)); }
+    header h1 { font-size: calc(4 * var(--u)); }
+    header p, footer { display: none; }
+    .clock b { font-size: calc(5 * var(--u)); }
+    main { padding-top: calc(1.2 * var(--u)); gap: calc(1.2 * var(--u)); }
+    h2.sec { font-size: calc(3.4 * var(--u)); }
+    .sticker { width: calc(9 * var(--u)); height: calc(9 * var(--u)); font-size: calc(5.6 * var(--u)); }
+    .main-dish { font-size: calc(3.2 * var(--u)); }
+  }
+</style>
+</head>
+<body>
+<header>
+  <img src="img/BlossomHill/Top3-260.webp" alt="Blossom Hill">
+  <div>
+    <h1>Blossom Hill Menu</h1>
+    <p id="greet">Breakfast, lunch and dinner</p>
+  </div>
+  <div class="clock"><b id="time">&nbsp;</b><span id="today">&nbsp;</span></div>
+</header>
+<main id="main"></main>
+<footer id="key"></footer>
+
+<script>
+(function () {
+  // Always use Minnesota time, even if the sign player's clock is set to another time zone.
+  function nowMN() {
+    try { return new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })); } catch (e) { return new Date(); }
+  }
+  // ---- Settings you can change ----
+  var MEAL_STYLE = {           // color and picture for each meal
+    'breakfast': { c: '#e8901a', ic: '🍳' },
+    'lunch':     { c: '#2e9e5b', ic: '🥗' },
+    'dinner':    { c: '#2b6fd6', ic: '🍽️' },
+    'snack':     { c: '#c2185b', ic: '🍎' }
+  };
+  // When each meal ends (24-hour clock). The meal being served gets a "NOW" badge.
+  var MEAL_ENDS = { 'breakfast': '10:30', 'lunch': '14:30', 'dinner': '19:30' };
+  var SHOW_TOMORROW_AFTER = '19:30'; // after dinner, show tomorrow's menu
+  var SECONDS = 15;                  // how long each menu screen shows
+  var RECIPE_SECONDS = 25;           // how long each recipe screen shows
+  // Recipes shown after the menu:  'meal' = the dishes of the meal being served now (after dinner,
+  // tomorrow's breakfast), 'day' = every dish today, 'none' = no recipes.
+  // The address can also choose:  menu-tv.html?recipes=day   or   ?recipes=none
+  // menu-tv.html?view=kitchen shows only the recipes.  ?servings=6 shows amounts for 6 servings.
+  var RECIPES = 'meal';
+  // ---------------------------------
+
+  var DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  // A picture for each food, found from words in its name (first match wins).
+  // To add one: [/word/i, '🍕'],   No pork pictures are used.
+  var FOOD_PICS = [
+    [/pancake/i, '🥞'], [/waffle/i, '🧇'], [/french toast/i, '🍞'], [/bagel/i, '🥯'],
+    [/burrito|wrap/i, '🌯'], [/taco|fajita|quesadilla/i, '🌮'], [/burger|sloppy joe/i, '🍔'], [/hot dog/i, '🌭'],
+    [/grilled cheese/i, '🧀'], [/sandwich|melt/i, '🥪'], [/tomato soup/i, '🍅'], [/soup|chili|stew/i, '🍲'],
+    [/pot pie|shepherd/i, '🥧'], [/pasta|alfredo|mac|noodle/i, '🍝'], [/salad|coleslaw/i, '🥗'],
+    [/shrimp/i, '🍤'], [/fish|salmon|tuna|cod|tilapia/i, '🐟'], [/stir.?fry/i, '🥘'], [/wing|drumstick|chicken|turkey w\/ gravy/i, '🍗'],
+    [/steak/i, '🥩'], [/rice bowl/i, '🍚'], [/omelet|scrambled|egg & cheese/i, '🍳'], [/oatmeal|cream of wheat|cereal/i, '🥣'], [/parfait/i, '🍨'],
+    [/yogurt/i, '🥛'], [/cottage cheese/i, '🧀'], [/garlic bread/i, '🥖'], [/cornbread|muffin|toast|bread|roll/i, '🍞'],
+    [/cracker/i, '🍘'], [/sausage/i, '🌭'], [/turkey ham|ham\b/i, '🍖'], [/egg/i, '🥚'], [/lemon/i, '🍋'], [/pineapple/i, '🍍'],
+    [/fries|wedges/i, '🍟'], [/sweet potato/i, '🍠'], [/potato/i, '🥔'], [/rice/i, '🍚'], [/green beans/i, '🥬'], [/beans/i, '🥫'],
+    [/corn/i, '🌽'], [/broccoli|mixed vegetables/i, '🥦'], [/carrot/i, '🥕'], [/peas/i, '🌱'],
+    [/apple/i, '🍎'], [/banana/i, '🍌'], [/blueberr/i, '🫐'], [/strawberr|berries/i, '🍓'], [/grape/i, '🍇'],
+    [/melon/i, '🍈'], [/orange/i, '🍊'], [/peach/i, '🍑'], [/pear/i, '🍐'],
+    [/fruit/i, '🍉'], [/milk/i, '🥛'], [/cheese/i, '🧀']
+  ];
+  function pic(name) { for (var i = 0; i < FOOD_PICS.length; i++) if (FOOD_PICS[i][0].test(name || '')) return FOOD_PICS[i][1]; return '🍽️'; }
+  function greeting() { var h = nowMN().getHours(); return h < 12 ? 'Good morning! 🌞' : h < 17 ? 'Good afternoon! 🌤️' : 'Good evening! 🌙'; }
+  function sprinkle() {    // faint food pictures floating in the background
+    var box = document.createElement('div'), all = FOOD_PICS.map(function (f) { return f[1]; }), html = '';
+    box.className = 'confetti';
+    for (var i = 0; i < 26; i++) {
+      html += '<span style="left:' + (Math.random() * 96).toFixed(1) + '%;top:' + (Math.random() * 94).toFixed(1) + '%;font-size:calc(' +
+        (3 + Math.random() * 4).toFixed(1) + ' * var(--u));animation-delay:-' + (Math.random() * 9).toFixed(1) + 's">' + all[(i * 7) % all.length] + '</span>';
+    }
+    box.innerHTML = html; document.body.insertBefore(box, document.body.firstChild);
+  }
+  var data = null;
+  var params = new URLSearchParams(location.search);
+  if (+params.get('seconds') >= 5) SECONDS = +params.get('seconds');
+  if (params.get('recipes')) RECIPES = params.get('recipes');
+  var KITCHEN = params.get('view') === 'kitchen';
+  var SERV_OVERRIDE = Math.min(60, parseInt(params.get('servings'), 10) || 0);
+  // ---- Recipe tools, copied from the Daily Food page so the amounts match it exactly ----
+  var recipes = {};
+  function norm(s){ return String(s||"").toLowerCase().replace(/[^a-z0-9&/ ]/g,"").replace(/\s+/g," ").trim(); }
+  function parseCSV(text){
+    text=text.replace(/^﻿/,"");
+    var rows=[], row=[], cell="", q=false;
+    for (var i=0;i<text.length;i++){
+      var ch=text[i];
+      if (q){ if (ch==='"'){ if (text[i+1]==='"'){cell+='"';i++;} else q=false; } else cell+=ch; }
+      else if (ch==='"') q=true;
+      else if (ch===","){ row.push(cell); cell=""; }
+      else if (ch==="\n"||ch==="\r"){ if (ch==="\r"&&text[i+1]==="\n") i++; row.push(cell); rows.push(row); row=[]; cell=""; }
+      else cell+=ch;
+    }
+    if (cell!==""||row.length){ row.push(cell); rows.push(row); }
+    return rows;
+  }
+  function loadRecipes(text){
+    var out={}, n=0;
+    parseCSV(text).forEach(function(r,i){
+      if (!r[0] || (i===0 && /^dish/i.test(r[0]))) return;
+      var split=function(s){ return String(s||"").split("|").map(function(x){return x.trim();}).filter(Boolean); };
+      out[norm(r[0])]={name:r[0].trim(), serves:parseFloat(r[1])||6, ing:split(r[2]), steps:split(r[3]), note:(r[4]||"").trim()};
+      n++;
+    });
+    if (n) recipes=out;
+    return n;
+  }
+  
+  
+  var WHOLE=/^(eggs?|slices?|leaves|links?|muffins?|bagels?|tortillas?|rolls?|buns?|shells?|potatoes|peppers?|bananas?|apples?|oranges?|pears?|peaches|drumsticks?|crackers?|waffles?|sweet|yogurt|lasagna|blueberry|english|whole|hamburger|taco|chicken|bell)\b/i;
+  var PACK=/^(cans?|jars?|packets?|bags?|box(es)?|loaf|loaves|pineapple|large)\b/i;
+  function toNum(s){
+    s=s.trim(); var m;
+    if ((m=s.match(/^(\d+)\s+(\d+)\/(\d+)$/))) return +m[1]+ +m[2]/+m[3];
+    if ((m=s.match(/^(\d+)\/(\d+)$/))) return +m[1]/+m[2];
+    return parseFloat(s);
+  }
+  function nice(x,step){
+    if (step===1) return String(Math.max(1,Math.round(x)));
+    if (x>=20) return String(Math.round(x));
+    var w=Math.floor(x), f=x-w, best=0, bestD=9;
+    var F=step===3?[[0,""],[0.125,"1/8"],[0.25,"1/4"],[0.5,"1/2"],[0.75,"3/4"],[1,""]]:
+          step===2?[[0,""],[0.5,"1/2"],[1,""]]:
+          [[0,""],[0.125,"1/8"],[0.25,"1/4"],[1/3,"1/3"],[0.5,"1/2"],[2/3,"2/3"],[0.75,"3/4"],[1,""]];
+    for (var i=0;i<F.length;i++){ var d=Math.abs(f-F[i][0]); if (d<bestD){ bestD=d; best=i; } }
+    if (F[best][0]===1) return String(w+1);
+    if (w===0 && !F[best][1]) return step===2?"1/2":"1/8";
+    return (w? w+(F[best][1]?" ":"") : "")+F[best][1];
+  }
+  // Splits an ingredient line into {amt, rest}, with the amount changed for the number of servings.
+  function scaleLine(line,factor){
+    var m=line.match(/^(\d+\s+\d+\/\d+|\d+\/\d+|\d+(?:\.\d+)?)(\s+)(.*)$/);
+    if (!m) return {amt:"", rest:line};
+    if (Math.abs(factor-1)<1e-9) return {amt:m[1], rest:m[3]};
+    var v=toNum(m[1])*factor, rest=m[3];
+    if (/^cups?\b/i.test(rest) && v<0.25){ v*=16; rest=rest.replace(/^cups?/i,"tbsp"); }
+    var step=WHOLE.test(rest)&&!/^(lb|oz|cups?|tbsp|tsp)\b/i.test(rest) ? 1 : (PACK.test(rest)?2:(/^(tbsp|tsp)\b/i.test(rest)?3:4));
+    // onions, tomatoes, carrots, lemons, celery stalks and so on: whole or half (never 1/3 onion)
+    if (/^(small |medium |large )?(onions?|tomato(es)?|carrots?|lemons?|limes?|stalks?|cloves?|heads?)\b/i.test(rest)) step=2;
+    // spoons in kitchen-friendly sizes: under 1 tbsp becomes tsp, 1 tbsp or more rounds to the nearest 1/2 tbsp
+    if (/^tbsp\b/i.test(rest)){
+      if (v<0.99){ v=Math.max(0.25,Math.round(v*3*2)/2); rest=rest.replace(/^tbsp/i,"tsp"); step=2; }
+      else { v=Math.round(v*2)/2; step=2; }
+      if (v===4||v===8||v===12){ v=v/16; rest=rest.replace(/^tbsp/i,"cup"); step=4; }
+    }
+    var shown=nice(v,step);
+    if (/^(1|\d\/\d)$/.test(shown)) rest=rest.replace(/^cups\b/i,"cup"); else rest=rest.replace(/^cup\b/i,"cups");
+    // "(about 6 cups)" changes with the servings too
+    rest=rest.replace(/\babout (\d+(?:\s+\d+\/\d+|\/\d+)?)\s+(cups?|lb|oz|slices|pieces)\b/i,function(all,n,u){
+      var x=nice(toNum(n)*factor,/^oz$/i.test(u)?1:4), unit=u; if (/^cups?$/i.test(u)) unit=/^(1|\d\/\d)$/.test(x)?"cup":"cups";
+      return "about "+x+" "+unit;
+    });
+    // one of something: "1 eggs" -> "1 egg"
+    if (shown==="1") rest=rest.replace(/^(\w+?)(oes|es|s)\b/,function(all,stem,end){
+      var w=all.toLowerCase();
+      var keep=/^(tbsp|tsp|lb|oz|cups?|grapes|greens|peas|beans|oats|crumbs|chips|fries|noodles)$/.test(w);
+      if (keep) return all;
+      if (/^(potatoes|tomatoes)$/.test(w)) return stem+"o";
+      if (/^(bunches|boxes|dishes|peaches|sandwiches)$/.test(w)) return stem;
+      if (end==="oes") return stem+"oe";
+      if (end==="es") return stem+"e";
+      return stem;
+    });
+    return {amt:shown, rest:rest};
+  }
+  
+  /* ---------- the menu: sent automatically by the menu maker (foodshuffle) ---------- */
+  function mergeWeeks(src){
+    Object.keys(src||{}).forEach(function(k){
+      var w=src[k]; if (!w || !w.days || w.days.length!==7) return;
+      if (!weeks[k] || String(w.sent||"")>String(weeks[k].sent||"")) weeks[k]=w;
+    });
+  }
+  function readLocal(){ try{ mergeWeeks(JSON.parse(recall("bh_daily")||"{}")); }catch(e){} }
+  // The week's servings come from the menu maker. The - and + buttons here change it for this screen only.
+  var servOverride=null;
+  function weekServings(){ var wk=view&&weeks[view.key], n=wk&&parseInt(wk.servings,10); return (n>0&&n<=60)?n:4; }
+  function servings(){ return servOverride||weekServings(); }
+  function dayMenu(){ var wk=weeks[view.key]; return wk ? {cats:wk.cats||["Breakfast","Lunch","Dinner"], meals:wk.days[view.day]||[]} : null; }
+  
+  /* ---------- the one-page sheet (1920 x 1080, same design as the weekly menu) ---------- */
+  var COLS=[{x:178,w:492},{x:700,w:492},{x:1222,w:478}], TOP=292, BOTTOM=962;
+  function wrapText(c,txt,maxW){
+    var out=[], cur="";
+    String(txt).split(" ").forEach(function(w){ var t=cur?cur+" "+w:w; if (c.measureText(t).width>maxW && cur){ out.push(cur); cur=w; } else cur=t; });
+    if (cur) out.push(cur); return out;
+  }
+  // Lays out one meal column at size k. Returns {h, ops} where ops are the things to draw.
+  function layoutCol(c,cat,items,w,k){
+    var ops=[], y=0, H=40*k, ITEM=32*k, ING=23.5*k, LH_ITEM=38*k, LH_ING=29*k, IND=30*k, f=servings();
+    y+=H; ops.push({t:"head",txt:cat.toUpperCase(),y:y,size:H*0.86});
+    y+=10*k;
+    items.forEach(function(item,li){
+      c.font="bold "+ITEM+"px "+F_FOOD;
+      wrapText(c,item,w-IND).forEach(function(l,i){ y+=LH_ITEM; ops.push({t:"item",txt:l,y:y,size:ITEM,dot:i===0}); });
+      var rc=recipes[norm(item)];
+      if (!rc){ y+=LH_ING; ops.push({t:"ing",amt:"",txt:"(no recipe yet)",y:y,size:ING,ind:IND}); }
+      else rc.ing.forEach(function(line){
+        var s=scaleLine(line,f/rc.serves);
+        c.font="bold "+ING+"px "+F_FOOD; var aw=s.amt?c.measureText(s.amt+" ").width:0;
+        c.font=ING+"px "+F_FOOD;
+        var first=true, words=s.rest.split(" "), cur="", lines=[];
+        words.forEach(function(wd){ var t=cur?cur+" "+wd:wd, lim=w-IND-(lines.length?IND*0.5:aw);
+          if (c.measureText(t).width>lim && cur){ lines.push(cur); cur=wd; } else cur=t; });
+        if (cur) lines.push(cur);
+        lines.forEach(function(l,i){ y+=LH_ING; ops.push({t:"ing",amt:i===0?s.amt:"",txt:l,y:y,size:ING,ind:IND+(i?IND*0.5:0),aw:i===0?aw:0}); });
+      });
+      if (li<items.length-1) y+=12*k;
+    });
+    return {h:y, ops:ops};
+  }
+  function paintSheet(c,S){
+    c.setTransform(S,0,0,S,0,0); c.clearRect(0,0,1920,1080); c.drawImage(bg,0,0,1920,1080);
+    var dm=dayMenu(), date=addDays(fromKey(view.key),view.day);
+    c.textBaseline="alphabetic"; c.textAlign="center"; c.fillStyle=INK;
+    c.font="italic 900 66px "+F_TITLE; c.fillText(DAYS[view.day].toUpperCase(),960,212);
+    c.fillStyle=NAVY; c.font="600 28px "+F_FOOD;
+    c.fillText(MON[date.getMonth()]+" "+date.getDate()+", "+date.getFullYear()+"   ·   Ingredients for "+servings()+" serving"+(servings()===1?"":"s"),960,256);
+    if (!dm){
+      c.fillStyle="#8a1c1c"; c.font="600 34px "+F_FOOD; c.fillText(document.body.classList.contains("sign")?"Today's menu is coming soon.":"No menu yet for this week.",960,520);
+      c.font="28px "+F_FOOD; c.fillText(document.body.classList.contains("sign")?"Please check back soon.":"Open the menu maker (foodshuffle). The menu shows here as soon as it is made or shuffled.",960,570);
+      return;
+    }
+    var k=1, L;
+    for (; k>0.55; k-=0.01){
+      L=COLS.map(function(col,ci){ return layoutCol(c,dm.cats[ci]||"",dm.meals[ci]||[],col.w,k); });
+      if (L.every(function(l){ return l.h<=BOTTOM-TOP; })) break;
+    }
+    L.forEach(function(l,ci){
+      var x=COLS[ci].x, w=COLS[ci].w;
+      l.ops.forEach(function(o){
+        var y=TOP+o.y; c.textAlign="left";
+        if (o.t==="head"){
+          c.fillStyle=NAVY; c.font="bold "+o.size+"px "+F_FOOD; c.fillText(o.txt,x,y-6*k);
+          c.strokeStyle="#9a6fd6"; c.lineWidth=3; c.beginPath(); c.moveTo(x,y+2); c.lineTo(x+w,y+2); c.stroke();
+        } else if (o.t==="item"){
+          c.fillStyle=INK; c.font="bold "+o.size+"px "+F_FOOD;
+          if (o.dot){ c.beginPath(); c.arc(x+11*k,y-o.size*0.33,o.size*0.15,0,6.3); c.fill(); }
+          c.fillText(o.txt,x+30*k,y);
+        } else {
+          var xx=x+o.ind;
+          if (o.amt){ c.fillStyle=NAVY; c.font="bold "+o.size+"px "+F_FOOD; c.fillText(o.amt,xx,y); xx+=o.aw; }
+          c.fillStyle=GREY; c.font=o.size+"px "+F_FOOD; c.fillText(o.txt,xx,y);
+        }
+      });
+    });
+  }
+  
+  /* ---------- the steps below the sheet ---------- */
+
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function esc(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+  function mins(hm) { var p = hm.split(':'); return +p[0] * 60 + +p[1]; }
+  function monday(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() - ((d.getDay() + 6) % 7)); }
+  function key(d) { return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+  function style(cat) { var k = cat.toLowerCase(); return MEAL_STYLE[k] || { c: '#9529d1', ic: '🍴' }; }
+  function menuFor(d) {           // the week's menu and the day's meals for a date
+    var wk = data && data.weeks && data.weeks[key(monday(d))];
+    return wk ? { cats: wk.cats, meals: wk.days[(d.getDay() + 6) % 7], week: wk } : null;
+  }
+
+  function tick() {
+    var now = nowMN();
+    document.getElementById('time').textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    document.getElementById('today').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    document.getElementById('greet').textContent = greeting();
+  }
+
+  function todayHtml(now) {
+    var nowM = now.getHours() * 60 + now.getMinutes(), showDay = now, label = "Today's Menu";
+    if (nowM >= mins(SHOW_TOMORROW_AFTER)) { showDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); label = "Tomorrow's Menu"; }
+    var m = menuFor(showDay);
+    var head = '<h2 class="sec">' + label + ' <small>' + showDay.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }) + '</small></h2>';
+    if (!m) return head + '<div class="soon">Today\'s menu is coming soon.</div>';
+    var current = null;
+    if (showDay === now) {
+      for (var i = 0; i < m.cats.length; i++) {
+        var end = MEAL_ENDS[m.cats[i].toLowerCase()];
+        if (end && nowM < mins(end)) { current = i; break; }
+      }
+    }
+    var html = head + '<div class="today" style="--meals:' + m.cats.length + '">';
+    m.cats.forEach(function (cat, i) {
+      var st = style(cat), items = m.meals[i] || [];
+      var cls = showDay === now ? (i === current ? ' now' : (current === null || i < current ? ' done' : '')) : '';
+      if (showDay === now && current === null) cls = ' done';
+      html += '<div class="meal' + cls + '" style="--c:' + st.c + '"><div class="top"><span class="ic">' + st.ic + '</span>' + esc(cat) +
+        (cls === ' now' ? '<span class="badge">🔔 Serving now!</span>' : '') + '</div><div class="body"><div class="sticker">' + pic(items[0]) + '</div>' +
+        '<div class="txt"><div class="main-dish">' + esc(items[0] || '') + '</div><div class="sides">' +
+        items.slice(1).map(function (x) { return '<span class="chip">' + pic(x) + ' ' + esc(x) + '</span>'; }).join('') + '</div></div></div></div>';
+    });
+    return html + '</div>';
+  }
+
+  function weekHtml(now, mainsOnly, rows) {
+    var mon = monday(now), wk = menuFor(now);
+    var html = '<h2 class="sec">This Week <small>' + mon.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' – ' +
+      new Date(mon.getFullYear(), mon.getMonth(), mon.getDate() + 6).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + '</small></h2>';
+    if (!wk) return html + '<div class="soon">This week\'s menu is coming soon.</div>';
+    var todayI = (now.getDay() + 6) % 7, start = rows < 7 ? todayI : 0;
+    html += '<div class="week' + (mainsOnly ? ' mains' : '') + '" style="--rows:' + rows + '">';
+    for (var n = 0; n < rows && start + n < 7; n++) {
+      var i = start + n, d = new Date(mon.getFullYear(), mon.getMonth(), mon.getDate() + i), meals = wk.week.days[i] || [];
+      html += '<div class="wd' + (i === todayI ? ' is-today' : i < todayI ? ' past' : '') + '"><div class="dn">' + (i === todayI ? 'Today' : DAYS[i]) +
+        '<span>' + d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + '</span></div>';
+      wk.cats.forEach(function (cat, ci) {
+        var items = meals[ci] || [];
+        html += '<div class="wm" data-ic="' + pic(items[0]) + '" style="--c:' + style(cat).c + '"><b data-ic="' + pic(items[0]) + '">' + esc(items[0] || '') + '</b>' +
+          items.slice(1).map(function (x) { return '<i>' + esc(x) + '</i>'; }).join('') + '</div>';
+      });
+      html += '</div>';
+    }
+    return html + '</div>';
+  }
+
+  function fits(main) {
+    if (main.scrollHeight > main.clientHeight + 1) return false;
+    var els = main.querySelectorAll('.wd, .meal');
+    for (var i = 0; i < els.length; i++) if (els[i].scrollHeight > els[i].clientHeight + 1 || els[i].scrollWidth > els[i].clientWidth + 1) return false;
+    return true;
+  }
+
+  // Which day and meal the kitchen is working on: the meal being served now; after dinner, tomorrow's breakfast.
+  function focus(now) {
+    var nowM = now.getHours() * 60 + now.getMinutes();
+    if (nowM >= mins(SHOW_TOMORROW_AFTER)) return { day: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1), ci: 0, when: 'Tomorrow' };
+    var m = menuFor(now), ci = 0;
+    if (m) for (var i = 0; i < m.cats.length; i++) { var end = MEAL_ENDS[m.cats[i].toLowerCase()]; if (end && nowM < mins(end)) { ci = i; break; } }
+    return { day: now, ci: ci, when: 'Today' };
+  }
+
+  function servingsFor(d) {
+    if (SERV_OVERRIDE > 0) return SERV_OVERRIDE;
+    var m = menuFor(d), n = m && parseInt(m.week.servings, 10);
+    return n > 0 && n <= 60 ? n : 4;
+  }
+
+  function recipeHtml(sc) {
+    var cat = sc.cat, st = style(cat), rc = recipes[norm(sc.item)], serv = servingsFor(sc.day);
+    var html = '<div class="rc fade" style="--c:' + st.c + '"><div class="rc-head"><span class="rc-tag">' + st.ic + ' ' + esc(sc.when + "'s " + cat) +
+      (sc.total > 1 ? ' · ' + sc.n + ' of ' + sc.total : '') + '</span><h2>' + pic(sc.item) + ' ' + esc(sc.item) + '</h2>' +
+      '<span class="rc-serv">For ' + serv + ' serving' + (serv === 1 ? '' : 's') + '</span></div>';
+    if (!rc) return html + '<div class="rc-none">No recipe yet. Add a row for “' + esc(sc.item) + '” to recipes.csv in the dailyfood folder.</div></div>';
+    var f = serv / (rc.serves || 6);
+    html += '<div class="rc-body"><div class="rc-box"><h3>Ingredients</h3><ul class="rc-ing">' + rc.ing.map(function (line) {
+      var x = scaleLine(line, f); return '<li>' + (x.amt ? '<b>' + esc(x.amt) + '</b> ' : '') + esc(x.rest) + '</li>';
+    }).join('') + '</ul></div><div class="rc-box"><h3>How to make it</h3><ol class="rc-steps">' +
+      rc.steps.map(function (s) { return '<li>' + esc(s) + '</li>'; }).join('') + '</ol></div></div>';
+    if (rc.note) html += '<div class="rc-note">⚠️ ' + esc(rc.note) + '</div>';
+    return html + '</div>';
+  }
+
+  // Shrinks a recipe screen's text just enough to fit.
+  function fitRecipe(main) {
+    var rcEl = main.querySelector('.rc'); if (!rcEl) return;
+    for (var k = 1; k >= 0.5; k -= 0.05) {
+      rcEl.style.setProperty('--k', k.toFixed(2));
+      var boxes = rcEl.querySelectorAll('.rc-box, .rc-body'), ok = main.scrollHeight <= main.clientHeight + 1 && rcEl.scrollHeight <= rcEl.clientHeight + 1;
+      for (var i = 0; ok && i < boxes.length; i++) if (boxes[i].scrollHeight > boxes[i].clientHeight + 1) ok = false;
+      if (ok) return;
+    }
+  }
+
+  // Builds the list of screens: the menu (today and week together if they fit), then the recipes.
+  function buildScreens() {
+    var main = document.getElementById('main'), now = nowMN(), list = [];
+    if (!KITCHEN) {
+      var narrow = innerWidth / innerHeight < 1.4, tries = narrow ? [[false, 7], [false, 6], [false, 5], [false, 4], [false, 3]] : [[false, 7], [true, 7]], fit = null;
+      for (var t = 0; t < tries.length && !fit; t++) { main.innerHTML = todayHtml(now) + weekHtml(now, tries[t][0], tries[t][1]); if (fits(main)) fit = tries[t]; }
+      if (fit) list.push({ type: 'both', opt: fit });
+      else {
+        list.push({ type: 'today' });
+        var opts = narrow ? [[false, 7], [false, 5], [false, 3]] : [[false, 7], [true, 7]], w = opts[opts.length - 1];
+        for (var o = 0; o < opts.length; o++) { main.innerHTML = weekHtml(now, opts[o][0], opts[o][1]); if (fits(main)) { w = opts[o]; break; } }
+        list.push({ type: 'week', opt: w });
+      }
+    }
+    if (RECIPES !== 'none') {
+      var fc = focus(now), m = menuFor(fc.day);
+      if (m) {
+        var cis = RECIPES === 'day' ? m.cats.map(function (c, i) { return i; }) : [fc.ci];
+        cis.forEach(function (ci) {
+          var items = (menuFor(fc.day).meals[ci] || []);
+          items.forEach(function (item, n) { list.push({ type: 'recipe', day: fc.day, when: fc.when, cat: m.cats[ci], item: item, n: n + 1, total: items.length }); });
+        });
+      }
+    }
+    if (!list.length) list.push({ type: 'today' });
+    return list;
+  }
+
+  var screens = [], cur = 0, timer = null;
+  function show() {
+    var main = document.getElementById('main'), now = nowMN(), sc = screens[cur];
+    if (!data) { main.innerHTML = '<div class="soon">Loading the menu…</div>'; return; }
+    if (sc.type === 'both') main.innerHTML = todayHtml(now) + weekHtml(now, sc.opt[0], sc.opt[1]);
+    else if (sc.type === 'today') main.innerHTML = todayHtml(now);
+    else if (sc.type === 'week') main.innerHTML = weekHtml(now, sc.opt[0], sc.opt[1]);
+    else { main.innerHTML = recipeHtml(sc); fitRecipe(main); }
+    if (screens.length > 1 && main.firstElementChild) main.firstElementChild.classList.add('fade');
+    setKey();
+    clearTimeout(timer);
+    timer = setTimeout(next, (sc.type === 'recipe' ? RECIPE_SECONDS : (screens.length > 1 ? SECONDS : 60)) * 1000);
+  }
+  function next() {
+    cur++;
+    if (cur >= screens.length) { screens = buildScreens(); cur = 0; }   // start each round fresh, so the day and meal stay current
+    show();
+  }
+  function render() { screens = buildScreens(); cur = 0; show(); }
+
+  function setKey() {
+    var m = menuFor(nowMN()), cats = m ? m.cats : ['Breakfast', 'Lunch', 'Dinner'];
+    document.getElementById('key').innerHTML = cats.map(function (c) { return '<i style="--c:' + style(c).c + '">' + esc(c) + '</i>'; }).join('');
+  }
+
+  function load() {
+    var bust = '?t=' + Date.now();
+    var r = fetch('dailyfood/recipes.csv' + bust, { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); })
+      .then(function (buf) { var t; try { t = new TextDecoder('utf-8', { fatal: true }).decode(buf); } catch (e) { t = new TextDecoder('windows-1252').decode(buf); } loadRecipes(t); })
+      .catch(function () {});
+    var m = fetch('dailyfood/daily_menu.json' + bust, { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (j) { data = j; })
+      .catch(function () {
+        // On the computer used for the menu maker, use the menu saved there.
+        try { var w = JSON.parse(localStorage.getItem('bh_daily') || 'null'); if (w) data = { weeks: w }; } catch (e) {}
+        if (!data) data = { weeks: {} };
+      });
+    Promise.all([r, m]).then(function () { if (!screens.length) render(); });
+  }
+
+  var wait;
+  addEventListener('resize', function () { clearTimeout(wait); wait = setTimeout(render, 300); });
+  sprinkle();
+  tick(); setInterval(tick, 10000);
+  load(); setInterval(load, 30 * 60 * 1000);   // check for a newly published menu every 30 minutes
+})();
+</script>
+</body>
+</html>
