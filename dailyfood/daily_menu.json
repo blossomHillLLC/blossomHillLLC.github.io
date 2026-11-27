@@ -1,0 +1,135 @@
+{
+ "weeks": {
+  "2026-11-23": {
+   "id": "1795793541152",
+   "sent": "2026-11-27T15:45:32.319Z",
+   "cats": [
+    "Breakfast",
+    "Lunch",
+    "Dinner"
+   ],
+   "servings": 4,
+   "days": [
+    [
+     [
+      "Cream Cheese Bagel",
+      "Hard-Boiled Egg",
+      "Orange Slices"
+     ],
+     [
+      "Tuna Melt",
+      "Tomato Soup",
+      "Grapes"
+     ],
+     [
+      "Chicken & Noodles",
+      "Peas & Carrots",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "Spinach Omelet",
+      "English Muffin",
+      "Grapes"
+     ],
+     [
+      "Vegetable Beef Soup",
+      "Whole Grain Roll",
+      "Pears"
+     ],
+     [
+      "Fish & Chips",
+      "Coleslaw",
+      "Lemon Wedges"
+     ]
+    ],
+    [
+     [
+      "Raisin Oatmeal",
+      "Hard-Boiled Egg",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "BBQ Pulled Chicken",
+      "Coleslaw",
+      "Melon"
+     ],
+     [
+      "Shepherd's Pie",
+      "Garden Salad",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "Berry Yogurt Parfait",
+      "Whole Wheat Toast",
+      "Banana"
+     ],
+     [
+      "Fish Sticks",
+      "Green Peas",
+      "Orange Slices"
+     ],
+     [
+      "Chicken Parmesan",
+      "Green Beans",
+      "Whole Grain Roll"
+     ]
+    ],
+    [
+     [
+      "French Toast",
+      "Turkey Sausage",
+      "Strawberries"
+     ],
+     [
+      "Beef Tacos",
+      "Seasoned Corn",
+      "Melon"
+     ],
+     [
+      "Baked Salmon",
+      "Brown Rice",
+      "Roasted Carrots"
+     ]
+    ],
+    [
+     [
+      "Cream of Wheat",
+      "Yogurt",
+      "Banana"
+     ],
+     [
+      "Chicken Quesadilla",
+      "Black Beans",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "Beef Rice Bowl",
+      "Steamed Broccoli",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "Scrambled Eggs",
+      "Whole Wheat Toast",
+      "Orange Slices"
+     ],
+     [
+      "Tuna Pasta Salad",
+      "Wheat Crackers",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "Chicken Alfredo",
+      "Steamed Broccoli",
+      "Fresh Seasonal Fruit"
+     ]
+    ]
+   ]
+  }
+ }
+}
