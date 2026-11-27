@@ -55,7 +55,7 @@ def read_events(text):
                 cur[name], cur[name + "_ALLDAY"] = parse_dt(value, params)
             elif name == "EXDATE":
                 cur["EXDATE"] += [parse_dt(v, params)[0] for v in value.split(",")]
-            elif name in ("SUMMARY", "RRULE", "UID", "STATUS"):
+            elif name in ("SUMMARY", "RRULE", "UID", "STATUS", "LOCATION", "DESCRIPTION"):
                 cur[name] = value.replace("\\,", ",").replace("\\;", ";").replace("\\n", " ")
     return events
 

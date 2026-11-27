@@ -147,7 +147,7 @@
 <div class="bar"><div id="bar"></div></div>
 <footer>
   <div class="dots" id="dots"></div>
-  <div id="note" style="margin-left:auto">Updated every morning from the Washington County Library and Washington County calendars</div>
+  <div id="note" style="margin-left:auto">Updated every morning from the Washington County Library and the Woodbury, Oakdale and Washington County calendars</div>
 </footer>
 
 <script>
@@ -172,6 +172,9 @@
   });
   // A picture for each activity, from words in its name (first match wins), then from its category.
   var PICS = [
+    [/parade/i, '🎉'], [/santa/i, '🎅'], [/tree lighting|christmas|holiday light/i, '🎄'], [/firework/i, '🎆'], [/festival|fair\b|carnival|woodbury days|lumberjack days|cottage grove strawberry/i, '🎪'],
+    [/market|bazaar|craft sale/i, '🛍️'], [/swap|clothing/i, '👕'], [/full moon|moon/i, '🌕'], [/solstice|stars|astronom/i, '⭐'],
+    [/winter wonderland|snow|sled|skat/i, '⛄'], [/band|concert|performance in the park/i, '🎵'],
     [/bingo/i, '🎱'], [/mah ?jongg/i, '🀄'], [/bridge|500|cards|euchre|cribbage/i, '🃏'], [/chess/i, '♟️'], [/puzzle/i, '🧩'], [/game/i, '🎲'],
     [/knit|crochet|needle|stitch|fiber|yarn/i, '🧶'], [/paint|art|draw|craft|make/i, '🎨'], [/bow|gift|wrap/i, '🎁'],
     [/book|read|author|writ/i, '📚'], [/meditat|yoga|tai chi|stretch/i, '🧘'], [/walk|hike/i, '🚶'], [/exercise|fitness|balance/i, '💪'],

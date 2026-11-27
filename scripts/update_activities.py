@@ -4,7 +4,8 @@
 Runs once a day on GitHub (see .github/workflows/update-activities.yml).
 Sources:
   - Washington County Library events (adults and all ages, nearby branches)
-  - Washington County calendar (community events only, no government meetings)
+  - Community calendars: Woodbury community events and Central Park, Washington County
+    Parks and county events, and Oakdale events and recreation (no government meetings)
 Uses only the Python standard library.
 """
 import html
@@ -31,6 +32,19 @@ SKIP_TITLE = re.compile(r"tech help|technology help|canceled|cancelled|storytime
                         r"library closed|board meeting", re.I)
 SKIP_CATEGORY = re.compile(r"homework|storytimes|library board|careers", re.I)
 
+# Community calendars (iCalendar feeds from city and county websites).
+# To add one: (town name, place name if the event has none, iCalendar address).
+ICAL = "/common/modules/iCalendar/iCalendar.aspx?feed=calendar&catID="
+COMMUNITY = [
+    ("Woodbury", "Woodbury", "https://www.woodburymn.gov" + ICAL + "14"),               # Community Events
+    ("Woodbury", "Woodbury Central Park", "https://www.woodburymn.gov" + ICAL + "34"),  # Central Park
+    ("Washington County", "Washington County Parks", "https://www.washingtoncountymn.gov" + ICAL + "25"),  # Parks
+    ("Washington County", "Washington County", "https://www.washingtoncountymn.gov" + ICAL + "14"),        # County Events
+    ("Oakdale", "Oakdale", "https://www.oakdalemn.gov" + ICAL + "14"),                  # Main Calendar
+    ("Oakdale", "Oakdale Discovery Center", "https://www.oakdalemn.gov" + ICAL + "22"), # Recreation
+]
+COMMUNITY_SKIP = re.compile(r"meeting|council|commission|committee|board|workshop|hearing|closed|closure|election|"
+                            r"reservation|budget|training|conference|story ?time|toddler|baby|preschool|teen", re.I)
 COUNTY_URL = "https://www.washingtoncountymn.gov/RSSFeed.aspx?ModID=58&CID=All-calendar.xml"
 COUNTY_KEEP = re.compile(r"park|free|festival|fair|concert|music|walk|hike|nature|holiday|celebrat|"
                          r"market|parade|garden|art|movie|picnic|fishing|ski|snowshoe|lights|museum", re.I)
@@ -145,11 +159,45 @@ def county_events(today, last_day):
     return events
 
 
+def community_events(today, last_day):
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from update_staff import read_events, occurrences   # the same calendar reader the staff schedule uses
+    events = []
+    for town, default_place, url in COMMUNITY:
+        try:
+            items = read_events(get(url))
+        except Exception as exc:
+            print(f"community calendar failed ({url}): {exc}", file=sys.stderr)
+            continue
+        for ev in items:
+            title = clean(ev.get("SUMMARY"), 80)
+            if not title or "DTSTART" not in ev or ev.get("STATUS") == "CANCELLED" or COMMUNITY_SKIP.search(title):
+                continue
+            length = (ev.get("DTEND") - ev["DTSTART"]) if ev.get("DTEND") else timedelta(hours=1)
+            all_day = bool(ev.get("DTSTART_ALLDAY"))
+            # place: "<p>Amphitheater</p> - 8595 Central Park Place ..." -> "Amphitheater"
+            loc = clean(ev.get("LOCATION", "").replace("\\n", " "), 120)
+            parts = [x.strip() for x in re.split(r"\s+-\s+|^-\s*", loc) if x.strip()]
+            place = parts[0] if parts else ""
+            if not place or re.match(r"^\d", place):
+                place = default_place
+            desc = clean(re.sub(r"https?://\S+", "", (ev.get("DESCRIPTION") or "").replace("\\n", " ")))
+            for start in occurrences(ev, today, last_day):
+                end = start + length
+                events.append({
+                    "title": title, "date": start.strftime("%Y-%m-%d"),
+                    "start": "" if all_day else fmt_time(start), "end": "" if all_day else fmt_time(end),
+                    "allDay": all_day, "place": place, "town": town, "category": "Community",
+                    "desc": desc, "source": town,
+                })
+    return events
+
+
 def main():
     now = datetime.now(TZ)
     today, last_day = now.date(), now.date() + timedelta(days=DAYS_AHEAD)
     events, problems = [], []
-    for name, fn in (("library", library_events), ("county", county_events)):
+    for name, fn in (("library", library_events), ("community", community_events)):
         try:
             got = fn(today, last_day)
             print(f"{name}: {len(got)} events")
