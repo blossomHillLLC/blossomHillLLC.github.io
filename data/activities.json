@@ -1,7 +1,20 @@
 {
- "updated": "2026-11-27T07:43-06:00",
+ "updated": "2026-11-27T11:46-06:00",
  "problems": [],
  "events": [
+  {
+   "title": "Indoor Market",
+   "date": "2026-11-28",
+   "start": "9:00 AM",
+   "end": "1:00 PM",
+   "allDay": false,
+   "place": "Discovery Center",
+   "town": "Oakdale",
+   "category": "Community",
+   "desc": "",
+   "source": "Oakdale",
+   "cost": ""
+  },
   {
    "title": "500 Cards",
    "date": "2026-11-28",
@@ -12,7 +25,8 @@
    "town": "Lake Elmo",
    "category": "Games and Gaming",
    "desc": "Join us for a weekly card game in Meeting Room A+B at the Lake Elmo Library. This program is intended for adults. Registration is not required.",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Meditation Monday",
@@ -24,7 +38,8 @@
    "town": "Lake Elmo",
    "category": "Health and Wellness",
    "desc": "Consider joining us for Meditation Monday at Lake Elmo Library. This session includes about 10 minutes of secular meditation instruction, followed by…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Free Park Entry Tuesday (all Washington County Parks)",
@@ -33,10 +48,11 @@
    "end": "",
    "allDay": true,
    "place": "Washington County Parks",
-   "town": "Stillwater",
+   "town": "Washington County",
    "category": "Community",
-   "desc": "",
-   "source": "Washington County"
+   "desc": "On the first Tuesday (non-holiday) of every month, visit any Washington County Park for free. No vehicle permit required.",
+   "source": "Washington County",
+   "cost": "free"
   },
   {
    "title": "Blazing Needles at Cottage Grove Service Center",
@@ -48,7 +64,8 @@
    "town": "Cottage Grove",
    "category": "Crafts and Hobbies",
    "desc": "Do you have a needlework project you are working on? Join fellow enthusiasts for camaraderie, inspiration, and ideas on Tuesday mornings from 10 a.m…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Lake Elmo Book Club",
@@ -60,7 +77,8 @@
    "town": "Lake Elmo",
    "category": "Book Clubs",
    "desc": "This month's selection is Fahrenheit 451 by Ray Bradbury. The Lake Elmo Book Club meets on the first Tuesday of every month. Copies of the book are…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "RHS Book Club",
@@ -72,7 +90,8 @@
    "town": "Woodbury",
    "category": "Book Clubs",
    "desc": "This month's selection is Eleanor Oliphant is Completely Fine by Gail Honeyman. Read the monthly selection and join in for the discussion about the…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Let's Make Stuff: Knitting Take-and-Make",
@@ -84,7 +103,8 @@
    "town": "Cottage Grove",
    "category": "Crafts and Hobbies",
    "desc": "Learn the basics of knitting when you pick up a take-and-make kit and dive into one of the many self-guided knitting courses on Washington County…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "American Mah Jongg",
@@ -96,7 +116,21 @@
    "town": "Lake Elmo",
    "category": "Games and Gaming",
    "desc": "Join us every Wednesday (except holidays) for American Mah Jongg at Lake Elmo Library in the Rosalie E. Wahl Room. This program is intended for…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
+  },
+  {
+   "title": "Adult Cards",
+   "date": "2026-12-02",
+   "start": "1:00 PM",
+   "end": "3:00 PM",
+   "allDay": false,
+   "place": "Discovery Center",
+   "town": "Oakdale",
+   "category": "Community",
+   "desc": "",
+   "source": "Oakdale",
+   "cost": ""
   },
   {
    "title": "Stitches & Giggles",
@@ -108,7 +142,8 @@
    "town": "Oakdale",
    "category": "Crafts and Hobbies",
    "desc": "All ages and skill levels are welcome at this knitting, crocheting, and crafting group, which meets every Wednesday at Oakdale Library. Some supplies…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Bridge Lessons",
@@ -120,7 +155,8 @@
    "town": "Lake Elmo",
    "category": "Lifelong Learning",
    "desc": "Join us at the Lake Elmo Library for Bridge Lessons! Marilyn, a Bridge instructor, will be teaching the card-game to beginners and intermediates…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Fiber Arts Club",
@@ -132,7 +168,8 @@
    "town": "Woodbury",
    "category": "Crafts and Hobbies",
    "desc": "Join the Fiber Arts Club for knitting, crocheting, embroidery, and more. Each month, we will focus on a different project. Supplies will be available…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Knitting Group",
@@ -144,7 +181,21 @@
    "town": "Lake Elmo",
    "category": "Crafts and Hobbies",
    "desc": "Lake Elmo Library hosts a weekly knitting group every Thursday from 6 to 8 p.m. in the Rosalie E. Wahl Community Room. Bring your current project to…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
+  },
+  {
+   "title": "Tree Lighting with Santa",
+   "date": "2026-12-03",
+   "start": "6:00 PM",
+   "end": "7:30 PM",
+   "allDay": false,
+   "place": "Discovery Center",
+   "town": "Oakdale",
+   "category": "Community",
+   "desc": "",
+   "source": "Oakdale",
+   "cost": ""
   },
   {
    "title": "Family Art Cart",
@@ -156,7 +207,8 @@
    "town": "Woodbury",
    "category": "Crafts and Hobbies",
    "desc": "Drop by R.H. Stafford Library in Woodbury on Friday afternoons to create something with our Art Cart. Each week features a different craft to…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "500 Cards",
@@ -168,7 +220,8 @@
    "town": "Lake Elmo",
    "category": "Games and Gaming",
    "desc": "Join us for a weekly card game in Meeting Room A+B at the Lake Elmo Library. This program is intended for adults. Registration is not required.",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Meditation Monday",
@@ -180,7 +233,8 @@
    "town": "Lake Elmo",
    "category": "Health and Wellness",
    "desc": "Consider joining us for Meditation Monday at Lake Elmo Library. This session includes about 10 minutes of secular meditation instruction, followed by…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Blazing Needles at Cottage Grove Service Center",
@@ -192,7 +246,8 @@
    "town": "Cottage Grove",
    "category": "Crafts and Hobbies",
    "desc": "Do you have a needlework project you are working on? Join fellow enthusiasts for camaraderie, inspiration, and ideas on Tuesday mornings from 10 a.m…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Memory Café hosted by FamilyMeans",
@@ -204,7 +259,8 @@
    "town": "Woodbury",
    "category": "Lifelong Learning",
    "desc": "Memory Café is a welcoming gathering place for people experiencing memory loss, such as Alzheimer's disease and other forms of dementia, and for…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Take and Make: Upcycled Bows",
@@ -216,7 +272,8 @@
    "town": "Oakdale",
    "category": "Crafts and Hobbies",
    "desc": "Create fun, simple gift bows using magazine pages! Instructions and magazine pages will be provided for the craft. Each bow uses 1-2 pages. Scissors…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Park Grove Daytime Book Club at Cottage Grove Service Center",
@@ -228,7 +285,8 @@
    "town": "Cottage Grove",
    "category": "Book Clubs",
    "desc": "This month's selection is The Briar Club by Kate Quinn. Park Grove Library's Daytime Book Club meets on the second Wednesday of each month at 1 p.m…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "American Mah Jongg",
@@ -240,7 +298,21 @@
    "town": "Lake Elmo",
    "category": "Games and Gaming",
    "desc": "Join us every Wednesday (except holidays) for American Mah Jongg at Lake Elmo Library in the Rosalie E. Wahl Room. This program is intended for…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
+  },
+  {
+   "title": "Adult Cards",
+   "date": "2026-12-09",
+   "start": "1:00 PM",
+   "end": "3:00 PM",
+   "allDay": false,
+   "place": "Discovery Center",
+   "town": "Oakdale",
+   "category": "Community",
+   "desc": "",
+   "source": "Oakdale",
+   "cost": ""
   },
   {
    "title": "Stitches & Giggles",
@@ -252,7 +324,8 @@
    "town": "Oakdale",
    "category": "Crafts and Hobbies",
    "desc": "All ages and skill levels are welcome at this knitting, crocheting, and crafting group, which meets every Wednesday at Oakdale Library. Some supplies…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Bridge Lessons",
@@ -264,7 +337,8 @@
    "town": "Lake Elmo",
    "category": "Lifelong Learning",
    "desc": "Join us at the Lake Elmo Library for Bridge Lessons! Marilyn, a Bridge instructor, will be teaching the card-game to beginners and intermediates…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Fiber Arts Club",
@@ -276,7 +350,8 @@
    "town": "Woodbury",
    "category": "Crafts and Hobbies",
    "desc": "Join the Fiber Arts Club for knitting, crocheting, embroidery, and more. Each month, we will focus on a different project. Supplies will be available…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Knitting Group",
@@ -288,7 +363,8 @@
    "town": "Lake Elmo",
    "category": "Crafts and Hobbies",
    "desc": "Lake Elmo Library hosts a weekly knitting group every Thursday from 6 to 8 p.m. in the Rosalie E. Wahl Community Room. Bring your current project to…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "R.H. Stafford Friday Morning Senior Book Club",
@@ -300,7 +376,34 @@
    "town": "Woodbury",
    "category": "Book Clubs",
    "desc": "This December, the Friday Morning Senior Book Club we will have a holiday party and discuss titles for the upcoming year. The Friday Morning Senior…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
+  },
+  {
+   "title": "Bird Hike at Pine Point Regional Park",
+   "date": "2026-12-12",
+   "start": "9:00 AM",
+   "end": "10:30 AM",
+   "allDay": false,
+   "place": "Pine Point Regional Park",
+   "town": "Washington County",
+   "category": "Community",
+   "desc": "Meet at Trailhead Kiosk.",
+   "source": "Washington County",
+   "cost": ""
+  },
+  {
+   "title": "Indoor Market",
+   "date": "2026-12-12",
+   "start": "9:00 AM",
+   "end": "1:00 PM",
+   "allDay": false,
+   "place": "Discovery Center",
+   "town": "Oakdale",
+   "category": "Community",
+   "desc": "",
+   "source": "Oakdale",
+   "cost": ""
   },
   {
    "title": "500 Cards",
@@ -312,7 +415,21 @@
    "town": "Lake Elmo",
    "category": "Games and Gaming",
    "desc": "Join us for a weekly card game in Meeting Room A+B at the Lake Elmo Library. This program is intended for adults. Registration is not required.",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
+  },
+  {
+   "title": "Holiday Game Days",
+   "date": "2026-12-12",
+   "start": "1:00 PM",
+   "end": "3:00 PM",
+   "allDay": false,
+   "place": "Historic Courthouse",
+   "town": "Washington County",
+   "category": "Community",
+   "desc": "",
+   "source": "Washington County",
+   "cost": ""
   },
   {
    "title": "Meditation Monday",
@@ -324,7 +441,21 @@
    "town": "Lake Elmo",
    "category": "Health and Wellness",
    "desc": "Consider joining us for Meditation Monday at Lake Elmo Library. This session includes about 10 minutes of secular meditation instruction, followed by…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
+  },
+  {
+   "title": "STI Testing Clinic",
+   "date": "2026-12-14",
+   "start": "1:30 PM",
+   "end": "3:30 PM",
+   "allDay": false,
+   "place": "Central Service Center",
+   "town": "Washington County",
+   "category": "Community",
+   "desc": "",
+   "source": "Washington County",
+   "cost": ""
   },
   {
    "title": "Crafty Needles at Cottage Grove Service Center",
@@ -336,7 +467,8 @@
    "town": "Cottage Grove",
    "category": "Crafts and Hobbies",
    "desc": "Do you have a project you are working on that uses needles — knitting, crocheting, embroidery? Join fellow enthusiasts at the Cottage Grove Service…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Blazing Needles at Cottage Grove Service Center",
@@ -348,7 +480,8 @@
    "town": "Cottage Grove",
    "category": "Crafts and Hobbies",
    "desc": "Do you have a needlework project you are working on? Join fellow enthusiasts for camaraderie, inspiration, and ideas on Tuesday mornings from 10 a.m…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "American Mah Jongg",
@@ -360,7 +493,21 @@
    "town": "Lake Elmo",
    "category": "Games and Gaming",
    "desc": "Join us every Wednesday (except holidays) for American Mah Jongg at Lake Elmo Library in the Rosalie E. Wahl Room. This program is intended for…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
+  },
+  {
+   "title": "Adult Cards",
+   "date": "2026-12-16",
+   "start": "1:00 PM",
+   "end": "3:00 PM",
+   "allDay": false,
+   "place": "Discovery Center",
+   "town": "Oakdale",
+   "category": "Community",
+   "desc": "",
+   "source": "Oakdale",
+   "cost": ""
   },
   {
    "title": "Stitches & Giggles",
@@ -372,7 +519,8 @@
    "town": "Oakdale",
    "category": "Crafts and Hobbies",
    "desc": "All ages and skill levels are welcome at this knitting, crocheting, and crafting group, which meets every Wednesday at Oakdale Library. Some supplies…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Bridge Lessons",
@@ -384,7 +532,8 @@
    "town": "Lake Elmo",
    "category": "Lifelong Learning",
    "desc": "Join us at the Lake Elmo Library for Bridge Lessons! Marilyn, a Bridge instructor, will be teaching the card-game to beginners and intermediates…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Fiber Arts Club",
@@ -396,7 +545,8 @@
    "town": "Woodbury",
    "category": "Crafts and Hobbies",
    "desc": "Join the Fiber Arts Club for knitting, crocheting, embroidery, and more. Each month, we will focus on a different project. Supplies will be available…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Knitting Group",
@@ -408,7 +558,8 @@
    "town": "Lake Elmo",
    "category": "Crafts and Hobbies",
    "desc": "Lake Elmo Library hosts a weekly knitting group every Thursday from 6 to 8 p.m. in the Rosalie E. Wahl Community Room. Bring your current project to…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "1:1 Genealogy Help",
@@ -420,7 +571,8 @@
    "town": "Woodbury",
    "category": "Lifelong Learning",
    "desc": "Have you hit a roadblock in your genealogy (family history) research, or are you not sure where to begin? Sign up for a one-hour, one-on-one session…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
   },
   {
    "title": "Family Art Cart",
@@ -432,7 +584,21 @@
    "town": "Woodbury",
    "category": "Crafts and Hobbies",
    "desc": "Drop by R.H. Stafford Library in Woodbury on Friday afternoons to create something with our Art Cart. Each week features a different craft to…",
-   "source": "Washington County Library"
+   "source": "Washington County Library",
+   "cost": "free"
+  },
+  {
+   "title": "Solstice Under the Stars",
+   "date": "2026-12-18",
+   "start": "6:00 PM",
+   "end": "8:00 PM",
+   "allDay": false,
+   "place": "Lake Elmo Park Reserve > Nordic Center",
+   "town": "Washington County",
+   "category": "Community",
+   "desc": "",
+   "source": "Washington County",
+   "cost": ""
   }
  ]
 }
