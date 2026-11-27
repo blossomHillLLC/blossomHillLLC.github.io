@@ -1,3 +1,9 @@
+/*** Fonts (added Nov 2026) ***
+ Open Sans is now stored on the website itself (in the "fonts" folder) instead of
+ being downloaded from Google each time, so text shows up faster. */
+@font-face{font-family:"Open Sans";font-style:normal;font-weight:400;font-display:swap;src:url(../fonts/open-sans-400.woff2) format("woff2")}
+@font-face{font-family:"Open Sans";font-style:normal;font-weight:600 700;font-display:swap;src:url(../fonts/open-sans-600.woff2) format("woff2")}
+
 /********** Template CSS **********/
 :root {
     --primary: #9529D1; 
@@ -225,16 +231,20 @@
 
 .navbar .dropdown-toggle::after {
     border: none;
-    content: "\f107";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
+    content: "";
+    display: inline-block;
+    width: .75em;
+    height: .75em;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M169.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 306.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M169.4 374.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 306.7 54.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z'/%3E%3C/svg%3E") center/contain no-repeat;
     vertical-align: middle;
     margin-left: 8px;
 }
 
 /*** nav Button ***/
 .nav-cta-carex {
-    background-color: #00b7ff;
+    background-color: #0077b6; /* was #00b7ff; darker blue so the white text is easy to read */
     color: white;
     padding: 12px 16px;
     font-size: 18px;
@@ -394,7 +404,7 @@
 
 .page-header {
     background: linear-gradient(rgba(180, 78, 170, 0.0), rgba(180, 78, 170, 0.0)),
-                url(../img/BlossomHill/blossomHill_Logo_slogan_trans.png) no-repeat;
+                url(../img/BlossomHill/blossomHill_Logo_slogan_trans-500.webp) no-repeat;
     background-size: clamp(100px, 15vw, 250px) auto; /* min 100px, max 250px */
     background-position: right 5% center; /* keeps it inside the screen */
     background-repeat: no-repeat;
@@ -470,7 +480,7 @@
 
 /*** Products ***/
 .product {
-    background: linear-gradient(rgba(242, 183, 255, 0.635), rgba(217, 141, 255, 0.662)), url(../img/BlossomHill/flower5.jpg) right bottom no-repeat;
+    background: linear-gradient(rgba(242, 183, 255, 0.635), rgba(217, 141, 255, 0.662)), url(../img/BlossomHill/flower5-1200.avif) right bottom no-repeat;
     background-size: auto;
 }
 
@@ -513,22 +523,22 @@
 
 /*** About ***/
 .video1 {
-    background: linear-gradient(#ddabffd9, #ddabffd9), url(../img/BlossomHill/home-like.jpg) center center no-repeat;
+    background: linear-gradient(#ddabffd9, #ddabffd9), url(../img/BlossomHill/home-like-1200.avif) center center no-repeat;
     background-size: cover;
 }
 
 .video2 {
-    background: linear-gradient(#ecd0ff, #ddabff9f), url(../img/BlossomHill/flower4.jpg) center center no-repeat;
+    background: linear-gradient(#ecd0ff, #ddabff9f), url(../img/BlossomHill/flower4-1200.avif) center center no-repeat;
     background-size: cover;
 }
 
 .videoAccessibility {
-    background: linear-gradient(#ecd0ff, #ddabff9f), url(../img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02.avif) center center no-repeat;
+    background: linear-gradient(#ecd0ff, #ddabff9f), url(../img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02-1200.avif) center center no-repeat;
     background-size: cover;
 }
 
 .video3 {
-    background: linear-gradient(#ddabffd9, #ddabffd9), url(../img/BlossomHill/home-like.jpg) center center no-repeat;
+    background: linear-gradient(#ddabffd9, #ddabffd9), url(../img/BlossomHill/home-like-1200.avif) center center no-repeat;
     background-size: cover;
 }
 
@@ -718,10 +728,14 @@
 
 .footer .btn.btn-link::before {
     position: relative;
-    content: "\f105";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    color: var(--primary);
+    content: "";
+    display: inline-block;
+    width: .6em;
+    height: .8em;
+    vertical-align: -.05em;
+    background-color: var(--primary);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512'%3E%3Cpath d='M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 512'%3E%3Cpath d='M247.1 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L179.2 256 41.9 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'/%3E%3C/svg%3E") center/contain no-repeat;
     margin-right: 10px;
 }
 
@@ -738,6 +752,10 @@
 
 .copyright {
     background: #e0a5ff;
+}
+
+.copyright a {
+    color: var(--dark) !important; /* purple on pink was hard to read */
 }
 
 .copyright a:hover {
@@ -806,7 +824,7 @@ h4, .h4 { font-size: 1.6rem; }
 /* Our Core Values background: the flower photo now always fills the whole section
    (it left an empty strip on wide screens) and is softened so the heading is easy to read */
 .product {
-    background: linear-gradient(rgba(250, 238, 255, 0.88), rgba(233, 204, 255, 0.82)), url(../img/BlossomHill/flower5.jpg) center center no-repeat;
+    background: linear-gradient(rgba(250, 238, 255, 0.88), rgba(233, 204, 255, 0.82)), url(../img/BlossomHill/flower5-1200.avif) center center no-repeat;
     background-size: cover;
 }
 
@@ -833,3 +851,37 @@ h4, .h4 { font-size: 1.6rem; }
     .navbar .navbar-nav .nav-link { margin-right: 12px; font-size: 0.85rem; }
     .navbar .nav-cta-getintouch, .navbar .nav-cta-carex { font-size: 13px; padding: 9px 10px; margin-left: 0.25rem !important; }
 }
+
+
+/*** Speed and layout fixes (added Nov 2026) ***/
+/* Photos keep their shape and never spill out of their box. */
+:where(img) { max-width: 100%; height: auto; }
+#header-carousel video { display: block; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+/* Phones get smaller background photos. */
+@media (max-width: 767.98px) {
+    .video1, .video3 { background-image: linear-gradient(#ddabffd9, #ddabffd9), url(../img/BlossomHill/home-like-800.avif); }
+    .video2 { background-image: linear-gradient(#ecd0ff, #ddabff9f), url(../img/BlossomHill/flower4-800.avif); }
+    .videoAccessibility { background-image: linear-gradient(#ecd0ff, #ddabff9f), url(../img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02-800.avif); }
+    .product { background-image: linear-gradient(rgba(250, 238, 255, 0.88), rgba(233, 204, 255, 0.82)), url(../img/BlossomHill/flower5-800.avif); }
+}
+
+/*** Icons (added Nov 2026) ***
+ Small built-in icons that replace the Font Awesome and Bootstrap Icons downloads.
+ They use the same class names as before (fa fa-envelope, bi bi-arrow-up, ...). */
+.fa,.fas,.fab,.bi{display:inline-block;width:1em;height:1em;vertical-align:-.125em;background-color:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;mask:var(--ic) center/contain no-repeat;font-style:normal}
+.fa-2x{font-size:2em}
+.fa-envelope{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M48 64c-26.5 0-48 21.5-48 48 0 15.1 7.1 29.3 19.2 38.4l208 156c17.1 12.8 40.5 12.8 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48L48 64zM0 196L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-188-198.4 148.8c-34.1 25.6-81.1 25.6-115.2 0L0 196z'/%3E%3C/svg%3E")}
+.fa-phone{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z'/%3E%3C/svg%3E")}
+.fa-phone-alt{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M351.8 25c7.8-18.8 28.4-28.9 48.1-23.5l5.5 1.5c64.6 17.6 119.8 80.2 103.7 156.4-37.1 175-174.8 312.7-349.8 349.8-76.3 16.2-138.8-39.1-156.4-103.7l-1.5-5.5c-5.4-19.7 4.7-40.3 23.5-48.1l97.3-40.5c16.5-6.9 35.6-2.1 47 11.8l38.6 47.2c70.3-34.9 126.8-93.3 159.3-164.9l-44.1-36.1c-13.9-11.3-18.6-30.4-11.8-47L351.8 25z'/%3E%3C/svg%3E")}
+.fa-fax{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath d='M160 64l0 80 64 0 0-80 146.7 0 45.3 45.3 0 34.7 64 0 0-34.7c0-17-6.7-33.3-18.7-45.3L416 18.7C404 6.7 387.7 0 370.7 0L224 0c-35.3 0-64 28.7-64 64zM32 128c-17.7 0-32 14.3-32 32L0 448c0 17.7 14.3 32 32 32l48 0c17.7 0 32-14.3 32-32l0-288c0-17.7-14.3-32-32-32l-48 0zm448 64l-320 0 0 256c0 17.7 14.3 32 32 32l288 0c17.7 0 32-14.3 32-32l0-224c0-17.7-14.3-32-32-32zM224 288a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zm0 96a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM336 264a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM312 384a24 24 0 1 1 48 0 24 24 0 1 1 -48 0zM424 264a24 24 0 1 1 0 48 24 24 0 1 1 0-48zM400 384a24 24 0 1 1 48 0 24 24 0 1 1 -48 0z'/%3E%3C/svg%3E")}
+.fa-map-marker-alt{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 384 512'%3E%3Cpath d='M0 188.6C0 84.4 86 0 192 0S384 84.4 384 188.6c0 119.3-120.2 262.3-170.4 316.8-11.8 12.8-31.5 12.8-43.3 0-50.2-54.5-170.4-197.5-170.4-316.8zM192 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128z'/%3E%3C/svg%3E")}
+.fa-check{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M434.8 70.1c14.3 10.4 17.5 30.4 7.1 44.7l-256 352c-5.5 7.6-14 12.3-23.4 13.1s-18.5-2.7-25.1-9.3l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l101.5 101.5 234-321.7c10.4-14.3 30.4-17.5 44.7-7.1z'/%3E%3C/svg%3E")}
+.fa-instagram{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z'/%3E%3C/svg%3E")}
+.fa-facebook-f{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath d='M80 299.3l0 212.7 116 0 0-212.7 86.5 0 18-97.8-104.5 0 0-34.6c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4 .4 37 1.2l0-88.7C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4l0 42.1-66 0 0 97.8 66 0z'/%3E%3C/svg%3E")}
+.fa-youtube{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3Cpath d='M549.7 124.1C543.5 100.4 524.9 81.8 501.4 75.5 458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5C51.2 81.8 32.7 100.4 26.4 124.1 15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8 42.6 11.5 213.4 11.5 213.4 11.5s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6l0-162.4 142.7 81.2-142.7 81.2z'/%3E%3C/svg%3E")}
+.fa-linkedin-in{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3Cpath d='M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z'/%3E%3C/svg%3E")}
+.bi-arrow-up{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5'%3E%3C/path%3E%3C/svg%3E")}
+.bi-chevron-left{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0'%3E%3C/path%3E%3C/svg%3E")}
+.bi-chevron-right{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708'%3E%3C/path%3E%3C/svg%3E")}
+.bi-check-circle{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16'%3E%3C/path%3E%3Cpath d='m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05'%3E%3C/path%3E%3C/svg%3E")}
+.bi-exclamation-triangle{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M7.938 2.016A.13.13 0 0 1 8.002 2a.13.13 0 0 1 .063.016.15.15 0 0 1 .054.057l6.857 11.667c.036.06.035.124.002.183a.2.2 0 0 1-.054.06.1.1 0 0 1-.066.017H1.146a.1.1 0 0 1-.066-.017.2.2 0 0 1-.054-.06.18.18 0 0 1 .002-.183L7.884 2.073a.15.15 0 0 1 .054-.057m1.044-.45a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767z'%3E%3C/path%3E%3Cpath d='M7.002 12a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 5.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z'%3E%3C/path%3E%3C/svg%3E")}

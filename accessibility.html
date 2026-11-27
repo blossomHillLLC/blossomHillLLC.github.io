@@ -28,20 +28,17 @@
     <link href="img/BlossomHill/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
+    <link rel="preload" href="fonts/open-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/open-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"></noscript>
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.site.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
@@ -172,20 +169,13 @@
 
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center" aria-labelledby="spinnerTitle">
-        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
-            <span id="spinnerTitle" class="visually-hidden">Loading...</span>
-        </div>
-    </div>
-    <!-- Spinner End -->
 
     <!-- Navbar Start -->
     <div class="container-fluid bg-white sticky-top" id="navbar">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
                 <a href="index.html" class="navbar-brand">
-                    <img class="img-fluid" src="img/BlossomHill/Top3.png" alt="Blossom Hill Assisted Living logo">
+                    <img class="img-fluid" src="img/BlossomHill/Top3-400.webp" alt="Blossom Hill Assisted Living logo" srcset="img/BlossomHill/Top3-260.webp 260w, img/BlossomHill/Top3-400.webp 400w" sizes="(max-width: 991px) 126px, 170px" width="684" height="548">
                 </a>
                 <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Open menu">
                     <span class="navbar-toggler-icon"></span>
@@ -217,6 +207,8 @@
         </div>
     </div>
     <!-- Navbar End -->
+
+    <main>
 
 
 
@@ -256,25 +248,25 @@
                 <div id="accessibilityCarousel" class="carousel slide" data-bs-ride="carousel" aria-label="Accessibility feature images carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01.avif" class="d-block w-100 rounded" alt="Accessible bathroom with a wall-mounted sink, open floor space and a wide doorway" loading="lazy" decoding="async">
+                            <img src="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01-800.avif" class="d-block w-100 rounded" alt="Accessible bathroom with a wall-mounted sink, open floor space and a wide doorway" loading="lazy" decoding="async" srcset="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01-480.avif 480w, img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01-800.avif 800w, img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01-1200.avif 1200w, img/6765_Buckingham/woodbury-assisted-living-bathroom-view-01.avif 1600w" sizes="(max-width: 767px) 94vw, (max-width: 991px) 696px, 624px" width="1600" height="1053">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02.avif" class="d-block w-100 rounded" alt="Accessible bathroom with a roll-in shower, grab bars and a wall-mounted sink" loading="lazy" decoding="async">
+                            <img src="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02-800.avif" class="d-block w-100 rounded" alt="Accessible bathroom with a roll-in shower, grab bars and a wall-mounted sink" loading="lazy" decoding="async" srcset="img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02-480.avif 480w, img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02-800.avif 800w, img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02-1200.avif 1200w, img/6765_Buckingham/woodbury-assisted-living-bathroom-view-02.avif 1600w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 336px, 416px" width="1600" height="1067">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-01.avif" class="d-block w-100 rounded" alt="Aluminum wheelchair ramp with handrails inside the garage at Blossom Hill" loading="lazy" decoding="async">
+                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-01-800.avif" class="d-block w-100 rounded" alt="Aluminum wheelchair ramp with handrails inside the garage at Blossom Hill" loading="lazy" decoding="async" srcset="img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-01-480.avif 480w, img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-01-800.avif 800w, img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-01-1200.avif 1200w, img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-01.avif 1600w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 336px, 416px" width="1600" height="1067">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02.avif" class="d-block w-100 rounded" alt="Wheelchair ramp leading from the garage entry out to the driveway" loading="lazy" decoding="async">
+                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02-800.avif" class="d-block w-100 rounded" alt="Wheelchair ramp leading from the garage entry out to the driveway" loading="lazy" decoding="async" srcset="img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02-480.avif 480w, img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02-800.avif 800w, img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02-1200.avif 1200w, img/6765_Buckingham/ADA/woodbury-assisted-living-ramp-02.avif 1600w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 336px, 416px" width="1600" height="1067">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-01-ADA.avif" class="d-block w-100 rounded" alt="Kitchen walkway at Blossom Hill measured at 41.5 inches wide for wheelchair access" loading="lazy" decoding="async">
+                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-01-ADA-800.avif" class="d-block w-100 rounded" alt="Kitchen walkway at Blossom Hill measured at 41.5 inches wide for wheelchair access" loading="lazy" decoding="async" srcset="img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-01-ADA-480.avif 480w, img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-01-ADA-800.avif 800w, img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-01-ADA-1200.avif 1200w, img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-01-ADA.avif 1600w" sizes="(max-width: 767px) 94vw, (max-width: 991px) 696px, 624px" width="1600" height="1067">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-02-ADA.avif" class="d-block w-100 rounded" alt="Kitchen aisle between the counters measured at 41.5 inches wide" loading="lazy" decoding="async">
+                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-02-ADA-800.avif" class="d-block w-100 rounded" alt="Kitchen aisle between the counters measured at 41.5 inches wide" loading="lazy" decoding="async" srcset="img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-02-ADA-480.avif 480w, img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-02-ADA-800.avif 800w, img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-02-ADA-1200.avif 1200w, img/6765_Buckingham/ADA/woodbury-assisted-living-kitchen-view-02-ADA.avif 1600w" sizes="(max-width: 767px) 94vw, (max-width: 991px) 696px, 624px" width="1600" height="1067">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-livingroom-out-ADA.avif" class="d-block w-100 rounded" alt="Wide opening between the living room and kitchen with the width marked" loading="lazy" decoding="async">
+                            <img src="img/6765_Buckingham/ADA/woodbury-assisted-living-livingroom-out-ADA-800.avif" class="d-block w-100 rounded" alt="Wide opening between the living room and kitchen with the width marked" loading="lazy" decoding="async" srcset="img/6765_Buckingham/ADA/woodbury-assisted-living-livingroom-out-ADA-480.avif 480w, img/6765_Buckingham/ADA/woodbury-assisted-living-livingroom-out-ADA-800.avif 800w, img/6765_Buckingham/ADA/woodbury-assisted-living-livingroom-out-ADA-1200.avif 1200w, img/6765_Buckingham/ADA/woodbury-assisted-living-livingroom-out-ADA.avif 1600w" sizes="(max-width: 767px) 94vw, (max-width: 991px) 696px, 624px" width="1600" height="1064">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#accessibilityCarousel" data-bs-slide="prev" aria-label="Previous slide">
@@ -296,7 +288,7 @@
     <div class="container" style="padding-top: 100px; padding-bottom: 100px; margin-top: 100px;">
         <div class="d-flex justify-content-center">
             <div class="text-center">
-                <img src="img/6765_Buckingham/ADA/ADA_Logo.png" alt="Wheelchair accessibility symbol with Blossom Hill flower petals" style="max-width: 500px; height: auto;" class="img-fluid" loading="lazy" decoding="async">
+                <img src="img/6765_Buckingham/ADA/ADA_Logo-382.webp" alt="Wheelchair accessibility symbol with Blossom Hill flower petals" style="max-width: 500px; height: auto;" class="img-fluid" loading="lazy" decoding="async" srcset="img/6765_Buckingham/ADA/ADA_Logo-382.webp 382w" width="382" height="396">
                 <p class="mt-2 text-muted">Blossom Hill is a wheelchair-accessible home, inside and out.</p>
             </div>
         </div>
@@ -354,6 +346,7 @@
                     <div class="h-100 d-flex align-items-center justify-content-center" style="min-height: 300px;">
                         <video autoplay muted loop playsinline preload="metadata" width="100%" aria-label="Video of the accessible bathroom and wheelchair ramp at Blossom Hill">
                             <source src="img/6765_Buckingham/ADA/ADA_bathroom-ramp.mp4" type="video/mp4">
+                            <track kind="captions" src="img/6765_Buckingham/ADA/ADA_bathroom-ramp-captions.vtt" srclang="en" label="English">
                             Your browser does not support the video tag.
                         </video>
                     </div>
@@ -368,7 +361,7 @@
         <div class="d-flex justify-content-center">
             <div class="text-center">
                 <a href="https://www.lifewaymobility.com" target="_blank" rel="noopener" aria-label="Visit the Lifeway Mobility website">
-                    <img src="img/6765_Buckingham/ADA/Lifeway-Mobility.png" alt="Lifeway Mobility logo" style="max-width: 500px; height: auto;" class="img-fluid" loading="lazy" decoding="async">
+                    <img src="img/6765_Buckingham/ADA/Lifeway-Mobility-1000.webp" alt="Lifeway Mobility logo" style="max-width: 500px; height: auto;" class="img-fluid" loading="lazy" decoding="async" srcset="img/6765_Buckingham/ADA/Lifeway-Mobility-500.webp 500w, img/6765_Buckingham/ADA/Lifeway-Mobility-1000.webp 1000w" sizes="(max-width: 767px) 100vw, (max-width: 991px) 500px, 500px" width="1188" height="395">
                 </a>
                 <p class="mt-2 text-muted">
                     Our wheelchair ramp was professionally designed and installed by Lifeway Mobility, ensuring <strong>safe, reliable, and fully accessible entry</strong> for all residents. Every aspect of the ramp meets industry standards for durability and ease of use, providing residents with confidence and independence as they enter and exit the facility. Our collaboration with Lifeway reflects our commitment to <strong>high-quality accessibility solutions</strong> and creating an environment where every resident feels safe, supported, and empowered in their daily activities.
@@ -377,6 +370,8 @@
         </div>
     </div>
 
+
+    </main>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -465,15 +460,14 @@
     </a>
 
     <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/jquery/jquery-3.6.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="lib/wow/wow.min.js" defer></script>
+    <script src="lib/easing/easing.min.js" defer></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 
 </body>
 

@@ -28,20 +28,17 @@
     <link href="img/BlossomHill/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
+    <link rel="preload" href="fonts/open-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/open-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"></noscript>
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.site.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
@@ -172,11 +169,6 @@
 
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
-    </div>
-    <!-- Spinner End -->
 
     
     <!-- Navbar Start -->
@@ -184,7 +176,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
                 <a href="index.html" class="navbar-brand">
-                    <img class="img-fluid" src="img/BlossomHill/Top3.png" alt="Blossom Hill Assisted Living logo">
+                    <img class="img-fluid" src="img/BlossomHill/Top3-400.webp" alt="Blossom Hill Assisted Living logo" srcset="img/BlossomHill/Top3-260.webp 260w, img/BlossomHill/Top3-400.webp 400w" sizes="(max-width: 991px) 126px, 170px" width="684" height="548">
                 </a>
                 <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Open menu">
                     <span class="navbar-toggler-icon"></span>
@@ -217,6 +209,8 @@
     </div>
     <!-- Navbar End -->
 
+    <main>
+
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -245,7 +239,7 @@
                                       It's a place where life is nurtured, health is prioritized, and every resident experiences attentive, compassionate care in a safe, welcoming environment.</p>
                             </div>
                             <div class="col-lg-7 wow fadeIn" data-wow-delay="0.5s">
-                                <img class="img-fluid" src="img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02.avif" alt="Living room at Blossom Hill Assisted Living with a blue sofa, armchairs and a wall-mounted TV" loading="lazy" decoding="async">
+                                <img class="img-fluid" src="img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02-800.avif" alt="Living room at Blossom Hill Assisted Living with a blue sofa, armchairs and a wall-mounted TV" loading="lazy" decoding="async" srcset="img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02-480.avif 480w, img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02-800.avif 800w, img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02-1200.avif 1200w, img/6765_Buckingham/woodbury-assisted-living-livingroom-view-02.avif 1600w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 696px, 736px" width="1600" height="1067">
                             </div>
                         </div>
                     </div>
@@ -265,7 +259,7 @@
                 <div class="container">
                     <div class="row g-5">
                         <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid" src="img/BlossomHill/personalized-care.jpg" alt="Nurse in a white coat with a stethoscope reviewing notes at a table" loading="lazy" decoding="async">
+                            <img class="img-fluid" src="img/BlossomHill/personalized-care-800.avif" alt="Nurse in a white coat with a stethoscope reviewing notes at a table" loading="lazy" decoding="async" srcset="img/BlossomHill/personalized-care-480.avif 480w, img/BlossomHill/personalized-care-800.avif 800w, img/BlossomHill/personalized-care-1200.avif 1200w, img/BlossomHill/personalized-care.avif 1600w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 696px, 512px" width="1600" height="1067">
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="section-title">
@@ -302,7 +296,7 @@
                                         address any concerns, and provide peace of mind for both residents and their families.</p>
                             </div>
                             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                                <img class="img-fluid" src="img/BlossomHill/medication-managment.jpg" alt="Blood glucose meter, syringes and a weekly pill organizer" loading="lazy" decoding="async">
+                                <img class="img-fluid" src="img/BlossomHill/medication-managment-800.avif" alt="Blood glucose meter, syringes and a weekly pill organizer" loading="lazy" decoding="async" srcset="img/BlossomHill/medication-managment-480.avif 480w, img/BlossomHill/medication-managment-800.avif 800w, img/BlossomHill/medication-managment-1200.avif 1200w, img/BlossomHill/medication-managment.avif 1600w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 696px, 624px" width="1600" height="1067">
                             </div>
                         </div>
                     </div>
@@ -321,7 +315,7 @@
                 <div class="container">
                     <div class="row g-5">
                         <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid" src="img/BlossomHill/about-pic.jpg" alt="Caregiver in scrubs with her arm around a smiling older woman outdoors" loading="lazy" decoding="async">
+                            <img class="img-fluid" src="img/BlossomHill/about-pic-800.avif" alt="Caregiver in scrubs with her arm around a smiling older woman outdoors" loading="lazy" decoding="async" srcset="img/BlossomHill/about-pic-480.avif 480w, img/BlossomHill/about-pic-800.avif 800w, img/BlossomHill/about-pic-1200.avif 1200w, img/BlossomHill/about-pic.avif 1600w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 696px, 512px" width="1600" height="1068">
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="section-title">
@@ -359,7 +353,7 @@
                                     </p>
                                 </div>
                             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                                <img class="img-fluid section-photo" src="img/BlossomHill/Food.jpg" alt="Bowl of yogurt topped with fresh berries and coconut" loading="lazy" decoding="async">
+                                <img class="img-fluid section-photo" src="img/BlossomHill/Food-800.avif" alt="Bowl of yogurt topped with fresh berries and coconut" loading="lazy" decoding="async" srcset="img/BlossomHill/Food-480.avif 480w, img/BlossomHill/Food-800.avif 800w, img/BlossomHill/Food.avif 1200w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 696px, 624px" width="1200" height="1800">
                             </div>
                         </div>
                     </div>
@@ -378,7 +372,7 @@
                 <div class="container">
                     <div class="row g-5">
                         <div class="col-lg-5 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid" src="img/BlossomHill/peace.jpg" alt="Older man relaxing outdoors with a book" loading="lazy" decoding="async">
+                            <img class="img-fluid" src="img/BlossomHill/peace-800.avif" alt="Older man relaxing outdoors with a book" loading="lazy" decoding="async" srcset="img/BlossomHill/peace-480.avif 480w, img/BlossomHill/peace-800.avif 800w, img/BlossomHill/peace-1200.avif 1200w, img/BlossomHill/peace.avif 1600w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 696px, 512px" width="1600" height="1067">
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="section-title">
@@ -418,6 +412,8 @@
         </div>
     </div>
     <!-- Paying for Care End -->
+
+    </main>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -503,15 +499,14 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/jquery/jquery-3.6.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="lib/wow/wow.min.js" defer></script>
+    <script src="lib/easing/easing.min.js" defer></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 
 </html>

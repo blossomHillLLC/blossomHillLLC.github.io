@@ -28,20 +28,17 @@
     <link href="img/BlossomHill/favicon.ico" rel="icon">
 
     <!-- Google Web Fonts -->
+    <link rel="preload" href="fonts/open-sans-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/open-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=optional" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"></noscript>
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.site.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
@@ -172,11 +169,6 @@
 
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
-    </div>
-    <!-- Spinner End -->
 
     
     <!-- Navbar Start -->
@@ -184,7 +176,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-white navbar-light py-2 py-lg-0">
                 <a href="index.html" class="navbar-brand">
-                    <img class="img-fluid" src="img/BlossomHill/Top3.png" alt="Blossom Hill Assisted Living logo">
+                    <img class="img-fluid" src="img/BlossomHill/Top3-400.webp" alt="Blossom Hill Assisted Living logo" srcset="img/BlossomHill/Top3-260.webp 260w, img/BlossomHill/Top3-400.webp 400w" sizes="(max-width: 991px) 126px, 170px" width="684" height="548">
                 </a>
                 <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-label="Open menu">
                     <span class="navbar-toggler-icon"></span>
@@ -217,6 +209,8 @@
     </div>
     <!-- Navbar End -->
 
+    <main>
+
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
@@ -234,16 +228,16 @@
                 <div class="col-lg-6">
                     <div class="row g-3">
                         <div class="col-6 text-end">
-                            <img class="img-fluid bg-white w-100 mb-3 wow fadeIn" data-wow-delay="0.1s" src="img/6765_Buckingham/wheelchair-smile.avif" alt="Older man smiling while seated in a wheelchair in a bright room" loading="lazy" decoding="async">
-                            <img class="img-fluid bg-white w-50 wow fadeIn" data-wow-delay="0.2s" src="img/BlossomHill/hands_1.jpg" alt="Two hands resting gently on one another" loading="lazy" decoding="async">
+                            <img class="img-fluid bg-white w-100 mb-3 wow fadeIn" data-wow-delay="0.1s" src="img/6765_Buckingham/wheelchair-smile-800.avif" alt="Older man smiling while seated in a wheelchair in a bright room" loading="lazy" decoding="async" srcset="img/6765_Buckingham/wheelchair-smile-480.avif 480w, img/6765_Buckingham/wheelchair-smile-800.avif 800w, img/6765_Buckingham/wheelchair-smile-1200.avif 1200w, img/6765_Buckingham/wheelchair-smile.avif 1600w" sizes="(max-width: 767px) 42vw, (max-width: 991px) 340px, 298px" width="1600" height="1068">
+                            <img class="img-fluid bg-white w-50 wow fadeIn" data-wow-delay="0.2s" src="img/BlossomHill/hands_1-800.avif" alt="Two hands resting gently on one another" loading="lazy" decoding="async" srcset="img/BlossomHill/hands_1-480.avif 480w, img/BlossomHill/hands_1-800.avif 800w, img/BlossomHill/hands_1.avif 900w" sizes="(max-width: 767px) 21vw, (max-width: 991px) 170px, 149px" width="900" height="1350">
                         </div>
                         <div class="col-6">
-                            <img class="img-fluid bg-white w-50 mb-3 wow fadeIn" data-wow-delay="0.3s" src="img/BlossomHill/touch.jpg" alt="A caregiver&#x27;s hand resting supportively on an older adult&#x27;s arm" loading="lazy" decoding="async">
-                            <img class="img-fluid bg-white w-100 wow fadeIn" data-wow-delay="0.4s" src="img/BlossomHill/flowers.jpg" alt="Older woman tending flowers in a garden" loading="lazy" decoding="async">
+                            <img class="img-fluid bg-white w-50 mb-3 wow fadeIn" data-wow-delay="0.3s" src="img/BlossomHill/touch-800.avif" alt="A caregiver&#x27;s hand resting supportively on an older adult&#x27;s arm" loading="lazy" decoding="async" srcset="img/BlossomHill/touch-480.avif 480w, img/BlossomHill/touch-800.avif 800w, img/BlossomHill/touch.avif 900w" sizes="(max-width: 767px) 21vw, (max-width: 991px) 170px, 149px" width="900" height="1350">
+                            <img class="img-fluid bg-white w-100 wow fadeIn" data-wow-delay="0.4s" src="img/BlossomHill/flowers-800.avif" alt="Older woman tending flowers in a garden" loading="lazy" decoding="async" srcset="img/BlossomHill/flowers-480.avif 480w, img/BlossomHill/flowers-800.avif 800w, img/BlossomHill/flowers-1200.avif 1200w, img/BlossomHill/flowers.avif 1600w" sizes="(max-width: 767px) 42vw, (max-width: 991px) 340px, 298px" width="1600" height="1067">
                         </div>
                         <div style="text-align:center; margin-top:200px;">
                             <a href="https://www.careproviders.org/" target="_blank" rel="noopener">
-                                <img src="img/BlossomHill/Care-providers-of-minnesota.png" alt="Proud Member of Care Providers of Minnesota" style="max-width:400px; width:100%; height:auto;" loading="lazy" decoding="async">
+                                <img src="img/BlossomHill/Care-providers-of-minnesota-800.webp" alt="Proud Member of Care Providers of Minnesota" style="max-width:400px; width:100%; height:auto;" loading="lazy" decoding="async" srcset="img/BlossomHill/Care-providers-of-minnesota-400.webp 400w, img/BlossomHill/Care-providers-of-minnesota-800.webp 800w" sizes="(max-width: 767px) 88vw, (max-width: 991px) 400px, 400px" width="800" height="655">
                             </a>
                         </div>
                     </div>
@@ -255,7 +249,7 @@
                     </div>
                     <div class="row g-3 mb-4">
                         <div class="col-sm-4">
-                            <img class="img-fluid bg-white logo-img" src="img/BlossomHill/blossomHill_Logo_trans.png" alt="" loading="lazy" decoding="async">
+                            <img class="img-fluid bg-white logo-img" src="img/BlossomHill/blossomHill_Logo_trans-220.webp" alt="" loading="lazy" decoding="async" srcset="img/BlossomHill/blossomHill_Logo_trans-220.webp 220w" width="380" height="337">
                         </div>
                         <div class="col-sm-8">
                             <h3 class="h5">Comprehensive Care in a Wheelchair-Accessible Home</h3>
@@ -269,7 +263,7 @@
                             <p class="mb-4">We invite you to <a href="gallery.html" class="text-decoration-none text-primary"><strong>explore our gallery</strong></a> and see firsthand the welcoming environment at Blossom Hill. You’ll find images of our fully accessible spaces and the compassionate care we provide to our residents. Our goal is to create a comfortable, safe, and engaging atmosphere where residents can truly feel at home.</p>
                         </div>
                         <div class="col-sm-4">
-                            <img class="img-fluid bg-white logo-img" src="img/BlossomHill/blossomHill_Logo_trans2.png" alt="" loading="lazy" decoding="async">
+                            <img class="img-fluid bg-white logo-img" src="img/BlossomHill/blossomHill_Logo_trans2-220.webp" alt="" loading="lazy" decoding="async" srcset="img/BlossomHill/blossomHill_Logo_trans2-220.webp 220w" width="380" height="337">
                         </div>
                     </div>
                     
@@ -291,6 +285,8 @@
     </div>
     <!-- About End -->
 
+
+    </main>
 
     <!-- Footer Start -->
     <div class="container-fluid bg-dark footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
@@ -376,15 +372,14 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/jquery/jquery-3.6.1.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="lib/wow/wow.min.js" defer></script>
+    <script src="lib/easing/easing.min.js" defer></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="js/main.js" defer></script>
 </body>
 
 </html>
