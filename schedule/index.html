@@ -7,6 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="img/BlossomHill/Top3-260.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   /* --u is the size unit, tuned for full screen, left/right half, and top/bottom half. */
   :root { --purple: #9529d1; --deep: #5b1782; --cream: #fffaf3; --ink: #1f1a24; --muted: #5e5866; --u: 1vh; }
@@ -115,6 +118,55 @@
     .day .slot .pill { flex-direction: row; gap: var(--u); font-size: calc(2.4 * var(--u)); text-align: left; }
     .day .slot .pill .av { width: 1.8em; height: 1.8em; }
   }
+
+  /* ---------- Playful look ---------- */
+  :root { --fun: "Fredoka", "Segoe UI Rounded", "Arial Rounded MT Bold", "Open Sans", Arial, sans-serif; }
+  body { background: radial-gradient(circle at 10% 20%, #ffeccf 0, transparent 34%), radial-gradient(circle at 90% 25%, #e2f5ea 0, transparent 34%),
+    radial-gradient(circle at 75% 92%, #e3ebff 0, transparent 40%), radial-gradient(circle at 20% 85%, #f6e6ff 0, transparent 36%), var(--cream); }
+  header, main, footer { position: relative; z-index: 1; }
+  .confetti { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .confetti span { position: absolute; opacity: .16; animation: drift 10s ease-in-out infinite alternate; }
+  @keyframes drift { to { transform: translateY(calc(-2.5 * var(--u))) rotate(14deg); } }
+  header h1, header p, .dname b, .pill .nm, .now h2 { font-family: var(--fun); }
+  header h1 { font-weight: 700; }
+  header p { font-weight: 600; }
+  .dname b { font-weight: 700; }
+  .pill .nm { font-weight: 700; }
+  /* on duty now */
+  .now { border: calc(.35 * var(--u)) solid #d9f2e3; }
+  .now h2 { font-weight: 700; }
+  .now h2 .wave { display: inline-block; transform-origin: 70% 80%; animation: wave 2.4s ease-in-out infinite; }
+  @keyframes wave { 0%, 60%, 100% { transform: rotate(0); } 10%, 30% { transform: rotate(16deg); } 20%, 40% { transform: rotate(-8deg); } }
+  body.fx .now .pill { animation: bob 2.6s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(calc(-.5 * var(--u))) scale(1.03); } }
+  .now .pill .av { box-shadow: 0 0 0 calc(.35 * var(--u)) rgba(255, 255, 255, .55); animation: ring 2.6s ease-in-out infinite; }
+  @keyframes ring { 50% { box-shadow: 0 0 0 calc(.9 * var(--u)) rgba(255, 255, 255, .15); } }
+  /* name pills and blocks */
+  .pill { position: relative; overflow: hidden;
+    background-image: radial-gradient(rgba(255, 255, 255, .16) 18%, transparent 21%); background-size: calc(2.2 * var(--u)) calc(2.2 * var(--u)); }
+  .pill::after { content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .35), transparent);
+    animation: shine 7s ease-in-out infinite; animation-delay: var(--dl, 0s); pointer-events: none; }
+  @keyframes shine { 0%, 70% { left: -60%; } 100% { left: 130%; } }
+  .pill .av { font-family: var(--fun); }
+  .pill .ic { display: inline-block; }
+  .pill .ic.sun { animation: spin 9s linear infinite; }
+  .pill .ic.moon { animation: rock 3s ease-in-out infinite; transform-origin: 50% 60%; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes rock { 50% { transform: rotate(-18deg); } }
+  .pill.night::before { content: "✦ ✧"; position: absolute; right: .5em; top: .15em; font-size: .55em; color: #fff; opacity: .7; animation: twinkle 2.2s ease-in-out infinite; pointer-events: none; }
+  @keyframes twinkle { 50% { opacity: .15; } }
+  body.fx .day .pill { transform: rotate(-1.2deg); }
+  body.fx .day .slot + .slot .pill { transform: rotate(1.2deg); }
+  /* days */
+  .day { background-image: radial-gradient(#efe4f7 14%, transparent 16%); background-size: calc(2 * var(--u)) calc(2 * var(--u)); background-position: 0 0; background-color: #fff; }
+  .day.today { background-color: #fbf3ff; animation: glow 3s ease-in-out infinite; }
+  @keyframes glow { 50% { box-shadow: 0 0 0 calc(.5 * var(--u)) rgba(149, 41, 209, .18), 0 0 calc(2.4 * var(--u)) rgba(149, 41, 209, .35); } }
+  .dname .party { font-size: .9em; }
+  body.enter .day, body.enter .now { animation: pop .7s cubic-bezier(.2, 1.4, .4, 1) both; animation-delay: var(--dl, 0s); }
+  body.enter .day.today { animation: pop .7s cubic-bezier(.2, 1.4, .4, 1) both, glow 3s ease-in-out .7s infinite; }
+  @keyframes pop { from { opacity: 0; transform: translateY(calc(2 * var(--u))) scale(.92); } }
+  .open { font-family: var(--fun); }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
 </style>
 </head>
 <body>
@@ -122,7 +174,7 @@
   <img src="img/BlossomHill/Top3-260.webp" alt="Blossom Hill">
   <div>
     <h1>Who's Working</h1>
-    <p>Blossom Hill staff schedule</p>
+    <p id="greet">Blossom Hill staff schedule</p>
   </div>
   <div class="clock"><b id="time">&nbsp;</b><span id="today">&nbsp;</span></div>
 </header>
@@ -166,14 +218,25 @@
   function isDay(s) { var h = local(s.start).getHours(); return h >= 5 && h < 15; }
   function pill(s) {
     var a = local(s.start), b = local(s.end);
-    return '<span class="pill" style="--c:' + color(s.name) + '"><span class="av">' + esc(s.name.charAt(0).toUpperCase()) + '</span>' +
-      '<span class="tx"><span class="nm">' + esc(s.name) + '</span><small>' + (isDay(s) ? '☀️ ' : '🌙 ') + t(a) + ' – ' + t(b) + '</small></span></span>';
+    var day = isDay(s);
+    return '<span class="pill' + (day ? '' : ' night') + '" style="--c:' + color(s.name) + ';--dl:' + (Math.random() * 6).toFixed(1) + 's"><span class="av">' + esc(s.name.charAt(0).toUpperCase()) + '</span>' +
+      '<span class="tx"><span class="nm">' + esc(s.name) + '</span><small><span class="ic ' + (day ? 'sun">☀️' : 'moon">🌙') + '</span> ' + t(a) + ' – ' + t(b) + '</small></span></span>';
   }
 
+  var played = false;
+  function greeting() { var h = nowMN().getHours(); return (h < 12 ? 'Good morning! 🌞' : h < 17 ? 'Good afternoon! 🌤️' : 'Good evening! 🌙') + ' Here’s who’s caring for you'; }
+  function sprinkle() {   // soft shapes floating in the background
+    var pics = ['☀️', '🌙', '⭐', '🌸', '💜', '☁️', '✨', '🌼'], box = document.createElement('div'), html = '';
+    box.className = 'confetti';
+    for (var i = 0; i < 24; i++) html += '<span style="left:' + (Math.random() * 96).toFixed(1) + '%;top:' + (Math.random() * 94).toFixed(1) +
+      '%;font-size:calc(' + (2.6 + Math.random() * 3.6).toFixed(1) + ' * var(--u));animation-delay:-' + (Math.random() * 10).toFixed(1) + 's">' + pics[i % pics.length] + '</span>';
+    box.innerHTML = html; document.body.insertBefore(box, document.body.firstChild);
+  }
   function tick() {
     var now = nowMN();
     document.getElementById('time').textContent = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
     document.getElementById('today').textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    document.getElementById('greet').textContent = greeting();
   }
 
   // Size unit: the page measures the default, then picks the largest size that still fits.
@@ -208,7 +271,7 @@
     if (!data) { main.innerHTML = '<div class="now"><span class="none">The schedule could not be loaded right now. Trying again shortly.</span></div>'; return; }
     var now = nowMN();
     var onNow = data.shifts.filter(function (s) { return local(s.start) <= now && now < local(s.end); });
-    var html = '<div class="now"><h2>On duty now</h2>' +
+    var html = '<div class="now"><h2><span class="wave">👋</span> On duty now</h2>' +
       (onNow.length ? onNow.map(pill).join('') : '<span class="none">No one is scheduled right now</span>') + '</div>';
 
     function weekHtml(days) {
@@ -217,7 +280,7 @@
         var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i), key = ymd(d);
         var mine = data.shifts.filter(function (s) { return s.start.slice(0, 10) === key; });
         var dayS = mine.filter(isDay), nightS = mine.filter(function (s) { return !isDay(s); });
-        w += '<div class="day' + (i === 0 ? ' today' : '') + '"><div class="dname"><b>' +
+        w += '<div class="day' + (i === 0 ? ' today' : '') + '" style="--dl:' + (0.15 + i * 0.09).toFixed(2) + 's"><div class="dname"><b>' +
           (i === 0 ? 'Today' : d.toLocaleDateString('en-US', { weekday: 'short' })) + '</b><span>' +
           d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + '</span></div>' +
           '<div class="slot"><div class="lbl"><i>☀️</i> Day</div>' + (dayS.length ? dayS.map(pill).join('') : '<span class="open">Open</span>') + '</div>' +
@@ -227,6 +290,7 @@
     }
 
     // Show as many days as fit (up to 7), with the biggest text that fits the screen.
+    document.body.classList.remove('fx');   // no tilts while measuring
     var root = document.documentElement, base = baseU(), narrow = innerWidth / innerHeight < 1.4;
     var hiK = narrow ? 2.4 : 1.35;
     // Finds the biggest size that fits with the most days; on narrow screens it also tries stacked shifts.
@@ -245,6 +309,8 @@
     var pick = best(false);
     document.body.classList.toggle('stack', pick.stack);
     main.innerHTML = html + weekHtml(pick.days); setU(pick.u);
+    document.body.classList.add('fx');
+    if (!played) { played = true; document.body.classList.add('enter'); setTimeout(function () { document.body.classList.remove('enter'); }, 2500); }
     if (narrow) {   // spread the days out to use the whole height
       var wk = main.querySelector('.week'); wk.style.gridTemplateRows = 'repeat(' + pick.days + ', minmax(max-content, 1fr))'; wk.style.alignContent = 'stretch';
     }
@@ -261,6 +327,7 @@
 
   var wait;
   addEventListener('resize', function () { clearTimeout(wait); wait = setTimeout(render, 300); });
+  sprinkle();
   tick(); setInterval(tick, 10000);
   load(); setInterval(load, 10 * 60 * 1000);       // check for schedule changes every 10 minutes
   setInterval(render, 60 * 1000);                    // keep "On duty now" and "Today" current
