@@ -1,8 +1,8 @@
 {
  "weeks": {
   "2026-11-23": {
-   "id": "1795407632038",
-   "sent": "2026-11-27T15:31:57.697Z",
+   "id": "1795793541152",
+   "sent": "2026-11-27T15:32:21.152Z",
    "cats": [
     "Breakfast",
     "Lunch",
@@ -12,9 +12,111 @@
    "days": [
     [
      [
-      "Apple Oatmeal",
+      "Cream Cheese Bagel",
+      "Hard-Boiled Egg",
+      "Orange Slices"
+     ],
+     [
+      "Tuna Melt",
+      "Tomato Soup",
+      "Grapes"
+     ],
+     [
+      "Baked Chicken",
+      "Brown Rice",
+      "Steamed Broccoli"
+     ]
+    ],
+    [
+     [
+      "Spinach Omelet",
+      "English Muffin",
+      "Grapes"
+     ],
+     [
+      "Vegetable Beef Soup",
+      "Whole Grain Roll",
+      "Pears"
+     ],
+     [
+      "Fish & Chips",
+      "Coleslaw",
+      "Lemon Wedges"
+     ]
+    ],
+    [
+     [
+      "Raisin Oatmeal",
+      "Hard-Boiled Egg",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "BBQ Pulled Chicken",
+      "Coleslaw",
+      "Melon"
+     ],
+     [
+      "Shepherd's Pie",
+      "Garden Salad",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "Berry Yogurt Parfait",
+      "Whole Wheat Toast",
+      "Banana"
+     ],
+     [
+      "Fish Sticks",
+      "Green Peas",
+      "Orange Slices"
+     ],
+     [
+      "Chicken Parmesan",
+      "Green Beans",
+      "Whole Grain Roll"
+     ]
+    ],
+    [
+     [
+      "French Toast",
+      "Turkey Sausage",
+      "Strawberries"
+     ],
+     [
+      "Beef Tacos",
+      "Seasoned Corn",
+      "Melon"
+     ],
+     [
+      "Baked Salmon",
+      "Brown Rice",
+      "Roasted Carrots"
+     ]
+    ],
+    [
+     [
+      "Egg & Cheese Muffin",
       "Yogurt",
-      "Blueberries"
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "Chicken Quesadilla",
+      "Black Beans",
+      "Fresh Seasonal Fruit"
+     ],
+     [
+      "Beef Rice Bowl",
+      "Steamed Broccoli",
+      "Fresh Seasonal Fruit"
+     ]
+    ],
+    [
+     [
+      "Scrambled Eggs",
+      "Whole Wheat Toast",
+      "Orange Slices"
      ],
      [
       "Tuna Pasta Salad",
@@ -25,108 +127,6 @@
       "Chicken Alfredo",
       "Steamed Broccoli",
       "Fresh Seasonal Fruit"
-     ]
-    ],
-    [
-     [
-      "Blueberry Pancakes",
-      "Cottage Cheese",
-      "Fresh Seasonal Fruit"
-     ],
-     [
-      "Beef Tacos",
-      "Seasoned Corn",
-      "Melon"
-     ],
-     [
-      "Tuna Mac & Cheese",
-      "Green Peas",
-      "Fresh Seasonal Fruit"
-     ]
-    ],
-    [
-     [
-      "Egg & Cheese Bagel",
-      "Yogurt",
-      "Fresh Seasonal Fruit"
-     ],
-     [
-      "BBQ Pulled Chicken",
-      "Coleslaw",
-      "Melon"
-     ],
-     [
-      "Beef Rice Bowl",
-      "Steamed Broccoli",
-      "Fresh Seasonal Fruit"
-     ]
-    ],
-    [
-     [
-      "French Toast",
-      "Turkey Sausage",
-      "Strawberries"
-     ],
-     [
-      "Tuna Salad Sandwich",
-      "Tomato Soup",
-      "Orange Slices"
-     ],
-     [
-      "Baked Chicken",
-      "Brown Rice",
-      "Steamed Broccoli"
-     ]
-    ],
-    [
-     [
-      "Cheese Omelet",
-      "Whole Wheat Toast",
-      "Peaches"
-     ],
-     [
-      "Vegetable Beef Soup",
-      "Whole Grain Roll",
-      "Pears"
-     ],
-     [
-      "Baked Salmon",
-      "Brown Rice",
-      "Roasted Carrots"
-     ]
-    ],
-    [
-     [
-      "Peanut Butter Toast",
-      "Yogurt",
-      "Orange Slices"
-     ],
-     [
-      "Chicken Quesadilla",
-      "Black Beans",
-      "Fresh Seasonal Fruit"
-     ],
-     [
-      "Shepherd's Pie",
-      "Garden Salad",
-      "Fresh Seasonal Fruit"
-     ]
-    ],
-    [
-     [
-      "Cereal w/ Milk",
-      "Hard-Boiled Egg",
-      "Banana"
-     ],
-     [
-      "Fish Sticks",
-      "Green Peas",
-      "Orange Slices"
-     ],
-     [
-      "Chicken Fajitas",
-      "Black Beans",
-      "Pineapple"
      ]
     ]
    ]
