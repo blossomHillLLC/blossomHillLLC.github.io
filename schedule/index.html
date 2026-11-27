@@ -85,6 +85,13 @@
     .day .slot .pill { flex: 0 1 auto; flex-direction: row; text-align: left; border-radius: 99px; width: auto; font-size: calc(2.2 * var(--u));
       padding: calc(.5 * var(--u)) calc(2 * var(--u)) calc(.5 * var(--u)) calc(.5 * var(--u)); gap: calc(1.2 * var(--u)); }
     .day .slot .pill small { white-space: nowrap; }
+    /* each name fills its half of the row, name big, time smaller */
+    .day .slot { flex: 1 1 0; }
+    .day .slot .pill { flex: 1 1 auto; width: 100%; font-size: calc(2.6 * var(--u)); padding-right: calc(1.2 * var(--u)); gap: calc(.9 * var(--u)); }
+    .day .slot .pill .av { width: 1.7em; height: 1.7em; }
+    .day .slot .pill .nm { font-size: 1.25em; line-height: 1.05; }
+    .day .slot .pill small { font-size: .62em; }
+    .dname { width: calc(9 * var(--u)) !important; padding-right: calc(.4 * var(--u)); }
     .day .slot .open { flex: 0 1 auto; border: 0; padding-left: var(--u); }
   }
   /* Tall screens: day name on the left, day shift above night shift (the page turns this on when it gives bigger text) */
@@ -236,10 +243,6 @@
       return { days: 2, u: base * 0.6, stack: stack };
     }
     var pick = best(false);
-    if (narrow) {   // tall screens prefer stacked shifts unless that makes the text clearly smaller
-      var alt = best(true), tall = innerWidth / innerHeight < 0.8;
-      if (alt.days > pick.days || (alt.days === pick.days && alt.u > pick.u * (tall ? 0.95 : 1.03))) pick = alt;
-    }
     document.body.classList.toggle('stack', pick.stack);
     main.innerHTML = html + weekHtml(pick.days); setU(pick.u);
     if (narrow) {   // spread the days out to use the whole height
