@@ -38,10 +38,10 @@
 
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.site.min.css" rel="stylesheet">
+    <link href="css/bootstrap.site.min.css?v=20261127b" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?v=20261127b" rel="stylesheet">
 
     <!-- Business details for Google and AI search tools -->
     <script type="application/ld+json">
@@ -195,6 +195,8 @@
                                 <a href="location.html" class="dropdown-item">Location</a>
                                 <a href="careers.html" class="dropdown-item">Careers</a>
                                 <a href="faq.html" class="dropdown-item">FAQ</a>
+                                <a href="guides.html" class="dropdown-item">Family Guides</a>
+                                <a href="referrals.html" class="dropdown-item">For Case Managers</a>
                             </div>
                         </div>
 
@@ -219,8 +221,7 @@
 
             <!-- Virtual Tour Button Start -->
             <div class="container text-center mb-5">
-                <a href="https://youtu.be/5wXHucIN-wM?si=2sTogk0mRXIaRlrE" 
-                target="_blank" 
+                <a href="#video-tour" 
                 class="btn btn-primary btn-lg rounded-pill px-5 py-3">
                 ▶ Watch Virtual Tour
                 </a>
@@ -353,6 +354,28 @@
     </script>
     <!-- Gallery End -->
 
+    <!-- Video Tour Start -->
+    <!-- The video comes from YouTube. To change it, replace the code after data-youtube-id="..."
+         with the code at the end of the new YouTube link (for youtu.be/5wXHucIN-wM it is 5wXHucIN-wM). -->
+    <div class="container-xxl py-5" id="video-tour">
+        <div class="container">
+            <div class="section-title text-center mx-auto" style="max-width: 600px;">
+                <p class="fs-5 fw-medium fst-italic text-primary">Video Tour</p>
+                <h2 class="display-6">Take a Walk Through Blossom Hill</h2>
+            </div>
+            <div id="tour-video" data-youtube-id="5wXHucIN-wM" class="mx-auto" style="max-width: 960px;" hidden>
+                <div class="yt-box">
+                    <img src="" alt="Video tour of the Blossom Hill home in Woodbury, MN" width="480" height="360" loading="lazy">
+                    <button type="button" class="yt-play" aria-label="Play the video tour"><span></span></button>
+                </div>
+            </div>
+            <noscript><p class="text-center"><a href="https://youtu.be/5wXHucIN-wM">Watch the video tour on YouTube</a></p></noscript>
+            <p class="text-center mt-4 mb-0"><a href="https://www.youtube.com/@BlossomHillLLC" class="btn btn-light rounded-pill px-4 py-2" target="_blank" rel="noopener">Visit our YouTube channel</a></p>
+        </div>
+    </div>
+    <!-- Video Tour End -->
+
+
     </main>
 
     <!-- Footer Start -->
@@ -399,6 +422,9 @@
                         <a class="btn btn-link" href="location.html">Location</a>
                         <a class="btn btn-link" href="careers.html">Careers</a>
                         <a class="btn btn-link" href="faq.html">FAQ</a>
+                        <a class="btn btn-link" href="guides.html">Family Guides</a>
+                        <a class="btn btn-link" href="referrals.html">For Case Managers</a>
+                        <a class="btn btn-link" href="https://www.google.com/maps/search/?api=1&query=Blossom+Hill+LLC+6765+Buckingham+Rd+Woodbury+MN+55125" target="_blank" rel="noopener">Review Us on Google</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-primary mb-4">Office Hours</h4>
@@ -434,6 +460,13 @@
     <!-- Copyright End -->
 
 
+
+    <!-- Call / Book a Tour bar (shows only on phones) -->
+    <div class="mobile-cta" role="navigation" aria-label="Quick contact">
+        <a href="tel:+17632859666" class="cta-call"><i class="fa fa-phone-alt"></i> Call Now</a>
+        <a href="contact.html" class="cta-tour">Book a Tour</a>
+    </div>
+
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
 
@@ -446,7 +479,8 @@
     <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js" defer></script>
+    <script src="js/main.js?v=20261127b" defer></script>
+    <script src="js/site-extras.js?v=20261127b" defer></script>
 </body>
 
 </html>

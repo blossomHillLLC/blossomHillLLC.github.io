@@ -38,10 +38,10 @@
 
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.site.min.css" rel="stylesheet">
+    <link href="css/bootstrap.site.min.css?v=20261127b" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style.css?v=20261127b" rel="stylesheet">
 
     <!-- Business details for Google and AI search tools -->
     <script type="application/ld+json">
@@ -195,6 +195,8 @@
                                 <a href="location.html" class="dropdown-item">Location</a>
                                 <a href="careers.html" class="dropdown-item">Careers</a>
                                 <a href="faq.html" class="dropdown-item">FAQ</a>
+                                <a href="guides.html" class="dropdown-item">Family Guides</a>
+                                <a href="referrals.html" class="dropdown-item">For Case Managers</a>
                             </div>
                         </div>
 
@@ -406,12 +408,62 @@
                         <li><strong>Brain Injury (BI) waiver</strong></li>
                         <li><strong>Private pay</strong></li>
                     </ul>
-                    <p class="mb-4 fs-5">Case managers, social workers and families are welcome to call <a href="tel:+17632859666" class="text-decoration-none text-primary"><strong>763-285-9666</strong></a> to talk through a referral. You can also <a href="availability.html" class="text-decoration-none text-primary"><strong>check current openings</strong></a>, <a href="brochure.html" class="text-decoration-none text-primary"><strong>view our brochure</strong></a>, or <a href="contact.html" class="text-decoration-none text-primary"><strong>book a tour</strong></a>.</p>
+                    <p class="mb-3 fs-5"><strong>What does it cost?</strong> For residents on a waiver, the county waiver pays for the care services. Private-pay rates depend on the care each person needs, so we give each family a clear monthly price after we talk about their needs. Call <a href="tel:+17632859666" class="text-decoration-none text-primary"><strong>763-285-9666</strong></a> for current rates.</p>
+                    <p class="mb-4 fs-5">Case managers, social workers and families are welcome to call <a href="tel:+17632859666" class="text-decoration-none text-primary"><strong>763-285-9666</strong></a> to talk through a referral, or use our <a href="referrals.html" class="text-decoration-none text-primary"><strong>online referral form</strong></a>. You can also <a href="availability.html" class="text-decoration-none text-primary"><strong>check current openings</strong></a>, <a href="brochure.html" class="text-decoration-none text-primary"><strong>view our brochure</strong></a>, or <a href="contact.html" class="text-decoration-none text-primary"><strong>book a tour</strong></a>.</p>
                 </div>
             </div>
         </div>
     </div>
     <!-- Paying for Care End -->
+
+    <!-- Free Checklist Sign-up Start -->
+    <div class="container-xxl py-5" id="checklist">
+        <div class="container">
+            <div class="bh-panel">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <p class="fs-5 fw-medium fst-italic text-primary mb-2">Free for families</p>
+                        <h2 class="display-6">Questions to Ask When Touring Assisted Living</h2>
+                        <p class="mb-0">A printable checklist of the questions that matter most: staffing at night, medications, safety, food, cost and paperwork. Bring it to every tour, ours or anyone else's.</p>
+                    </div>
+                    <div class="col-lg-6">
+                        <form class="bh-form" action="https://formspree.io/f/mannblne" method="POST" data-event="checklist_signup" data-done="ck-done-services" novalidate>
+                            <input type="hidden" name="_subject" value="Website: touring checklist request">
+                            <input type="hidden" name="form_name" value="Touring checklist">
+                            <div class="row g-2">
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="ck-name-services">First name</label>
+                                    <input class="form-control" id="ck-name-services" name="name" autocomplete="given-name" required>
+                                    <div class="invalid-feedback">Please enter your first name.</div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="form-label" for="ck-email-services">Email</label>
+                                    <input class="form-control" id="ck-email-services" name="email" type="email" autocomplete="email" required>
+                                    <div class="invalid-feedback">Please enter your email address.</div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check mt-1">
+                                        <input class="form-check-input" type="checkbox" name="call_me_about_openings" value="yes" id="ck-call-services">
+                                        <label class="form-check-label" for="ck-call-services">I'd also like a call about current openings</label>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary rounded-pill px-4 py-2 mt-2">Get the free checklist</button>
+                                    <p class="small text-muted mt-2 mb-0">We only use your email to follow up about Blossom Hill. Ask us to stop anytime.</p>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="ck-done-services" class="bh-done" hidden>
+                            <p class="fw-medium mb-2">Thank you! Your checklist is ready.</p>
+                            <a href="files/Assisted-Living-Tour-Checklist.pdf" class="btn btn-primary rounded-pill px-4" download>Download the checklist (PDF)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Free Checklist Sign-up End -->
+
 
     </main>
 
@@ -459,6 +511,9 @@
                         <a class="btn btn-link" href="location.html">Location</a>
                         <a class="btn btn-link" href="careers.html">Careers</a>
                         <a class="btn btn-link" href="faq.html">FAQ</a>
+                        <a class="btn btn-link" href="guides.html">Family Guides</a>
+                        <a class="btn btn-link" href="referrals.html">For Case Managers</a>
+                        <a class="btn btn-link" href="https://www.google.com/maps/search/?api=1&query=Blossom+Hill+LLC+6765+Buckingham+Rd+Woodbury+MN+55125" target="_blank" rel="noopener">Review Us on Google</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-primary mb-4">Office Hours</h4>
@@ -494,6 +549,13 @@
     <!-- Copyright End -->
 
 
+
+    <!-- Call / Book a Tour bar (shows only on phones) -->
+    <div class="mobile-cta" role="navigation" aria-label="Quick contact">
+        <a href="tel:+17632859666" class="cta-call"><i class="fa fa-phone-alt"></i> Call Now</a>
+        <a href="contact.html" class="cta-tour">Book a Tour</a>
+    </div>
+
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
 
@@ -506,7 +568,8 @@
     <script src="lib/owlcarousel/owl.carousel.min.js" defer></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js" defer></script>
+    <script src="js/main.js?v=20261127b" defer></script>
+    <script src="js/site-extras.js?v=20261127b" defer></script>
 </body>
 
 </html>
