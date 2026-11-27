@@ -360,7 +360,7 @@ function restoreMenu(){
 /* ---------- drawing the menu ---------- */
 var F_FOOD = '"Segoe UI",Arial,Helvetica,"Liberation Sans",sans-serif';
 // Text sizes, in page units (the page is 1920 wide; on Letter paper 1 unit is about 0.39 pt)
-var STD = {title:38, food:29, label:25, line:32.5, labelH:29, gap:8, indent:28};   // whole week on one page
+var STD = {title:38, food:29, label:25, line:32.5, labelH:29, gap:8, indent:38, pics:true};   // whole week on one page
 var BIG = {title:66, food:49, label:44, line:54, labelH:52, gap:20, indent:44, plain:true};   // large print: 18 pt and up
 var INK = "#111", NAVY = "#2c3a7a";
 
@@ -382,9 +382,9 @@ function dayLayout(c,d,w,P,k){
   var h=0, out=[];
   catNames.forEach(function(_,ci){
     var n=0, m=mealFor(d,ci).map(function(line,li){
-      var L=wrap(c, line, w-P.indent*k), e=(li===0&&!P.plain)?emojiFor(line):"";
+      var L=wrap(c, line, w-P.indent*k), e=(li===0&&!P.plain&&!P.pics)?emojiFor(line):"";   // with pics, each food gets its picture in front instead
       if (e && c.measureText(L[L.length-1]+e).width<=w-P.indent*k) L[L.length-1]+=e;
-      n+=L.length; return L;
+      L.whole=line; n+=L.length; return L;
     });
     h+=(P.labelH+n*P.line+P.gap)*k; out.push(m);
   });
@@ -411,7 +411,11 @@ function drawDay(c,d,x,w,titleY,top,P,k,rec){
       lines.forEach(function(t,i){
         y+=P.line*k;
         var base=y-P.line*k*0.24;
-        if (i===0){ c.beginPath(); c.arc(x+P.indent*k*0.45, base-P.food*k*0.33, P.food*k*0.13, 0, 6.3); c.fill(); }
+        if (i===0 && P.pics){   // a food picture in front of each food, like the food list
+          c.save(); c.font=(P.food*k*0.86)+'px "Segoe UI Emoji","Apple Color Emoji","Noto Color Emoji",sans-serif';
+          c.fillText(pic(lines.whole||lines.join(" ")), x, base); c.restore(); c.font=foodFont(P,k); c.fillStyle=INK;
+        }
+        else if (i===0){ c.beginPath(); c.arc(x+P.indent*k*0.45, base-P.food*k*0.33, P.food*k*0.13, 0, 6.3); c.fill(); }
         c.fillText(t, x+P.indent*k, base);
       });
     });
