@@ -16,7 +16,32 @@
   #status{padding:8px 16px;font-size:15px;min-height:20px}
   #status.err{color:#a01818;font-weight:600}
   #wrap{padding:0 16px 16px}
-  canvas{display:block;width:100%;max-width:1500px;margin:0 auto;box-shadow:0 2px 14px rgba(60,20,120,.25);cursor:pointer}
+  #wrap{display:flex;gap:16px;align-items:flex-start;max-width:1840px;margin:0 auto}
+  #canvasBox{flex:1;min-width:0}
+  #pantry{width:290px;flex:none;position:sticky;top:8px;max-height:calc(100vh - 16px);overflow:auto;background:#fff;border-radius:14px;
+    box-shadow:0 2px 14px rgba(60,20,120,.18);padding:10px 10px 14px}
+  #pantry .phead{display:flex;flex-direction:column;padding:2px 4px 8px}
+  #pantry .phead b{font-size:21px;color:#2c3a7a}
+  #pantry .phead span{font-size:14px;color:#5a4a78}
+  #psearch{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:8px 10px;border:2px solid #c9a8ee;border-radius:10px;margin-bottom:6px}
+  .pcat{margin:10px 0 4px;font-size:16px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff;background:var(--c);border-radius:8px;padding:5px 10px}
+  .pitem{display:flex;gap:8px;align-items:flex-start;padding:7px 8px;margin:5px 0;border-radius:10px;border:2px solid color-mix(in srgb,var(--c) 35%,#fff);
+    background:color-mix(in srgb,var(--c) 7%,#fff);cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-y}
+  .pitem:hover{border-color:var(--c)}
+  .pitem .pe{font-size:22px;line-height:1.1;flex:none;width:26px;text-align:center}
+  .pitem .pt{min-width:0;font-size:15.5px;line-height:1.25}
+  .pitem .pt b{display:block;font-size:16.5px;color:#2b2140}
+  .pitem .pt i{font-style:normal;color:#5a4a78}
+  .pitem .on{margin-left:auto;flex:none;font-size:12.5px;font-weight:700;color:#fff;background:var(--c);border-radius:99px;padding:2px 8px;align-self:center}
+  .pitem.used{opacity:.72}
+  #ghost{position:fixed;z-index:50;pointer-events:none;display:none;max-width:280px;background:#fff;border:3px solid #7b4fc4;border-radius:12px;padding:8px 12px;
+    font-size:16px;font-weight:600;box-shadow:0 8px 24px rgba(60,20,120,.35);transform:translate(12px,12px) rotate(-2deg)}
+  #dropHi{position:fixed;z-index:40;pointer-events:none;display:none;border:4px dashed #1f9d55;background:rgba(31,157,85,.12);border-radius:12px}
+  #dropHi.bad{border-color:#c62828;background:rgba(198,40,40,.10)}
+  body.dragging, body.dragging *{cursor:grabbing !important}
+  @media (max-width:980px){ #wrap{flex-direction:column;align-items:stretch} #pantry{width:auto;position:static;max-height:300px} }
+  @media print{#pantry,#ghost,#dropHi{display:none !important}}
+  canvas{display:block;width:100%;max-width:1500px;margin:0 auto;touch-action:pan-y;box-shadow:0 2px 14px rgba(60,20,120,.25);cursor:pointer}
   #hint{text-align:center;font-size:14px;color:#5a4a78;padding:8px}
   input[type=file]{display:none}
   #dailybar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px;background:#f7f1ff;border-bottom:2px solid #c9a8ee;font-size:17px}
@@ -95,8 +120,17 @@
   <button id="tvSetup" title="Paste the GitHub key that lets this page update the TV">Connect TV</button>
 </div>
 <div id="status"></div>
-<div id="wrap"><canvas id="c" width="3840" height="2160"></canvas></div>
-<div id="hint">Tip: click any single meal on the menu to swap just that one.</div>
+<div id="wrap">
+  <aside id="pantry" aria-label="Food list to drag onto the menu">
+    <div class="phead"><b>Food list</b><span>Drag a meal onto a day</span></div>
+    <input id="psearch" type="search" placeholder="Search, e.g. chicken" aria-label="Search the food list">
+    <div id="plist"></div>
+  </aside>
+  <div id="canvasBox"><canvas id="c" width="3840" height="2160"></canvas></div>
+</div>
+<div id="hint">Tips: drag a meal from the food list onto a day, or drag meals on the menu to move them. Click a meal to swap just that one.</div>
+<div id="ghost" aria-hidden="true"></div>
+<div id="dropHi" aria-hidden="true"></div>
 <img id="grocPrintPage" alt="Grocery list">
 <section id="grocBox" aria-label="Grocery list">
   <div class="ghead">
@@ -666,12 +700,151 @@ document.getElementById("file").onchange=function(ev){
   rd.onerror=function(){ say("Sorry, that file could not be read.",true); };
   rd.readAsArrayBuffer(f);
 };
+/* ---------- Drag and drop: from the food list onto the menu, and around the menu ----------
+   A breakfast can only go in a breakfast spot (and the same for lunch and dinner).
+   Dropping a meal that is already on another day swaps the two, so nothing is served twice. */
+var justDragged=false;
+function slotAt(clientX,clientY){
+  var b=canvas.getBoundingClientRect(); if (clientX<b.left||clientX>b.right||clientY<b.top||clientY>b.bottom) return null;
+  var x=(clientX-b.left)*1920/b.width, y=(clientY-b.top)*PAGE_H/b.height;
+  for (var i=0;i<hits.length;i++){ var h=hits[i]; if (x>=h.x&&x<=h.x+h.w&&y>=h.y&&y<=h.y+h.h) return h; }
+  return null;
+}
 canvas.onclick=function(ev){
-  var b=canvas.getBoundingClientRect(), x=(ev.clientX-b.left)*1920/b.width, y=(ev.clientY-b.top)*PAGE_H/b.height;
-  for (var i=0;i<hits.length;i++){ var h=hits[i];
-    if (x>=h.x&&x<=h.x+h.w&&y>=h.y&&y<=h.y+h.h){ swapOne(h.d,h.ci); say("Swapped "+DAYS[h.d].toLowerCase()+" "+catNames[h.ci].toLowerCase()+"."); return; }
-  }
+  if (justDragged){ justDragged=false; return; }
+  var h=slotAt(ev.clientX,ev.clientY);
+  if (h){ swapOne(h.d,h.ci); say("Swapped "+DAYS[h.d].toLowerCase()+" "+catNames[h.ci].toLowerCase()+"."); }
 };
+function mealText(m){ return m[0]+(m.length>1?" · "+m.slice(1).join(", "):""); }
+// Pictures for the food list (the same ones the TV menu uses)
+var FOOD_PICS = [
+  [/pancake/i, '🥞'], [/waffle/i, '🧇'], [/french toast/i, '🍞'], [/bagel/i, '🥯'],
+  [/burrito|wrap/i, '🌯'], [/taco|fajita|quesadilla/i, '🌮'], [/burger|sloppy joe/i, '🍔'], [/hot dog/i, '🌭'],
+  [/grilled cheese/i, '🧀'], [/sandwich|melt/i, '🥪'], [/tomato soup/i, '🍅'], [/soup|chili|stew/i, '🍲'],
+  [/pot pie|shepherd/i, '🥧'], [/pasta|alfredo|mac|noodle/i, '🍝'], [/salad|coleslaw/i, '🥗'],
+  [/shrimp/i, '🍤'], [/fish|salmon|tuna|cod|tilapia/i, '🐟'], [/stir.?fry/i, '🥘'], [/wing|drumstick|chicken|turkey w\/ gravy/i, '🍗'],
+  [/steak/i, '🥩'], [/rice bowl/i, '🍚'], [/omelet|scrambled|egg & cheese/i, '🍳'], [/oatmeal|cream of wheat|cereal/i, '🥣'], [/parfait/i, '🍨'],
+  [/yogurt/i, '🥛'], [/cottage cheese/i, '🧀'], [/garlic bread/i, '🥖'], [/cornbread|muffin|toast|bread|roll/i, '🍞'],
+  [/cracker/i, '🍘'], [/sausage/i, '🌭'], [/turkey ham|ham\b/i, '🍖'], [/egg/i, '🥚'], [/lemon/i, '🍋'], [/pineapple/i, '🍍'],
+  [/fries|wedges/i, '🍟'], [/sweet potato/i, '🍠'], [/potato/i, '🥔'], [/rice/i, '🍚'], [/green beans/i, '🥬'], [/beans/i, '🥫'],
+  [/corn/i, '🌽'], [/broccoli|mixed vegetables/i, '🥦'], [/carrot/i, '🥕'], [/peas/i, '🌱'],
+  [/apple/i, '🍎'], [/banana/i, '🍌'], [/blueberr/i, '🫐'], [/strawberr|berries/i, '🍓'], [/grape/i, '🍇'],
+  [/melon/i, '🍈'], [/orange/i, '🍊'], [/peach/i, '🍑'], [/pear/i, '🍐'],
+  [/fruit/i, '🍉'], [/milk/i, '🥛'], [/cheese/i, '🧀']
+];
+function pic(name){ for (var i=0;i<FOOD_PICS.length;i++) if (FOOD_PICS[i][0].test(name||'')) return FOOD_PICS[i][1]; return '🍽️'; }
+var PCOL=["#d9822b","#2e9e5b","#2b6fd6","#c2185b","#7b4fc4"];
+function renderPantry(){
+  var box=document.getElementById("plist"); if (!box||!menu) return;
+  var q=(document.getElementById("psearch").value||"").trim().toLowerCase(), html="";
+  catNames.forEach(function(name,ci){
+    var key=name.toLowerCase(), list=meals[key], where={};
+    menu.forEach(function(day,d){ where[day[ci]]=(where[day[ci]]?where[day[ci]]+", ":"")+DAYS[d].charAt(0)+DAYS[d].slice(1,3).toLowerCase(); });
+    var rows=list.map(function(m,i){ return {m:m,i:i}; }).filter(function(r){ return !q || r.m.join(" ").toLowerCase().indexOf(q)>=0; });
+    if (!rows.length) return;
+    html+='<div class="pcat" style="--c:'+PCOL[ci%PCOL.length]+'">'+escH(name)+'</div>';
+    rows.forEach(function(r){
+      html+='<div class="pitem'+(where[r.i]?' used':'')+'" style="--c:'+PCOL[ci%PCOL.length]+'" data-ci="'+ci+'" data-i="'+r.i+'" title="Drag onto a '+escH(name.toLowerCase())+' spot">'+
+        '<span class="pe">'+pic(r.m[0])+'</span><span class="pt"><b>'+escH(r.m[0])+'</b>'+(r.m.length>1?'<i>'+escH(r.m.slice(1).join(", "))+'</i>':'')+'</span>'+
+        (where[r.i]?'<span class="on">'+where[r.i]+'</span>':'')+'</div>';
+    });
+  });
+  box.innerHTML=html||'<p style="color:#5a4a78">Nothing matches that search.</p>';
+}
+document.getElementById("psearch").oninput=renderPantry;
+// Places meal idx (category ci) on day d. If it is already on another day, the two days trade.
+function placeMeal(d,ci,idx){
+  var from=-1; menu.forEach(function(day,dd){ if (dd!==d && day[ci]===idx) from=dd; });
+  var old=menu[d][ci]; if (old===idx) return null;
+  menu[d][ci]=idx; if (from>=0) menu[from][ci]=old;
+  return from;
+}
+function moveMeal(d1,d2,ci){ var t=menu[d1][ci]; menu[d1][ci]=menu[d2][ci]; menu[d2][ci]=t; }
+// Friendly warnings after a move (the move is kept either way).
+function dShort(d){ return DAYS[d].charAt(0)+DAYS[d].slice(1,3).toLowerCase(); }
+function moveWarnings(days,ci){
+  var key=catNames[ci].toLowerCase(), out=[];
+  days.forEach(function(d){
+    var m=mealFor(d,ci), k=kindOf(m);
+    menu.forEach(function(day,dd){ day.forEach(function(idx,c){ if ((dd!==d||c!==ci) && kindOf(meals[catNames[c].toLowerCase()][idx])===k)
+      out.push(m[0]+" makes two "+k+" mains this week ("+dShort(d)+" and "+dShort(dd)+")."); }); });
+    if (ROTATE.indexOf(key)>=0){
+      var g=pgroup(m.protein);
+      if (g){ [d-1,d+1].forEach(function(n){ if (n>=0&&n<DAYS.length&&pgroup(mealFor(n,ci).protein)===g)
+        out.push(catNames[ci]+" has "+g+" two days in a row ("+dShort(Math.min(d,n))+" and "+dShort(Math.max(d,n))+")."); });
+        catNames.forEach(function(nm,c){ if (c!==ci && ROTATE.indexOf(nm.toLowerCase())>=0 && pgroup(mealFor(d,c).protein)===g)
+          out.push(DAYS[d].charAt(0)+DAYS[d].slice(1).toLowerCase()+" has "+g+" for both lunch and dinner."); });
+      }
+    }
+  });
+  return out.filter(function(v,i,a){ return a.indexOf(v)===i; });
+}
+var drag=null;
+function dragStart(src,ev){
+  drag={src:src,x:ev.clientX,y:ev.clientY,on:false,id:ev.pointerId,touch:ev.pointerType==="touch",timer:null};
+  if (drag.touch) drag.timer=setTimeout(function(){ if (drag&&!drag.on) beginDrag(drag.x,drag.y); },280);   // touch: press and hold to drag
+}
+function beginDrag(x,y){
+  drag.on=true; document.body.classList.add("dragging");
+  var g=document.getElementById("ghost"), m=drag.src.type==="list"?meals[catNames[drag.src.ci].toLowerCase()][drag.src.i]:mealFor(drag.src.d,drag.src.ci);
+  g.textContent=pic(m[0])+" "+m[0]; g.style.display="block"; moveGhost(x,y);
+}
+function moveGhost(x,y){
+  var g=document.getElementById("ghost"); g.style.left=x+"px"; g.style.top=y+"px";
+  var hi=document.getElementById("dropHi"), h=slotAt(x,y);
+  if (!h){ hi.style.display="none"; return; }
+  var b=canvas.getBoundingClientRect(), sx=b.width/1920, sy=b.height/PAGE_H;
+  hi.style.left=(b.left+h.x*sx)+"px"; hi.style.top=(b.top+h.y*sy)+"px"; hi.style.width=(h.w*sx)+"px"; hi.style.height=(h.h*sy)+"px";
+  hi.className=h.ci===drag.src.ci?"":"bad"; hi.style.display="block";
+}
+function endDrag(ev){
+  if (!drag) return; var d0=drag; drag=null; clearTimeout(d0.timer);
+  document.body.classList.remove("dragging"); document.getElementById("ghost").style.display="none"; document.getElementById("dropHi").style.display="none";
+  if (!d0.on || !ev) return;
+  if (d0.src.type==="menu") justDragged=true;
+  var h=slotAt(ev.clientX,ev.clientY); if (!h) return;
+  var ci=d0.src.ci, cat=catNames[ci].toLowerCase();
+  if (h.ci!==ci){ say("A "+cat+" can only go in a "+cat+" spot. Try a "+cat+" row.",true); return; }
+  var changed=[], msg="";
+  if (d0.src.type==="list"){
+    var from=placeMeal(h.d,ci,d0.src.i); if (from===null){ say("That meal is already there."); return; }
+    changed=[h.d]; var name=meals[cat][d0.src.i][0];
+    msg=name+" is now "+DAYS[h.d].charAt(0)+DAYS[h.d].slice(1).toLowerCase()+"'s "+cat+".";
+    if (from>=0){ changed.push(from); msg+=" It was on "+DAYS[from].charAt(0)+DAYS[from].slice(1).toLowerCase()+", so the two days traded."; }
+  } else {
+    if (h.d===d0.src.d) return;
+    moveMeal(d0.src.d,h.d,ci); changed=[d0.src.d,h.d];
+    msg=catNames[ci]+" on "+DAYS[d0.src.d].charAt(0)+DAYS[d0.src.d].slice(1).toLowerCase()+" and "+DAYS[h.d].charAt(0)+DAYS[h.d].slice(1).toLowerCase()+" traded places.";
+  }
+  saveMenu(); draw();
+  var w=moveWarnings(changed,ci);
+  say(msg+(w.length?" Heads up: "+w.join(" "):""), false);
+}
+document.getElementById("plist").addEventListener("pointerdown",function(ev){
+  var el=ev.target.closest&&ev.target.closest(".pitem"); if (!el||ev.button>0) return;
+  dragStart({type:"list",ci:+el.getAttribute("data-ci"),i:+el.getAttribute("data-i")},ev);
+  if (!drag.touch) ev.preventDefault();
+});
+canvas.addEventListener("pointerdown",function(ev){
+  if (ev.button>0) return; var h=slotAt(ev.clientX,ev.clientY); if (!h) return;
+  dragStart({type:"menu",d:h.d,ci:h.ci},ev);
+});
+window.addEventListener("pointermove",function(ev){
+  if (!drag||ev.pointerId!==drag.id) return;
+  if (!drag.on){
+    var far=Math.abs(ev.clientX-drag.x)+Math.abs(ev.clientY-drag.y)>6;
+    if (drag.touch){ if (far){ clearTimeout(drag.timer); drag=null; } return; }   // touch moved before the hold: it is a scroll
+    if (far) beginDrag(ev.clientX,ev.clientY); else return;
+  }
+  moveGhost(ev.clientX,ev.clientY);
+});
+window.addEventListener("touchmove",function(ev){ if (drag&&drag.on) ev.preventDefault(); },{passive:false});
+window.addEventListener("pointerup",function(ev){ if (drag&&ev.pointerId===drag.id) endDrag(ev); });
+window.addEventListener("pointercancel",function(){ endDrag(null); });
+window.addEventListener("keydown",function(ev){ if (ev.key==="Escape"&&drag) endDrag(null); });
+// keep the food list in step with the menu
+var drawWithGrocery=draw;
+draw=function(){ drawWithGrocery.apply(this,arguments); renderPantry(); };
 
 /* ---------- Daily Food page (dailyfood): the menu is sent for a dated week ---------- */
 var MON3=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];

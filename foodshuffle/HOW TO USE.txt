@@ -23,6 +23,27 @@ SHUFFLE
   sandwich, one soup and one taco per week. If a swap would repeat a main,
   the app picks a different one (or tells you there is none left).
 
+DRAG AND DROP
+  The food list on the left shows every meal in menu_items.csv, with a
+  picture. A meal already on this week's menu shows its day (for example
+  "Tue"). Type in the search box to find one, for example "fish".
+  - Drag a meal from the food list onto a day to put it there.
+    Breakfasts go only in breakfast spots, lunches in lunch spots and
+    dinners in dinner spots. A green dashed box shows where it will land;
+    a red box means it does not fit there.
+    If that meal is already on another day, the two days trade, so a
+    meal is never on the menu twice.
+  - Drag a meal on the menu onto another day to trade the two days.
+  - Clicking a meal (without dragging) still swaps just that one.
+  After a move, the message line says "Heads up" if it breaks a menu rule
+  (two of the same kind of main, the same protein two days in a row, or
+  the same protein for lunch and dinner). The move is kept; drag again
+  if you want to change it.
+  On a tablet or touch screen: press and hold a meal for a moment, then
+  drag.
+  Every move is saved, updates the grocery list and the Daily Food page,
+  and is sent to the TV like a shuffle.
+
 DOWNLOAD
   - "Download PNG" = a 1920 x 1080 picture, made for a monitor or TV.
   - "Download PDF" = the same menu on one landscape Letter page.
