@@ -66,6 +66,29 @@ def clean(text, limit=150):
     return text
 
 
+PRICE = re.compile(r"\$\s?\d+(?:\.\d\d)?(?:\s*(?:-|–|to)\s*\$?\s?\d+(?:\.\d\d)?)?")
+FREE = re.compile(r"(?<![-\w])(free|no cost|no charge|at no cost)\b(?!\s+(?:of|to\s+(?:leave|come|go)|parking))", re.I)
+FEE = re.compile(r"\b(fee|fees|cost|costs|tickets?|admission|per person)\b", re.I)
+
+
+def cost_of(*texts):
+    """Returns '$5' (or '$5–$10') when a price is listed, 'free' when it says free, 'fee' when it
+    mentions a cost without an amount, and '' when it says nothing either way."""
+    text = " ".join(t or "" for t in texts)
+    text = re.sub(r"(gluten|sugar|dairy|nut|smoke|scent|fragrance|barrier|hands|worry)[- ]free", "", text, flags=re.I)
+    text = re.sub(r"feel free", "", text, flags=re.I)
+    m = PRICE.search(text)
+    if m and re.fullmatch(r"\$\s?0+(?:\.00)?", m.group(0)):
+        return "free"
+    if m:
+        return re.sub(r"\s*(?:-|to)\s*", "–", re.sub(r"\s", "", m.group(0)).replace("–", "-")).replace("–$", "–$")
+    if FREE.search(text):
+        return "free"
+    if FEE.search(text):
+        return "fee"
+    return ""
+
+
 def fmt_time(dt):
     return dt.strftime("%I:%M %p").lstrip("0")
 
@@ -108,6 +131,7 @@ def library_events(today, last_day):
             "category": clean((e.get("categories") or "").split(",")[0], 40),
             "desc": clean(e.get("shortdesc") or e.get("description")),
             "source": "Washington County Library",
+            "cost": cost_of(e.get("registration_cost")) or (cost_of(e.get("shortdesc")) if PRICE.search(e.get("shortdesc") or "") else "free"),
         })
     return events
 
@@ -182,13 +206,14 @@ def community_events(today, last_day):
             if not place or re.match(r"^\d", place):
                 place = default_place
             desc = clean(re.sub(r"https?://\S+", "", (ev.get("DESCRIPTION") or "").replace("\\n", " ")))
+            cost = cost_of(ev.get("SUMMARY"), ev.get("DESCRIPTION"))
             for start in occurrences(ev, today, last_day):
                 end = start + length
                 events.append({
                     "title": title, "date": start.strftime("%Y-%m-%d"),
                     "start": "" if all_day else fmt_time(start), "end": "" if all_day else fmt_time(end),
                     "allDay": all_day, "place": place, "town": town, "category": "Community",
-                    "desc": desc, "source": town,
+                    "desc": desc, "source": town, "cost": cost,
                 })
     return events
 
